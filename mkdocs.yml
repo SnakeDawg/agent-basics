@@ -7,6 +7,11 @@ site_description: A subject-agnostic catalogue + strategy + decisions site, auto
 docs_dir: docs
 site_dir: site
 
+# Repo-internal references that live under docs/ but are not part of the published catalogue.
+# Links to these from in-site pages are rewritten to GitHub blob URLs by scripts/build-docs.sh.
+exclude_docs: |
+  anthropic-spec.md
+
 theme:
   name: material
   features:
