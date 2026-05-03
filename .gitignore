@@ -161,7 +161,6 @@ venv.bak/
 # Source of truth lives in the original locations; these are build artifacts.
 /docs/index.md
 /docs/contributing.md
-/docs/claude.md
 /docs/agents/
 /docs/skills/
 /docs/shared/
