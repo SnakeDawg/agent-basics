@@ -51,15 +51,15 @@ description: <one-sentence trigger>
 # model: <if not 'inherit'>
 ---
 
-# Role
+# <Agent name>
 
 <role paragraph>
 
-# When to use
+## When to use
 
 <bullets derived from the description and any clarifying answers>
 
-# Constraints
+## Constraints
 
 <bullets, or omit the section if the user had no constraints>
 ```
