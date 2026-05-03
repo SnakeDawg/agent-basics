@@ -1,0 +1,63 @@
+# Archetype: Performance-Maximizer
+
+> Wants the most capable machine within reason — performance is the ROI. Distinct from the Innovator: doesn't need to be early or experimental, just needs to be the fastest.
+
+## Core orientation
+
+"I make money by finishing work faster. Sell me the capability that closes the gap to faster." Performance-Maximizers think in productivity-per-dollar across project timelines, not unit price.
+
+## Buying signals
+
+- Asks for benchmark data on their specific software (not synthetic).
+- Comparing top-tier configurations across vendors, not mid-tier.
+- Willing to pay premium for measurable performance delta.
+- Cares about sustained performance, not peak burst.
+- Asks about thermal headroom, fan curves, sustained clocks.
+
+## What they say
+
+- "What's the SolidWorks large-assembly rebuild time on this vs the previous gen?"
+- "Will this thermal-throttle during a 4-hour Houdini render?"
+- "What's the multi-GPU story?"
+- "I need this to handle 100M-poly scenes without choking."
+- "Which configuration finishes my workload fastest?"
+
+## How they evaluate
+
+- Workload-specific benchmarks: not Cinebench — their actual tools.
+- Sustained performance under load (not peak boost clocks).
+- Thermal envelope and acoustics during long jobs.
+- Memory capacity and bandwidth.
+- Pro GPU performance for their specific workload (not general gaming benchmarks).
+- Time saved per project × project frequency = ROI on the spend.
+
+## What we offer them
+
+- Top-tier Pro Workstation configurations (7000 series) with full pro GPU options.
+- Independent benchmark transparency for ISV-certified workloads.
+- Sustained-performance test data (not just peak).
+- Multi-GPU and high-memory tower configurations.
+- Direct engineering or product manager engagement on configuration tuning.
+- AcmeCare Plus for fast resolution when downtime equals lost revenue.
+
+## Common objections
+
+- "The Threadripper Pro is faster on rendering — why don't you offer it more aggressively?"
+- "Apple Silicon has better sustained performance per watt."
+- "BOXX or Puget will build me a machine tuned to my workload."
+- "Your top-tier price is hard to justify without independent benchmarks."
+
+## Typical roles / personas this archetype maps to
+
+- **CAD / Design Engineer** (primary — especially senior engineers running complex assemblies and simulations).
+- **Creative Director** (primary — render and timeline-scrub performance is daily ROI).
+- **Engineering Manager** (secondary — for top engineers' machines, not fleet).
+
+## How research skills should treat this archetype
+
+- `pain-point-analysis`: weight thermal throttling, sustained-performance, and crash-on-large-workload complaints heavily.
+- `competitor-analysis`: emphasize workload-specific benchmarks (SPECworkstation, SPECviewperf, ISV-published certifications, real-app benchmarks) over synthetic.
+- `market-intelligence`: BOXX, Puget, and Apple Silicon performance moves are leading indicators in this archetype's adoption decisions.
+- `portfolio-analysis`: top-tier capture rate (Pro Workstation 7000 mix) is the direct metric for performance-maximizer share within the buyer base.
+
+_Last reviewed: 2026-05-02._

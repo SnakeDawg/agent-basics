@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Pre-commit hook for the agents catalogue.
+#
+# Runs frontmatter validation on the whole catalogue and verifies the
+# README index is up to date. Aborts the commit on any failure.
+#
+# Enable with: scripts/install-hooks.sh
+# Bypass for a single commit (use sparingly): git commit --no-verify
+
+set -euo pipefail
+
+REPO="$(git rev-parse --show-toplevel)"
+cd "$REPO"
+
+# Skip if no catalogue or script changes are staged.
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+TOUCHES_CATALOGUE=$(printf '%s\n' "$STAGED" | grep -E '^(\.claude/(agents|skills)/|scripts/(validate|index-readme)\.py$|README\.md$)' || true)
+if [ -z "$TOUCHES_CATALOGUE" ]; then
+  exit 0
+fi
+
+echo "→ Validating catalogue frontmatter and naming…"
+if ! python3 scripts/validate.py; then
+  echo
+  echo "Pre-commit aborted: validator reported failures (see above)."
+  echo "Fix the issues, re-stage, and commit again."
+  exit 1
+fi
+
+echo
+echo "→ Checking README catalogue index is up to date…"
+if ! python3 scripts/index-readme.py --check; then
+  echo
+  echo "Pre-commit aborted: README.md catalogue tables are stale."
+  echo "Run \`python3 scripts/index-readme.py\` (or /index-readme), stage README.md, and commit again."
+  exit 1
+fi
+
+echo
+echo "✓ Pre-commit checks passed."
