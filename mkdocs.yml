@@ -11,6 +11,8 @@ site_dir: site
 # Links to these from in-site pages are rewritten to GitHub blob URLs by scripts/build-docs.sh.
 exclude_docs: |
   anthropic-spec.md
+  agents/_template.md
+  skills/_template
 
 theme:
   name: material

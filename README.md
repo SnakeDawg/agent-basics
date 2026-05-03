@@ -1,4 +1,4 @@
-# agents
+# Agent + skill catalogue
 
 A foundational catalogue of reusable Claude Code **subagents** and **skills**, distributed as plain markdown so the catalogue can grow incrementally.
 
