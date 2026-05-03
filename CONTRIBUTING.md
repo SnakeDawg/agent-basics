@@ -95,7 +95,7 @@ Prefer the slash commands above. If you want to do it by hand:
 
 ## Architecture decisions
 
-Significant design choices are recorded as ADRs (Architecture Decision Records) under [`docs/adr/`](docs/adr/). To add one:
+Significant design choices are recorded as ADRs (Architecture Decision Records) under [`docs/adr/`](docs/adr/README.md). To add one:
 
 1. Copy [`docs/adr/_template.md`](docs/adr/_template.md) to `docs/adr/NNNN-short-slug.md` (next available number).
 2. Fill in status, date, context, decision, consequences, and alternatives.
