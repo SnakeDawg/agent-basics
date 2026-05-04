@@ -71,6 +71,7 @@ The same checks run on every PR and branch push via `.github/workflows/validate.
 | Name | Description |
 | --- | --- |
 | [`example-explainer`](.claude/agents/example-explainer.md) | Explains a code snippet in plain English. Use when the user asks "what does this code do?" or wants a walkthrough of unfamiliar code. |
+| [`research-analyst`](.claude/agents/research-analyst.md) | Conducts market intelligence and competitive analysis. Use when the user asks for market research, competitor analysis, segment sizing, positioning analysis, or related strategic research. Optionally scopes the analysis with shared organizational context (personas, archetypes, strategy, product framing) when the topic is Acme-relevant. |
 <!-- agents:end -->
 
 ### Skills
@@ -78,7 +79,9 @@ The same checks run on every PR and branch push via `.github/workflows/validate.
 <!-- skills:start -->
 | Name | Description |
 | --- | --- |
+| [`competitive-analysis`](.claude/skills/competitive-analysis/SKILL.md) | Run a structured competitive analysis on a competitor, set of competitors, or product category. Trigger when the user asks to analyze a competitor, compare positioning, identify gaps, build a feature/price comparison, or map a competitive landscape. |
 | [`example-greeting`](.claude/skills/example-greeting/SKILL.md) | Trivial greeting skill used to verify skill discovery. Trigger when the user asks Claude to introduce itself or says "run the example greeting skill". |
+| [`market-intelligence`](.claude/skills/market-intelligence/SKILL.md) | Run a structured market intelligence pass on a topic, segment, or trend. Trigger when the user asks for market sizing, demand signals, buyer behavior, adjacent trends, or to research a market or industry segment. |
 <!-- skills:end -->
 
 ## Contributing
