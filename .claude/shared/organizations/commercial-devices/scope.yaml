@@ -1,0 +1,45 @@
+parent: company/acme-computing
+
+# Commercial Devices Group — the org responsible for client-side commercial computing.
+# Inherits company personas/archetypes/competitors. Narrows to commercial buyers.
+
+personas:
+  primary:
+    - cad-design-engineer
+    - creative-director
+    - engineering-manager
+    - it-procurement-lead
+  secondary:
+    - product-manager-hardware
+    - product-manager-software
+
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+    - pragmatist
+  secondary:
+    - compliance-driven
+
+competitors:
+  primary:
+    - hp-z
+    - lenovo-thinkstation
+  secondary:
+    - apple
+
+activity_scope:
+  market-research:
+    include_segments: [pro-cad, pro-creative, pro-engineering, commercial-it]
+    exclude_segments: [consumer, gaming, enterprise-server]
+  competitive-analysis:
+    primary_set: [hp-z, lenovo-thinkstation]
+    secondary_set: [apple]
+    dimensions:
+      - performance
+      - reliability
+      - support-sla
+      - configurability
+      - iso-cert-breadth
+      - tco
+      - it-management-integration

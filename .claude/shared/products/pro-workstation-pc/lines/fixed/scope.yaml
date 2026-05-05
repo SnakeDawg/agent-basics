@@ -1,0 +1,58 @@
+parent: products/pro-workstation-pc
+
+# Fixed (desktop) workstation line — towers and small-form-factor desktops.
+
+personas:
+  primary:
+    - cad-design-engineer
+    - engineering-manager
+  secondary:
+    - creative-director
+    - it-procurement-lead
+
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+  secondary:
+    - compliance-driven
+
+# Desktop competitors. Apple is excluded — Mac Pro/Studio play but aren't
+# direct competitors in the ISV-cert tower segment.
+competitors:
+  primary:
+    - hp-z
+    - lenovo-thinkstation
+  secondary:
+    - boxx
+    - puget-systems
+  excluded:
+    - apple
+    - framework
+    - razer
+
+activity_scope:
+  market-research:
+    include_segments:
+      - pro-cad-desktop
+      - pro-creative-desktop
+      - pro-engineering-desktop
+      - render-workstation
+      - simulation-workstation
+    exclude_segments:
+      - mobile-workstation
+      - rack-workstation
+      - rugged
+  competitive-analysis:
+    primary_set: [hp-z, lenovo-thinkstation]
+    secondary_set: [boxx, puget-systems]
+    dimensions:
+      - performance
+      - configurability         # towers compete heavily on this
+      - thermal-headroom
+      - expansion               # PCIe lanes, drive bays, GPU slots
+      - iso-cert-breadth
+      - support-sla
+    exclude_dimensions:
+      - mobility
+      - battery-life

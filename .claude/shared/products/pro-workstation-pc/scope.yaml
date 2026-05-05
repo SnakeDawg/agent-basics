@@ -1,0 +1,45 @@
+parent: portfolios/pro-workstations
+
+# Pro Workstation PC — mobile + desktop workstation lines (excludes rack workstations).
+# Inherits portfolio's competitor set; narrows by product-line below.
+
+personas:
+  primary:
+    - cad-design-engineer
+    - engineering-manager
+    - creative-director
+  secondary:
+    - it-procurement-lead
+
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+  secondary:
+    - compliance-driven
+
+competitors:
+  primary:
+    - hp-z
+    - lenovo-thinkstation
+  secondary:
+    - apple
+
+# Lines under this product
+lines:
+  - mobile
+  - fixed
+  - rugged
+
+activity_scope:
+  competitive-analysis:
+    primary_set: [hp-z, lenovo-thinkstation]
+    secondary_set: [apple]
+    dimensions:
+      - performance
+      - iso-cert-breadth
+      - configurability
+      - support-sla
+      - reliability-under-load
+      - it-management-integration
+      - mobility    # added at product level — relevant across lines

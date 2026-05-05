@@ -1,0 +1,61 @@
+parent: organizations/commercial-devices
+
+# Pro Workstations — the ISV-certified workstation portfolio.
+# Sits above mainstream commercial; below high-end specialty rigs.
+related:
+  - portfolios/acme-plus      # peer workstation-tier portfolio
+  - portfolios/acme-standard  # mainstream commercial (broader, less certified)
+
+personas:
+  primary:
+    - cad-design-engineer
+    - engineering-manager
+    - creative-director
+  secondary:
+    - it-procurement-lead
+
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+  secondary:
+    - compliance-driven
+  excluded:
+    - cost-conscious   # not the workstation buyer profile
+
+competitors:
+  primary:
+    - hp-z
+    - lenovo-thinkstation
+  secondary:
+    - apple
+
+activity_scope:
+  market-research:
+    include_segments:
+      - pro-cad
+      - pro-creative
+      - pro-engineering
+      - pro-data-science
+      - pro-aec
+    exclude_segments:
+      - consumer
+      - gaming
+      - enterprise-server
+      - mainstream-business
+  competitive-analysis:
+    primary_set: [hp-z, lenovo-thinkstation]
+    secondary_set: [apple]
+    dimensions:
+      - performance
+      - iso-cert-breadth
+      - configurability
+      - support-sla
+      - reliability-under-load
+      - it-management-integration
+    exclude_dimensions:
+      - gaming-features
+      - consumer-design
+  prd-definition:
+    target_personas: [cad-design-engineer, engineering-manager, creative-director]
+    target_archetypes: [performance-maximizer, innovator]

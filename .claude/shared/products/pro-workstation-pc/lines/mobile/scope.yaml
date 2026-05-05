@@ -1,0 +1,52 @@
+parent: products/pro-workstation-pc
+
+# Mobile workstation line — laptops sold individually as workstations.
+# Narrows competitor set to mobile-specific competitors.
+
+personas:
+  primary:
+    - cad-design-engineer
+    - creative-director
+  secondary:
+    - engineering-manager
+
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+
+# Mobile-specific competitor set. HP and Lenovo are still primary, but the
+# relevant competitors are the mobile lines (ZBook, ThinkPad P). Apple
+# matters more in mobile than in fixed/rugged.
+competitors:
+  primary:
+    - hp-z          # specifically the ZBook line
+    - lenovo-thinkstation   # specifically the ThinkPad P line
+    - apple         # MacBook Pro M-series
+  secondary:
+    - framework
+    - razer
+
+activity_scope:
+  market-research:
+    include_segments:
+      - pro-cad-mobile
+      - pro-creative-mobile
+      - pro-engineering-mobile
+      - aec-field
+    exclude_segments:
+      - desktop-workstation
+      - rack-workstation
+      - rugged-mobile      # rugged is a separate line
+  competitive-analysis:
+    primary_set: [hp-z, lenovo-thinkstation, apple]
+    dimensions:
+      - performance
+      - mobility           # weight, battery, thermals
+      - display-quality
+      - iso-cert-breadth
+      - configurability
+      - support-sla
+    exclude_dimensions:
+      - rack-density
+      - desktop-expansion

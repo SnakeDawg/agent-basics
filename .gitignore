@@ -165,6 +165,10 @@ venv.bak/
 /docs/skills/
 /docs/shared/
 
+# Active-scope state for session-aware slash commands (/scope, /competitive-analysis, etc.)
+# Per-clone, per-PM. Never committed.
+/.claude/state/
+
 # mypy
 .mypy_cache/
 .dmypy.json

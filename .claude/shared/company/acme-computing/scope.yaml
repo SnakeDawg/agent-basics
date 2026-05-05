@@ -1,0 +1,44 @@
+# Company-level scope manifest. Root of the chain — no parent.
+
+# Personas the company as a whole acknowledges. Lower levels narrow this set.
+personas:
+  primary:
+    - cad-design-engineer
+    - creative-director
+    - engineering-manager
+    - it-procurement-lead
+  secondary: []
+
+# Customer behavioral archetypes the company designs for.
+archetypes:
+  primary:
+    - performance-maximizer
+    - innovator
+    - pragmatist
+  secondary:
+    - compliance-driven
+    - cost-conscious
+
+# Top-level competitive set — broad. Specific portfolios narrow these.
+competitors:
+  primary:
+    - hp-z
+    - lenovo-thinkstation
+    - apple
+  secondary: []
+
+# Per-activity defaults for the whole company. Lower levels override.
+activity_scope:
+  market-research:
+    horizon: 3-year
+    exclude_segments: [consumer, gaming]   # Acme Home and Acme Gaming cover those
+  competitive-analysis:
+    dimensions:
+      - performance
+      - reliability
+      - support-sla
+      - configurability
+      - iso-cert-breadth
+      - tco
+  prd-definition:
+    target_personas: [cad-design-engineer, engineering-manager, creative-director]
