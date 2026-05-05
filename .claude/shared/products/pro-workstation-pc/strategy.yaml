@@ -1,0 +1,167 @@
+horizon: 2026-2028
+
+strategic_vision: |
+  Make Pro Workstation PCs the obvious default for any professional workload
+  that benefits from ISV-certified pro GPUs, ECC memory, sustained thermal
+  headroom, and on-device AI acceleration — capturing share from HP Z and
+  Lenovo P-series while widening the gap above Acme Standard mainstream
+  commercial.
+
+where_we_play:
+  customer_segments_priority_ordered:
+    - id: engineering-manufacturing
+      name: Engineering / Manufacturing
+      description: CAD (SolidWorks, Inventor, NX, Creo), CAE (ANSYS, Abaqus, Altair), CAM, PLM-adjacent workflows
+    - id: aec
+      name: AEC
+      description: BIM (Revit, ArchiCAD), large drawing/site models, point-cloud processing, 3D visualization
+    - id: media-entertainment
+      name: Media & Entertainment
+      description: Video editing (Premiere, Resolve, Avid), 3D animation (Maya, 3ds Max, Cinema 4D), VFX (Houdini, Nuke), color grading
+    - id: ai-ml-practitioners
+      name: AI/ML practitioners
+      description: Local model fine-tuning, inference workstation, computer vision dev — increasingly cross-cuts the segments above
+    - id: scientific-research
+      name: Scientific research / data science
+      description: Python/R/MATLAB, GIS, genomics, simulation
+    - id: financial-services
+      name: Financial services
+      description: Multi-monitor trading, quant modeling, risk simulation
+    - id: healthcare
+      name: Healthcare
+      description: Medical imaging, PACS endpoints, genomics workstations
+
+form_factor_strategy_by_segment:
+  - segment: engineering-manufacturing
+    primary: [pwt-5000, pwt-7000]
+    secondary: [pwm-7000]
+    notes: Field, multi-site for mobile
+  - segment: aec
+    primary: [pwm-5000, pwm-7000]
+    secondary: [pwt-5000]
+    notes: Mobility critical; tower for office-anchored
+  - segment: media-entertainment
+    primary: [pwm-5000, pwm-7000]
+    secondary: [pwt-7000]
+    notes: Location, edit-on-set; tower for grading/finishing
+  - segment: ai-ml-practitioners
+    primary: [pwt-7000]
+    secondary: [pwm-7000]
+    notes: Multi-GPU, large memory; mobile for single-user prototyping
+  - segment: scientific-research
+    primary: [pwt-5000, pwt-7000]
+    secondary: [pwm-5000]
+  - segment: financial-services
+    primary: [pwt-5000]
+    secondary: [pwc-3000]
+    notes: Multi-monitor; compact for desk space
+  - segment: healthcare
+    primary: [pwt-5000]
+    secondary: [pwm-5000]
+    notes: Imaging; mobile for radiology rounding
+
+how_we_win:
+  - title: ISV certification leadership
+    description: Be first-to-certify on every major ISV release; broadest certified-application list in the industry.
+  - title: Pro GPU pairing
+    description: RTX Ada (and successor) lineup across mobile and tower; clear configurator paths from entry to flagship.
+  - title: AI PC and AI workstation positioning
+    description: NPU + RTX combination story; validated workflows for local LLMs, image generation, model fine-tuning.
+  - title: Manageability at fleet scale
+    description: Critical for enterprise IT buying for design/engineering organizations of 50–5,000 seats.
+  - title: AcmeCare Plus tied to revenue-impacting work
+    description: A downed CAD seat is downtime cost; we sell to that.
+  - title: Thoughtful mobile thinness story
+    description: Pro Workstation 5000 series specifically must close the gap on perceived mobility against MacBook Pro and ThinkPad P1.
+
+priorities:
+  - id: mobile-share-defense
+    title: Mobile workstation share gain
+    rationale: Defend Pro Workstation 5000 against MacBook Pro M-series and ThinkPad P1; defend 7000 against ThinkPad P16.
+    status: active
+  - id: ai-workstation-narrative
+    title: AI workstation narrative
+    rationale: Validated local LLM and fine-tuning workflows; reference architectures for ML practitioners; co-marketing with NVIDIA.
+    status: active
+  - id: configurator-simplification
+    title: Configurator simplification
+    rationale: Reduce time-to-quote in the channel by narrowing recommended bundles per use case.
+    status: committed
+  - id: vertical-campaigns
+    title: Vertical campaigns
+    rationale: AEC, M&E, and AI/ML targeted campaigns with ISV co-investment.
+    status: active
+  - id: sustainability-differentiation
+    title: Sustainability differentiation
+    rationale: Recycled aluminum chassis, tool-less serviceability, ENERGY STAR — increasingly material in EMEA enterprise RFPs.
+    status: committed
+
+success_metrics:
+  - Workstation mobile share (vs Lenovo P-series, HP ZBook, Apple MacBook Pro M)
+  - Workstation tower share (vs HP Z4/Z6/Z8, Lenovo ThinkStation P-series, BOXX/boutique)
+  - ISV certification count and time-to-certify on new platforms
+  - Premium-tier mix (Pro Workstation 7000 share within the line)
+  - AcmeCare Plus attach rate
+  - Revenue per professional segment (Engineering, AEC, M&E, AI/ML, Sci/Research, FinServ, Healthcare)
+  - NPS by segment
+
+time_horizons:
+  now: |
+    Execute the current Pro Workstation PC refresh; hit ISV certifications;
+    defend share in priority accounts; close obvious gaps in AI workstation messaging.
+  next: |
+    AI workstation category validation; ML-toolchain ISV expansion; mobile
+    thin-and-light parity message.
+  future: |
+    Multi-GPU compact desktops for AI; tighter integration with on-device AI
+    assistants; new pro-creator form factors as the category evolves.
+
+known_pain_points:
+  - id: configurator-complexity
+    summary: Buyers (especially in mid-market) struggle to choose the right tier; perceived as harder to spec than HP or Lenovo.
+  - id: mobile-thinness-perception
+    summary: '"Pro Workstation is heavy" lingers from older 7000-series generations, even where the 5000 series is competitive.'
+  - id: macos-gravity-me
+    summary: Apple Silicon performance has shifted some video and creative segments away from Windows workstations entirely.
+  - id: pro-gpu-availability
+    summary: Supply constraints on RTX Ada SKUs delay configurations; channel friction.
+  - id: ai-pc-story-clarity
+    summary: Buyers want to know what concretely changes with an NPU and pro GPU together; the answer is not yet crisp at point-of-sale.
+  - id: mobile-serviceability
+    summary: Repair / serviceability in mobile varies by SKU; not yet at the level the tower line offers.
+
+competitive_landscape:
+  - id: hp-z
+    strength: Strong M&E presence, good mobile thin lineup
+    weakness: ISV breadth slightly behind Pro Workstation; smaller channel reach
+    targets: M&E, creative, mid-market AEC
+  - id: lenovo-thinkstation
+    strength: Strongest mobile workstation share; durable brand in engineering
+    weakness: Tower lineup less differentiated; fewer pro GPU options at top end
+    targets: Engineering, AEC, mid-market
+  - id: apple
+    strength: Performance-per-watt, integrated software stack
+    weakness: ISV gaps in CAD/CAE, no enterprise manageability story
+    targets: M&E, software dev, design agencies
+  - id: microsoft-surface-business
+    strength: Touch + pen creator angle
+    weakness: Not a workstation tier; weak ISV story
+    targets: Niche creative use cases
+  - id: boutique-builders
+    strength: Configurability, performance-tuned, customer intimacy
+    weakness: Scale, support, channel reach
+    targets: High-end AEC, M&E, ML
+
+key_risks:
+  - Apple Silicon eating M&E share faster than Windows workstation refresh can defend
+  - Lenovo P-series mobile momentum, especially in EMEA enterprise
+  - AI PC narrative not converting to refresh urgency at the workstation tier specifically
+  - Pro GPU supply and pricing volatility
+  - Configurator and channel friction slowing time-to-quote vs competitors
+
+review_cadence: quarterly
+
+placeholders:
+  - "Confirm priorities, segment targets, share data, and pain points against current Pro Workstation PC quarterly business review."
+
+last_reviewed: 2026-05-05

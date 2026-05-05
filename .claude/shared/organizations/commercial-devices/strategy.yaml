@@ -1,0 +1,104 @@
+horizon: 2026-2028
+
+strategic_vision: |
+  Lead the commercial PC category through the AI PC refresh cycle, capture
+  share in workstations, and extend services attach so commercial PCs become
+  a multi-year revenue stream rather than a transactional sale.
+
+where_we_play:
+  customer_segments:
+    - Large Enterprise
+    - Mid-Market
+    - Small Business
+    - Public Sector — Federal, SLED
+    - Healthcare
+    - Financial Services
+    - Manufacturing / AEC
+    - Media & Entertainment
+    - Energy
+  geographies:
+    - Global, with go-to-market motion split between direct (top accounts) and channel (mid-market, SMB, public sector)
+  form_factors:
+    - Commercial laptops
+    - Desktops
+    - Mobile and tower workstations
+    - Thin clients
+    - Displays
+    - Peripherals
+    - Docks
+
+how_we_win:
+  - title: Manageability + security as default
+    description: |
+      Acme Device Manager, Trusted Device, SafeBIOS, vPro integration.
+      IT-friendly out of the box.
+  - title: ISV certifications and validation
+    description: |
+      Especially for Pro Workstation — measurable performance against
+      Autodesk, Dassault, Siemens, Adobe, ANSYS, Bentley, PTC workloads.
+  - title: Lifecycle services attach
+    description: |
+      AcmeCare (reactive), AcmeDeploy (deployment), Acme Pay PC-as-a-Service
+      (consumption). Each unit shipped is the start of a multi-year revenue
+      relationship.
+  - title: AI PC narrative
+    description: |
+      Leverage NPU + Copilot+ momentum to drive refresh urgency, especially
+      in mid-market and SMB.
+  - title: Sustainable design
+    description: |
+      Recycled content, modular components, energy efficiency — increasingly
+      a procurement criterion for enterprise and public sector.
+
+priorities:
+  - id: ai-pc-refresh
+    title: Capture AI PC refresh
+    rationale: Drive refresh urgency in the installed base; pair AI PC narrative with security and manageability story.
+    status: active
+  - id: workstation-share-capture
+    title: Workstation share capture
+    rationale: Close the gap with HP Z and Lenovo ThinkStation; expand mobile workstation share.
+    status: active
+  - id: services-attach-growth
+    title: Services attach growth
+    rationale: Increase AcmeCare + AcmeDeploy attach rates; grow Acme Pay PCaaS pipeline.
+    status: active
+  - id: channel-enablement
+    title: Channel enablement
+    rationale: Deepen partner programs in mid-market and SMB; reduce time-to-quote.
+    status: committed
+  - id: sustainability-scorecard
+    title: Sustainability scorecard
+    rationale: Meet 2030 commitments; respond to growing customer RFP requirements.
+    status: committed
+
+success_metrics:
+  - Commercial PC unit volume and revenue
+  - Market share by category — commercial notebook and desktop, plus workstation (mobile and tower)
+  - Services attach rate (AcmeCare, AcmeDeploy, Acme Pay)
+  - Mix of premium SKUs (margin proxy)
+  - Customer NPS and IT decision-maker preference scores
+  - Channel partner satisfaction
+
+time_horizons:
+  now: |
+    Drive AI PC refresh; defend share in core commercial accounts; execute services attach playbook.
+  next: |
+    Workstation share gain; Acme Pay PCaaS scaling; sustainability differentiation in EMEA RFPs.
+  future: |
+    New form factors (foldables, dual-screen, on-device AI workloads); deeper
+    integration with Microsoft Copilot ecosystem; potential category expansion
+    (e.g., AI workstations as a sub-tier).
+
+key_risks:
+  - HP and Lenovo aggressive pricing in commercial
+  - Apple making deeper enterprise inroads (especially M&E, design segments where Pro Workstation plays)
+  - AI PC adoption plateauing if Copilot+ value isn't material
+  - Component cost spikes (memory, NPU silicon)
+
+review_cadence: quarterly
+
+placeholders:
+  - "Confirm priorities, metrics, and competitive intel against current CDG Commercial annual operating plan."
+
+last_reviewed: 2026-05-05

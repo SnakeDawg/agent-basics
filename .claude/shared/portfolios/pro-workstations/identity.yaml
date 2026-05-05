@@ -1,0 +1,53 @@
+display_name: Pro Workstation
+type: portfolio
+
+mission: |
+  Deliver the highest-performance, most reliable, ISV-certified workstations
+  for the world's most demanding professional workloads — from a CAD
+  designer's daily driver to a render farm node.
+
+vision: |
+  Be the workstation of choice for engineers, scientists, designers, and
+  creators who treat their machine as a productivity multiplier, not a commodity.
+
+position:
+  - One of CDG Commercial's two workstation-tier portfolios, alongside Acme Plus. Sits above the Acme Standard mainstream commercial portfolio on capability, configurability, and ISV certification.
+  - The vehicle through which Acme competes against HP Z (Z2 Mini, ZBook Studio/Power, Z4/Z6/Z8 towers) and Lenovo ThinkStation (P-series + ThinkPad P-series mobile workstations).
+  - The bridge between client computing and adjacent IDG categories (e.g., AI workstations as a stepping stone to AI servers).
+
+brand_pillars:
+  - name: ISV-certified performance
+    description: |
+      Validated and tuned for Autodesk, Dassault Systèmes (SolidWorks, CATIA),
+      Siemens (NX, Solid Edge), PTC, Adobe, ANSYS, Bentley, Avid, Foundry, and
+      other professional ISV stacks.
+  - name: Reliability under load
+    description: |
+      Engineered to run at full thermal and compute load for hours — not
+      designed-for-bursts.
+  - name: Configurability
+    description: |
+      Towers and select mobile SKUs offer broad component choice (GPU, CPU,
+      memory, storage, expansion) — the antithesis of sealed consumer designs.
+  - name: Professional support
+    description: |
+      AcmeCare Plus tier with dispatch SLAs designed for revenue-impacting downtime.
+
+not:
+  - A consumer or gaming brand (Acme Home and Acme Gaming fill those lanes).
+  - An ultraportable productivity laptop (Acme Standard covers that).
+  - A general-office desktop (Acme Standard covers that).
+  - A server (Pro Workstation is a workstation; the line stops at the workgroup, not the data center — though Pro Workstation Rack 7960 sits at the boundary).
+
+form_factors:
+  - name: Mobile workstations
+    description: Pro Workstation 3000, 5000, 7000 series — thin-and-light pro through mobile-replacement-of-a-desktop.
+  - name: Desktop workstations
+    description: Towers (3000, 5000, 7000) and small-form-factor / compact desktops.
+  - name: Rack workstations
+    description: Pro Workstation 7960 Rack — centralized workstation deployment for CAD/CAE shops and post-production.
+
+placeholders:
+  - "Confirm current SKU naming and form-factor lineup against the latest Pro Workstation portfolio launch deck. Lineup refreshes yearly."
+
+last_reviewed: 2026-05-05

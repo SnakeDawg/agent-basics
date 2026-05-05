@@ -1,0 +1,38 @@
+display_name: Commercial Devices Group — Commercial
+type: organization
+
+mission: |
+  Power the modern workforce with the most secure, manageable, and reliable
+  client devices on the planet — from the everyday productivity user to the
+  most demanding workstation professional.
+
+vision: |
+  Be the indispensable end-user-compute partner for IT decision-makers — the
+  vendor they call first when they think about devices, security,
+  manageability, and lifecycle services.
+
+position:
+  - One of two reporting segments (the other is IDG — Infrastructure Devices Group).
+  - Commercial sub-segment specifically — commercial PCs (laptops, desktops, mobile and tower workstations), displays, and peripherals — sold to businesses, public sector, and education. Distinct from CDG Consumer.
+  - Commercial portfolios in scope are Acme Standard, Acme Plus, and Pro Workstation. Portfolio-level positioning, SKU lineup, and brand definitions live in the portfolio docs.
+
+brand_pillars:
+  - name: Engineered for IT
+    description: Manageability, security, and lifecycle are first-class — not consumer features bolted on.
+  - name: Performance for every workload
+    description: |
+      From Acme Standard productivity laptops to Pro Workstation simulation
+      rigs, the same commercial-grade engineering principles apply.
+  - name: Services-attached
+    description: AcmeCare, AcmeDeploy, and Acme-managed lifecycle reduce IT burden.
+  - name: Sustainability-forward
+    description: |
+      Recycled content, repairable designs, and packaging commitments embedded
+      in commercial product roadmaps.
+
+not:
+  - A consumer-led brand (that's Acme Home).
+  - A pure-play workstation vendor (Pro Workstation and Acme Plus are two of the lines in the commercial portfolio).
+  - A peripheral-only vendor — devices are the anchor; peripherals attach.
+
+last_reviewed: 2026-05-05

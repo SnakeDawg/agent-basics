@@ -193,42 +193,59 @@ company → organization → portfolio → product → line → SKU
 
 Each level is a unit of context. Higher levels carry broader, longer-lived material (company identity, charter). Lower levels carry narrower, faster-changing material (SKU specs, head-to-head competitor pairs). Lower levels inherit from higher levels.
 
-### Two files per hierarchy unit (above SKU)
+### Four files per hierarchy unit (above SKU)
 
-| File | Purpose |
-| --- | --- |
-| `identity.md` | Narrative — mission, position, brand voice. For human + agent reading. |
-| `scope.yaml` | Structured manifest — declares which personas, archetypes, competitors, and related units apply at this level. Has per-activity include/exclude filters. |
+Cutting-edge enterprise structure: structured-first, narrative as optional supplement.
+
+| File | Cadence | Purpose |
+| --- | --- | --- |
+| `identity.yaml` | annual | Mission, vision, position, brand pillars, what-we-are-not. Slowest-changing. |
+| `charter.yaml` | rare (re-org) | Mandate, in/out scope, decision rights, stakeholders, success metrics, ownership. |
+| `strategy.yaml` | quarterly | Horizon, priorities, initiatives, hypotheses, time horizons, risks, key competitors. |
+| `scope.yaml` | as personas/competitors shift | Operational manifest — personas, archetypes, competitors, related units, per-activity filters. |
+| `narrative.md` *(optional)* | as needed | Free prose for the "why" — brand voice, rationale, color. Only when structured fields can't carry the meaning. |
+
+Different update cadences, different owners, different schemas, different review cycles. Schema-first, narrative-as-supplement is the enterprise pattern.
 
 ### SKUs are single files (frontmatter-heavy)
 
-SKUs are leaf nodes — concrete shippable models. They are mostly structured data (specs, price, head-to-head competitor SKU pairs) plus a short positioning paragraph. One file per SKU.
+SKUs are leaf nodes — concrete shippable models. They are mostly structured data (specs, price, head-to-head competitor SKU pairs) plus a short positioning paragraph. One `.md` file per SKU with YAML frontmatter.
 
 ### Atomic, reusable profiles
 
 Personas, archetypes, and competitors live outside the hierarchy and are referenced by ID from `scope.yaml`. They are reusable atomic units, not duplicated per product.
 
-| Type | Lives at | Referenced by |
-| --- | --- | --- |
-| Persona | `shared/personas/<id>.md` | hierarchy `scope.yaml` files and SKU frontmatter |
-| Archetype | `shared/archetypes/<id>.md` | hierarchy `scope.yaml` files and SKU frontmatter |
-| Competitor | `shared/competitors/<id>.md` | hierarchy `scope.yaml` files and SKU `competitor_skus` mappings |
+| Type | Lives at | Format | Referenced by |
+| --- | --- | --- | --- |
+| Persona | `shared/personas/<id>.yaml` | YAML | `scope.yaml` files and SKU frontmatter |
+| Archetype | `shared/archetypes/<id>.yaml` | YAML | `scope.yaml` files and SKU frontmatter |
+| Competitor | `shared/competitors/<id>.md` | Markdown + frontmatter | `scope.yaml` files and SKU `competitor_skus` mappings |
+
+Personas live flat (no `internal/` vs `external/` subdirectories) — the `type:` field in the YAML carries that distinction.
 
 ### Full layout
 
 ```
 shared/
 ├── company/<name>/
-│   ├── identity.md
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
 │   └── scope.yaml
 ├── organizations/<name>/
-│   ├── identity.md
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
 │   └── scope.yaml
 ├── portfolios/<name>/
-│   ├── identity.md
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
 │   └── scope.yaml
 ├── products/<name>/
-│   ├── identity.md
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
 │   ├── scope.yaml
 │   └── lines/
 │       └── <line>/
@@ -236,12 +253,125 @@ shared/
 │           └── skus/
 │               ├── <sku-id>.md
 │               └── <sku-id>.md
-├── personas/<id>.md
-├── archetypes/<id>.md
+├── personas/<id>.yaml
+├── archetypes/<id>.yaml
 └── competitors/<id>.md
 ```
 
-## scope.yaml schema
+## Schemas — identity / charter / strategy / scope
+
+### identity.yaml
+
+```yaml
+display_name: <Display Name>
+type: company | organization | portfolio | product | line
+mission: |
+  Multi-line mission statement.
+vision: |
+  Multi-line vision statement.
+values:                          # company level only
+  - name: <value name>
+    description: <one line>
+brand_promise: |                 # company level only
+  Multi-line.
+position:
+  - Statement 1
+  - Statement 2
+brand_pillars:                   # portfolio / product / line
+  - name: <pillar name>
+    description: <one line>
+not:                             # what we are not
+  - Item 1
+  - Item 2
+form_factors:                    # portfolio / product where applicable
+  - name: <form factor>
+    description: <one line>
+sku_lineup:                      # product level only
+  - id: <sku-id>
+    name: <full name>
+    line: <line>
+    positioning: <one line>
+placeholders:                    # TBD validation notes
+  - "Confirm against ..."
+last_reviewed: YYYY-MM-DD
+```
+
+### charter.yaml
+
+```yaml
+mandate: |
+  What this unit is responsible for.
+scope:
+  in_scope:  [...]
+  out_of_scope: [...]
+decision_rights:
+  - decision: <area>
+    owner: <role>
+key_stakeholders:                # structure varies by level
+  customers: [...]
+  partners: [...]
+  channel: [...]
+  internal: [...]
+  regulators: [...]
+operating_cadence:
+  - Monthly portfolio review
+  - Quarterly QBR
+success_metrics:
+  - <metric>
+ownership:
+  owner: <role-id>
+  contributors: [...]
+  review_cadence: annual | quarterly
+placeholders: [...]
+last_reviewed: YYYY-MM-DD
+```
+
+### strategy.yaml
+
+```yaml
+horizon: 2026-2028
+strategic_vision: |
+  Multi-line.
+where_we_play:
+  geographies: [...]
+  customer_segments: [...]       # may be plain list or structured with id/name/description
+  form_factors: [...]
+  categories: [...]              # company level
+how_we_win:
+  - title: <pillar>
+    description: |
+      Multi-line.
+priorities:
+  - id: <priority-id>
+    title: <title>
+    rationale: <one line or multi-line>
+    status: active | committed | planned | retired
+    success_signals: [...]
+initiatives:                     # optional — concrete in-flight work
+  - id: <init-id>
+    title: <title>
+    priority: <priority-id>
+    status: planned | in_progress | landed | abandoned
+    target: 2026-Q4
+hypotheses:                      # optional — assumptions worth testing
+  - statement: <one line>
+    confidence: high | medium | low
+    test: <how to validate>
+success_metrics: [...]
+time_horizons:
+  now: <0–6 mo>
+  next: <6–18 mo>
+  future: <18 mo+>
+key_competitors:                 # portfolio / product
+  - id: <competitor-id>
+    note: <relationship>
+key_risks: [...]
+review_cadence: quarterly | annual
+placeholders: [...]
+last_reviewed: YYYY-MM-DD
+```
+
+### scope.yaml
 
 Every hierarchy level (above SKU) has a `scope.yaml`. Inheritance is implicit: a child inherits the parent's lists; the child can add to them or use `excluded:` to remove inherited items.
 
@@ -408,7 +538,7 @@ Each activity command:
 2. Walks the chain from active scope up to company root, reading each `scope.yaml` (or SKU frontmatter for SKU paths).
 3. Merges the manifests per the rules above.
 4. Extracts `activity_scope.<command-name>` filters.
-5. Loads referenced atomic profiles (`shared/personas/<id>.md`, `shared/competitors/<id>.md`, etc.).
+5. Loads referenced atomic profiles (`shared/personas/<id>.yaml`, `shared/archetypes/<id>.yaml`, `shared/competitors/<id>.md`, etc.).
 6. Invokes the underlying skill or agent with the resolved, filtered context.
 
 The skill itself stays generic — it never reads `shared/`, `scope.yaml`, or the state file. Scope resolution is the slash command's job.

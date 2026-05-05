@@ -1,0 +1,81 @@
+id: it-procurement-lead
+display_name: IT Procurement Lead
+type: external
+
+title_examples:
+  - IT Procurement Manager
+  - Director of End-User Computing
+  - IT Asset Manager
+  - Head of Workplace Technology
+  - Sourcing Manager — IT
+
+industry_context: Any large/mid-market organization with a meaningful PC fleet (500–50,000+ devices). Strong presence in regulated industries (financial services, healthcare, public sector).
+
+tenure: 8–20 years; often a mix of IT operations and procurement / strategic sourcing.
+reports_to: CIO, VP IT Operations, or Chief Procurement Officer
+
+goals:
+  - Standardize the fleet to reduce support burden and improve manageability
+  - Hit a 3–5 year TCO target — not just unit price
+  - Maintain compliance (security baselines, data residency, asset tracking, end-of-life)
+  - Manage vendor relationships across Acme, HP, Lenovo, sometimes Apple — leverage competition without splintering the fleet
+  - Respond to internal stakeholders (engineering, design, finance, executive) who want different things from the fleet
+
+frustrations:
+  - Configurator complexity slows quote turnaround — engineers and managers escalate when they can't get a configured machine fast
+  - Vendors pushing premium SKUs without a clear TCO case
+  - ISV requirements (especially for Pro Workstation) creating exceptions to fleet standards
+  - Pro GPU supply constraints disrupting refresh cycles
+  - Sustainability/ESG reporting requirements that vendors don't always make easy to satisfy
+  - Internal politics — engineering wants Pro Workstation 7000, finance wants Acme Standard desktops
+
+buying_behavior:
+  role: decides
+  decision_criteria_weighted:
+    - criterion: Total cost of ownership (4–5 year horizon)
+      weight: 1
+    - criterion: Manageability — does this fit our existing toolchain (Intune, SCCM, JAMF for Mac)?
+      weight: 2
+    - criterion: Security posture (vPro, BIOS security, supply chain integrity)
+      weight: 3
+    - criterion: Vendor relationship and direct support quality
+      weight: 4
+    - criterion: Sustainability scorecard / ESG alignment
+      weight: 5
+    - criterion: Channel partner availability and pricing in their geography
+      weight: 6
+  evaluation_behaviors:
+    - Issues RFPs
+    - Runs side-by-side comparisons
+    - Demands case studies and references
+    - Negotiates multi-year framework agreements
+    - Runs pilots before committing
+  vendor_switching_threshold: High — switching costs are real (training, tooling integrations, channel relationships). Once a fleet standardizes, it tends to stay for 2+ refresh cycles.
+
+what_they_want:
+  - "Here is the configuration that meets your security baseline, manageability stack, and ISV requirements at the lowest 5-year TCO."
+  - "Here is the framework agreement structure with predictable pricing and SLAs."
+  - "Here is the sustainability data your ESG team needs."
+  - "Here is how we'll handle the engineering exceptions without disrupting your standard."
+
+what_they_dont_want:
+  - Spec-list selling. They want TCO and lifecycle.
+  - Surprises in support quality after the contract is signed
+  - A configurator that requires their internal stakeholders to make 14 decisions
+  - Sustainability claims without backing data
+
+common_objections:
+  - "HP and Lenovo are 8% cheaper; what's the AcmeCare Plus story worth?"
+  - "Apple has a better experience for our designers — should we split the fleet?"
+  - "We're moving toward PCaaS / consumption — what's your Acme Pay story?"
+  - "Pro GPU lead times disrupted our last refresh; how is that different now?"
+  - "Our CFO wants a clearer ESG/sustainability cut on this proposal."
+
+maps_to_archetypes:
+  primary: [pragmatist]
+  secondary: [cost-conscious, compliance-driven]
+
+placeholders:
+  - "Validate with 5–10 IT procurement leads across regulated and unregulated industries."
+
+last_reviewed: 2026-05-05

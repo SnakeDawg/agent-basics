@@ -1,0 +1,42 @@
+display_name: Acme Computing
+type: company
+
+mission: |
+  Help organizations and individuals build their digital future and transform
+  how they work, live, and play.
+
+vision: |
+  To be the most essential technology company for the AI era — from edge
+  devices to cloud and on-premises infrastructure.
+
+values:
+  - name: Customer at the center
+    description: Decisions are anchored in customer outcomes, not internal preference.
+  - name: Winning together
+    description: One Acme — across hardware, software, services, and channels.
+  - name: Innovation that matters
+    description: Pragmatic invention focused on durable customer value.
+  - name: Results
+    description: Outcomes over activity; measurable impact over polish.
+  - name: Integrity
+    description: Do the right thing, even when no one is watching.
+
+brand_promise: |
+  Trusted technology partner across the full stack — from the desk to the
+  data center to the cloud — delivered through industry-leading scale,
+  services, and supply chain.
+
+position:
+  - Largest commercial PC and infrastructure provider in the world.
+  - Single-throat-to-choke partner from device → infrastructure → services.
+  - Direct-plus-channel go-to-market model with global reach.
+
+not:
+  - A pure software or platform company.
+  - A consumer-only brand.
+  - A hyperscaler — we partner with and complement them.
+
+placeholders:
+  - "Confirm against the latest Acme Computing investor day deck and brand standards from corporate communications."
+
+last_reviewed: 2026-05-05

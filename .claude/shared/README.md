@@ -1,79 +1,75 @@
 # Shared context
 
-Reference markdown that agents and skills can read when they need organizational, strategic, or persona context. Not catalogue entries — these files have no YAML frontmatter and are skipped by `scripts/validate.py` and `scripts/index-readme.py`.
+Structured organizational context that agents inject into skills via the scope system. Two file shapes: **structured YAML** for facts (always preferred), **prose markdown** only where structure can't carry the meaning.
 
 ## Scope (today)
 
-This tree is currently scoped to **Acme Computing → Commercial Devices Group (Commercial) → Pro Workstation portfolio → Pro Workstation PC**. As the catalogue grows we can add sibling branches for other organizations, portfolios, or products.
+This tree is currently scoped to **Acme Computing → Commercial Devices Group → Pro Workstation portfolio → Pro Workstation PC → mobile / fixed lines → SKUs**. As the catalogue grows we can add sibling branches for other organizations, portfolios, or products.
 
 ## Layout
 
 ```
 shared/
-├── company/                              # parent corporate level
-│   └── acme-computing/
-│       ├── identity.md                   # who we are: mission, vision, values
-│       ├── strategy.md                   # how we win: where we play, priorities
-│       └── charter.md                    # scope, decision rights, stakeholders
-├── organizations/                        # business unit level
-│   └── commercial-devices/
-│       ├── identity.md
-│       ├── strategy.md
-│       └── charter.md
-├── portfolios/                           # product family level
-│   └── pro-workstations/
-│       ├── identity.md
-│       ├── strategy.md
-│       └── charter.md
-├── products/                             # individual product line level
-│   └── pro-workstation-pc/
-│       ├── identity.md
-│       ├── strategy.md
-│       └── charter.md
-├── personas/
-│   ├── internal/                         # users of the agents/skills
-│   │   ├── strategist.md
-│   │   ├── product-manager-software.md
-│   │   └── product-manager-hardware.md
-│   └── external/                         # customers being analyzed
-│       ├── engineering-manager.md
-│       ├── cad-design-engineer.md
-│       ├── it-procurement-lead.md
-│       └── creative-director.md
-└── archetypes/                           # behavioral patterns; cross-cut personas
-    ├── pragmatist.md
-    ├── innovator.md
-    ├── performance-maximizer.md
-    ├── compliance-driven.md
-    └── cost-conscious.md
+├── company/<name>/                          # corporate level
+│   ├── identity.yaml                        # mission, vision, values, brand
+│   ├── charter.yaml                         # scope, decision rights, stakeholders
+│   ├── strategy.yaml                        # priorities, initiatives, hypotheses
+│   └── scope.yaml                           # operational scope manifest
+├── organizations/<name>/                    # business unit level
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
+│   └── scope.yaml
+├── portfolios/<name>/                       # product family level
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
+│   └── scope.yaml
+├── products/<name>/                         # individual product level
+│   ├── identity.yaml
+│   ├── charter.yaml
+│   ├── strategy.yaml
+│   ├── scope.yaml
+│   └── lines/<line>/
+│       ├── scope.yaml                       # line-specific filters
+│       └── skus/<sku-id>.md                 # SKU file: frontmatter-heavy + short narrative
+├── personas/<id>.yaml                       # reusable persona profiles
+├── archetypes/<id>.yaml                     # reusable behavioral patterns
+└── competitors/<id>.md                      # competitor profiles with lineup roster
 ```
+
+## File types and when to use which
+
+| File | Format | Lifecycle | Purpose |
+| --- | --- | --- | --- |
+| `identity.yaml` | YAML | annual | Mission, vision, position, brand pillars, what-we-are-not |
+| `charter.yaml` | YAML | rare (re-org) | Mandate, in/out scope, decision rights, stakeholders, success metrics |
+| `strategy.yaml` | YAML | quarterly | Horizon, priorities, initiatives, hypotheses, time horizons, risks |
+| `scope.yaml` | YAML | as needed | Operational manifest — personas, archetypes, competitors, per-activity filters |
+| Persona / archetype | YAML | as needed | Atomic reusable profiles referenced by ID from `scope.yaml` |
+| Competitor | Markdown + frontmatter | as needed | Competitor profile with `lineup:` roster of their SKUs |
+| SKU | Markdown + frontmatter | per refresh | Concrete shippable model — specs, price, head-to-head competitor pairs, short positioning narrative |
 
 ## How agents reference these files
 
-In an agent or skill body, link by relative path from the repo root:
+Agents do **not** browse `shared/` directly. The scope system handles loading:
 
-```markdown
-Before answering, read:
-- .claude/shared/products/pro-workstation-pc/strategy.md
-- .claude/shared/personas/external/engineering-manager.md
-- .claude/shared/archetypes/performance-maximizer.md
-```
+1. PM runs `/scope <path>` once per session.
+2. Activity slash command (e.g., `/competitive-analysis`) walks the scope chain, merges manifests, loads referenced atomic profiles, and hands the resolved context to the underlying skill.
+3. Skill stays generic and never reads `shared/`.
 
-Agents that should read multiple files in this tree should list them explicitly rather than relying on directory globbing — Claude is better at honoring a short, named list than a "read everything in X" instruction.
+See `docs/architecture.md` for the full pattern and `.claude/commands/scope.md` for the slash command.
 
 ## Authoring conventions
 
-- **Filename:** kebab-case, lowercase, `.md` extension.
-- **Title:** first line is `# <Entity> — <Document type>` (e.g. `# Acme Computing — Identity`). Helps agents quote source clearly.
-- **`[TBD: ...]` markers:** wherever proprietary or internal-only specifics belong, use a `[TBD: confirm with <source>]` placeholder. Agents are instructed to cite these as gaps rather than fabricate around them.
-- **No YAML frontmatter.** These aren't discoverable agents/skills — they're reference documents the model reads on demand.
-- **Last reviewed:** when content gets revised against an authoritative source, drop a `_Last reviewed: YYYY-MM-DD against <source>._` line at the bottom so freshness is visible.
+- **Filename:** kebab-case, lowercase. YAML files use `.yaml`; SKUs and competitor profiles use `.md` with YAML frontmatter.
+- **`placeholders:` field** in any YAML file: list of "TBD" notes flagging where the content needs validation against authoritative internal sources. Agents cite these as gaps rather than fabricate around them.
+- **`last_reviewed:` field** at the bottom of every YAML file: ISO date, refreshed when content is updated.
+- **No prose-heavy `.md` files at the hierarchy levels.** If narrative is genuinely needed beyond what structured fields can carry, add an optional `narrative.md` at that level — only when the structure can't capture the meaning.
 
 ## Adding a new branch
 
-When you expand beyond Pro Workstation PC:
-- New organization: create `organizations/<name>/` with the three docs.
-- New portfolio under the same org: create `portfolios/<name>/` with the three docs.
-- New product under a portfolio: create `products/<name>/` with the three docs.
-- New persona: drop into `personas/internal/` or `personas/external/` based on whether the persona uses the agent or is being analyzed by it.
-- New archetype: only when a behavioral pattern recurs across enough personas to warrant a reusable name.
+- **New organization** → `organizations/<name>/` with `identity.yaml`, `charter.yaml`, `strategy.yaml`, `scope.yaml`.
+- **New portfolio** → `portfolios/<name>/` with the same four files.
+- **New product** → `products/<name>/` plus `lines/<line>/scope.yaml` and `skus/<sku-id>.md` files for each shipping SKU.
+- **New persona / archetype / competitor** → drop a single file under `personas/`, `archetypes/`, or `competitors/` and reference it by ID from any `scope.yaml`.

@@ -1,0 +1,82 @@
+display_name: Pro Workstation PC
+type: product
+
+mission: |
+  Be the daily driver for professionals whose work depends on the
+  responsiveness of their workstation — designers, engineers, scientists,
+  and creators who would rather wait for nothing.
+
+vision: |
+  The reference platform for AI-augmented professional work: a Pro Workstation
+  PC should be the device that turns ML inference, photoreal rendering, and
+  CAD simulation from "send to the render farm" into "wait a moment."
+
+position:
+  - The mobile + desktop workstation line within the Pro Workstation portfolio.
+  - Excludes rack workstations (Pro Workstation 7960 Rack), which target centralized deployment, render farms, and remote-graphics scenarios.
+  - Sits above the Acme Standard mainstream commercial portfolio (laptops and desktops) on capability, configurability, and ISV certification.
+  - Shares the workstation tier with Acme Plus. SKU-level positioning between Pro Workstation PC and Acme Plus is coordinated at the portfolio level.
+
+brand_pillars:
+  - name: Engineered for sustained load
+    description: |
+      Thermal headroom, memory and storage capacity, and component selection
+      tuned for production workloads, not consumer bursts.
+  - name: Pro GPU first-class citizen
+    description: |
+      NVIDIA RTX Ada (and successor) pro cards with ECC memory, pro drivers,
+      ISV certifications across the lineup.
+  - name: ISV-validated
+    description: |
+      Tested and tuned for the dominant pro applications in CAD, CAE, AEC, M&E,
+      and emerging ML toolchains.
+  - name: Configurability where it matters
+    description: |
+      Towers remain user-serviceable; mobile SKUs hit the right tradeoff
+      between portability and performance for each tier.
+  - name: Manageable at scale
+    description: |
+      Inherits CDG Commercial's IT-friendly defaults — vPro, Acme Device
+      Manager, SafeBIOS, SafeID — important when deployed in fleets.
+
+not:
+  - A consumer or gaming PC (Acme Home / Acme Gaming fill those lanes).
+  - A general-office laptop or desktop (Acme Standard covers that).
+  - A render-farm or HPC node (Pro Workstation Rack or IDG infrastructure).
+  - A budget option — entry-tier Pro Workstation is the floor; below that, Acme Standard.
+
+sku_lineup:
+  - id: pwm-3000
+    name: Pro Workstation Mobile 3000
+    line: mobile
+    positioning: Entry pro mobile; CAD reviewers, AEC field use, dev tools
+  - id: pwm-5000
+    name: Pro Workstation Mobile 5000
+    line: mobile
+    positioning: Thin-and-light pro mobile; competes with HP ZBook Studio, MacBook Pro M-series, ThinkPad P1
+  - id: pwm-7000
+    name: Pro Workstation Mobile 7000
+    line: mobile
+    positioning: Desktop-replacement mobile; full-power Intel HX or Xeon, discrete pro GPUs up to RTX 5000 Ada
+  - id: pwc-3000
+    name: Pro Workstation Compact 3000
+    line: fixed
+    positioning: Small-form-factor entry desktop
+  - id: pwt-3000
+    name: Pro Workstation Tower 3000
+    line: fixed
+    positioning: Entry tower for general engineering use
+  - id: pwt-5000
+    name: Pro Workstation Tower 5000
+    line: fixed
+    positioning: Mid-range tower with broader GPU and storage configurability
+  - id: pwt-7000
+    name: Pro Workstation Tower 7000
+    line: fixed
+    positioning: Flagship tower; multi-GPU, dual-CPU options, server-grade memory
+
+placeholders:
+  - "Confirm exact SKU numbers and capabilities against the latest Pro Workstation launch deck — naming conventions and tier capabilities shift on yearly refreshes."
+  - "Confirm against current Pro Workstation PC marketing positioning materials."
+
+last_reviewed: 2026-05-05

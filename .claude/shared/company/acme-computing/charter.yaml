@@ -1,0 +1,85 @@
+mandate: |
+  Govern the corporate-level scope, decision rights, and stakeholder
+  commitments for Acme Computing as a whole — across hardware, software,
+  services, and channels.
+
+scope:
+  in_scope:
+    - All hardware, software, and services revenue and product lines under the Acme Computing umbrella.
+    - Two reportable segments — Infrastructure Devices Group (IDG) and Commercial Devices Group (CDG).
+    - Global operations — supply chain, manufacturing, channel programs, services delivery.
+    - Brand, finance, legal, HR, IT, sustainability, government affairs.
+  out_of_scope:
+    - VMware (divested 2021; ongoing partnership only).
+    - Boomi, RSA, Secureworks (divested).
+    - Hyperscaler-style public cloud operation — we partner; we do not compete.
+
+decision_rights:
+  - decision: Corporate strategy, capital allocation
+    owner: Office of the CEO + Board
+  - decision: Segment-level P&L
+    owner: IDG President, CDG President
+  - decision: Brand standards, corporate communications
+    owner: CMO
+  - decision: M&A, divestitures
+    owner: CFO + Strategy + Board
+  - decision: Major customer escalations (top 100 accounts)
+    owner: Account team + segment leadership
+
+key_stakeholders:
+  customers:
+    - Enterprises
+    - Mid-market
+    - Public sector
+    - Channel partners
+    - End users
+  investors:
+    - Public shareholders
+    - Debt holders
+  partners:
+    - Microsoft
+    - Intel
+    - AMD
+    - NVIDIA
+    - VMware
+    - Red Hat
+    - Hyperscalers
+    - ISVs
+  channel:
+    - Distributors
+    - Resellers
+    - MSPs
+    - System integrators
+  workforce:
+    - Direct employees
+    - Extended workforce
+    - Manufacturing partners
+  communities:
+    - Geographies where Acme has manufacturing or major employment
+
+operating_cadence:
+  - Quarterly earnings + segment reporting
+  - Annual strategic plan refresh; mid-year update
+  - Monthly operating reviews per segment
+  - Weekly leadership team across IDG, CDG, services, and functions
+
+success_metrics:
+  - Total revenue
+  - Operating income
+  - Free cash flow
+  - Segment growth rates (IDG, CDG)
+  - Net Promoter Score
+  - AcmeCare attach
+  - Employee engagement
+  - ESG scorecard
+  - Total shareholder return relative to peer set
+
+ownership:
+  owner: office-of-the-ceo
+  contributors: [strategist]
+  review_cadence: annual
+
+placeholders:
+  - "Confirm decision-rights matrix against current Acme Computing operating model documentation."
+
+last_reviewed: 2026-05-05

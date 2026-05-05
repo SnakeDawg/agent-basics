@@ -1,0 +1,81 @@
+mandate: |
+  Own the commercial sub-segment of CDG: portfolios, P&L, channel programs,
+  and direct sales motion for commercial PCs, displays, and peripherals.
+
+scope:
+  in_scope:
+    - Acme Standard, Acme Plus, and Pro Workstation portfolios
+    - Pro Workstation — commercial workstations (mobile and desktop)
+    - Commercial displays, monitors, docks, peripherals attached to commercial portfolio
+    - AcmeCare, AcmeDeploy, and Acme Pay PCaaS attach motions tied to commercial devices
+    - Commercial channel programs and direct sales motion for commercial accounts
+  out_of_scope:
+    - Acme Home (consumer), Acme Gaming, broader Acme consumer line — owned by CDG Consumer
+    - IDG portfolio (servers, storage, networking, HCI, data protection)
+    - Software-only products and standalone services unattached to commercial client devices
+
+decision_rights:
+  - decision: CDG Commercial P&L
+    owner: CDG Commercial President
+  - decision: Portfolio strategy (Acme Standard, Acme Plus, Pro Workstation)
+    owner: Portfolio GMs reporting to CDG Commercial President
+  - decision: Pricing approval (above threshold)
+    owner: Commercial finance + portfolio GM
+  - decision: Major customer escalations
+    owner: Account team + commercial leadership
+  - decision: Channel program design
+    owner: Channel chief + CDG Commercial leadership
+  - decision: Roadmap prioritization
+    owner: Portfolio GMs + CDG Commercial CTO
+
+key_stakeholders:
+  customers:
+    - IT decision-makers
+    - Procurement
+    - End users in commercial accounts
+  channel:
+    - Tier-1 distributors
+    - Regional resellers
+    - MSPs
+    - System integrators
+    - Public-sector contracting partners
+  partners:
+    - Microsoft (Windows, Copilot, Surface coopetition)
+    - Intel
+    - AMD
+    - NVIDIA
+    - ISVs (Autodesk, Adobe, Dassault, Siemens, etc.)
+    - Security vendors
+  internal:
+    - IDG (cross-sell)
+    - Services org (AcmeCare / AcmeDeploy)
+    - Supply chain
+    - Acme Financial Services
+    - Marketing
+    - HR
+  regulators:
+    - Public-sector compliance bodies (FedRAMP for some services, CMMC for defense, GDPR / data residency in EMEA)
+
+operating_cadence:
+  - Monthly operating reviews per portfolio (Acme Standard, Acme Plus, Pro Workstation)
+  - Quarterly business reviews with channel partners
+  - Quarterly product roadmap reviews against ISV and platform partner roadmaps
+  - Annual commercial AOP refresh; mid-year update
+
+success_metrics:
+  - Revenue and unit volume by portfolio
+  - Market share movement by portfolio (vs HP, Lenovo, Apple, ASUS commercial)
+  - Services attach rate (AcmeCare, AcmeDeploy, Acme Pay)
+  - Premium-tier mix (margin proxy)
+  - Channel partner satisfaction and tier-2/3 partner engagement
+  - Customer NPS, IT decision-maker preference
+
+ownership:
+  owner: cdg-commercial-president
+  contributors: [portfolio-pm-pro-workstations, portfolio-pm-acme-standard, portfolio-pm-acme-plus]
+  review_cadence: quarterly
+
+placeholders:
+  - "Confirm decision-rights matrix and operating cadence against current CDG Commercial governance documentation."
+
+last_reviewed: 2026-05-05

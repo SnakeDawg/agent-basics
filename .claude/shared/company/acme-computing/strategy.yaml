@@ -1,0 +1,99 @@
+horizon: 2026-2028
+
+strategic_vision: |
+  Be the indispensable technology partner for organizations modernizing for
+  AI: provide the broadest portfolio of devices, infrastructure, and services
+  that meet customers wherever they are on the maturity curve.
+
+where_we_play:
+  geographies:
+    - Americas
+    - EMEA
+    - APJ
+    - Direct + channel coverage in 180+ countries
+  customer_segments:
+    - Large Enterprise
+    - Mid-Market
+    - Small Business
+    - Public Sector — Federal, State / Local, Education
+    - Consumer
+  categories:
+    - Client devices (PCs, displays, peripherals)
+    - Servers
+    - Storage
+    - Networking
+    - HCI
+    - Data protection
+    - Services (deploy, support, managed, financing)
+
+how_we_win:
+  - title: Scale
+    description: |
+      World's largest commercial PC vendor and #1 in external storage; supply
+      chain and component access competitors cannot match.
+  - title: Portfolio breadth
+    description: |
+      Only vendor with full-stack from desktop to data center to multicloud —
+      enables single-vendor TCO conversations.
+  - title: AI infrastructure leadership
+    description: |
+      Reference architectures, validated designs, and partnerships (NVIDIA,
+      Intel, AMD) make Acme the default choice for enterprise AI buildout.
+  - title: Services + financing
+    description: |
+      AcmeCare, AcmeDeploy, Acme Pay consumption models, and Acme Financial
+      Services create commercial flexibility competitors must replicate.
+  - title: Direct relationship
+    description: |
+      Direct sales for top accounts plus extensive channel — preserves margin
+      while extending reach.
+
+priorities:
+  - id: ai-revenue-acceleration
+    title: AI revenue acceleration
+    rationale: Capture share of enterprise AI factory buildouts; expand AI PC category.
+    status: active
+  - id: multicloud-edge-expansion
+    title: Multicloud + edge expansion
+    rationale: Acme Pay consumption models, edge platforms, telco modernization.
+    status: active
+  - id: commercial-pc-refresh
+    title: Commercial PC refresh cycle
+    rationale: Capitalize on Windows 11 + AI PC upgrade window.
+    status: active
+  - id: operating-efficiency
+    title: Operating efficiency
+    rationale: Sustain margin through component-cost discipline and services attach.
+    status: active
+  - id: sustainability
+    title: Sustainability commitments
+    rationale: Meet 2030 ESG goals (recycled content, packaging, renewable energy).
+    status: committed
+
+success_metrics:
+  - Revenue growth (segment-weighted), operating income margin, cash flow
+  - AI server backlog conversion, AI PC category share
+  - Net Promoter Score, AcmeCare attach rate
+  - Channel partner satisfaction, direct customer renewal rate
+
+time_horizons:
+  now: |
+    Execute the AI server backlog; defend commercial PC share against HP, Lenovo.
+  next: |
+    AI PC category leadership; Acme Pay consumption growth; IDG–CDG cross-sell motions.
+  future: |
+    Edge AI deployment scale; sovereign AI infrastructure; new categories
+    adjacent to client + server.
+
+key_risks:
+  - Component supply volatility (memory, GPUs)
+  - Hyperscaler insourcing of infrastructure
+  - AI PC adoption slower than category narrative suggests
+  - Currency exposure outside North America
+
+review_cadence: annual
+
+placeholders:
+  - "Confirm priorities and metrics against the most recent Acme Computing annual strategic plan and earnings commentary."
+
+last_reviewed: 2026-05-05

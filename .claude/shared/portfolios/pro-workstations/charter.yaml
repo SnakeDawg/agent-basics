@@ -1,0 +1,84 @@
+mandate: |
+  Own the ISV-certified workstation portfolio within CDG Commercial. Compete
+  head-to-head with HP Z and Lenovo ThinkStation on performance, certification,
+  and reliability across mobile, desktop, and rack workstation form factors.
+
+scope:
+  in_scope:
+    - All Pro Workstation-branded mobile workstations (3000, 5000, 7000 series)
+    - All Pro Workstation-branded desktop workstations (compact, tower, rack form factors)
+    - Workstation-specific accessories where they materially differ from Acme Standard peripherals (specialty docks, ISV-certified displays paired with Pro Workstation)
+    - ISV certifications and partnership co-engineering for Pro Workstation SKUs
+    - Pro Workstation-specific marketing, customer references, and analyst engagement
+  out_of_scope:
+    - Acme Standard (mainstream commercial laptops and desktops) — separate portfolio
+    - Acme Plus — the other workstation-tier portfolio in CDG Commercial; coordination required on positioning and SKU boundaries
+    - Acme Home / Acme Gaming consumer-adjacent SKUs — Consumer organization
+    - Server-tier workstations beyond the Pro Workstation Rack form factor (true rack servers belong to IDG)
+    - Application software running on Pro Workstation — partner ISVs own that
+
+decision_rights:
+  - decision: Pro Workstation portfolio P&L
+    owner: Pro Workstation Portfolio GM
+  - decision: Roadmap (form factors, refresh cadence)
+    owner: Portfolio GM + Engineering lead + Product Management
+  - decision: Pricing tier strategy
+    owner: Portfolio GM + Commercial finance
+  - decision: ISV certification investment
+    owner: Portfolio GM + ISV partnership team
+  - decision: Component partnerships (NVIDIA RTX SKUs, Intel/AMD platform choice)
+    owner: Engineering + Portfolio GM
+  - decision: Major customer escalations
+    owner: Account team + Portfolio GM
+
+key_stakeholders:
+  customers:
+    - End users — engineers, designers, scientists, content creators
+    - Buyers — IT, procurement, engineering managers
+  partners:
+    - Autodesk
+    - Dassault Systèmes
+    - Siemens
+    - PTC
+    - Adobe
+    - ANSYS
+    - Bentley
+    - Foundry
+    - Avid
+    - Emerging ML / data-science tooling
+  silicon_partners:
+    - Intel (Core HX, Xeon W)
+    - AMD (Ryzen Threadripper Pro, Ryzen Pro)
+    - NVIDIA (RTX Ada Generation pro GPUs)
+  channel:
+    - Specialized workstation resellers
+    - AEC / M&E / Engineering vertical integrators
+  internal:
+    - CDG Commercial leadership
+    - Services org (AcmeCare Plus)
+    - Supply chain (specialized component allocation)
+    - Marketing (vertical campaigns)
+
+operating_cadence:
+  - Monthly portfolio review (revenue, share, mix, attach)
+  - Quarterly roadmap review with engineering and ISV partners
+  - Annual refresh launch synchronized with silicon partner platforms (Intel, AMD, NVIDIA refresh cycles)
+  - Continuous ISV certification testing as ISVs ship major releases
+
+success_metrics:
+  - Workstation revenue and unit volume by form factor
+  - Workstation segment market share (overall + mobile-specific)
+  - Premium-tier SKU mix (Pro Workstation 7000 share)
+  - AcmeCare Plus attach rate
+  - ISV certification breadth and "first-to-certify" wins on new platforms
+  - Customer NPS within Pro Workstation buyer base
+
+ownership:
+  owner: portfolio-pm-pro-workstations
+  contributors: [pm-hardware, pm-software, strategist]
+  review_cadence: quarterly
+
+placeholders:
+  - "Confirm decision-rights matrix and operating cadence against current Pro Workstation portfolio governance."
+
+last_reviewed: 2026-05-05

@@ -1,0 +1,81 @@
+id: engineering-manager
+display_name: Engineering Manager
+type: external
+
+title_examples:
+  - Engineering Manager
+  - Director of Mechanical Engineering
+  - Head of CAD/CAE
+  - R&D Manager
+
+industry_context: Mid-size to large manufacturer (500–10,000 employees). Automotive supplier, industrial equipment, consumer products, aerospace contractor, medical devices.
+
+team_size: 8–60 engineers using CAD (SolidWorks, NX, Creo, Inventor) and possibly CAE (ANSYS, Abaqus, Altair).
+
+tenure: 10–25 years engineering experience; 3–10 years in management.
+reports_to: VP of Engineering or CTO
+
+goals:
+  - Keep the team productive — minimize time spent waiting for the workstation
+  - Standardize on a PC fleet that handles both daily CAD work and the occasional simulation run
+  - Manage capex predictably across a 3–4 year refresh cycle
+  - Reduce IT escalations from engineers — bad workstations create morale problems
+  - Stay current enough on simulation/AI capabilities to not be bottlenecked when the business asks for them
+
+frustrations:
+  - Configurator complexity — multiple Pro Workstation SKUs, GPU options, memory configurations, and they don't always know which combination ISV-certifies for their stack
+  - Pro GPU pricing and availability — when supply tightens, lead times threaten project timelines
+  - IT pushes for fleet uniformity; engineers want top-tier configs for their specific workloads. Manager is in the middle.
+  - Hard to make the business case for premium-tier (Pro Workstation 7000) over mid-tier (5000) without a clear productivity-per-dollar story
+  - Refresh planning gets disrupted when ISVs raise their minimum recommended specs unexpectedly
+
+buying_behavior:
+  role: influences
+  triggers:
+    - End-of-warranty refresh window
+    - New project requiring more capable workstations
+    - ISV release that bumps minimum recommended specs
+    - Incident (thermal throttling causing missed deadline)
+  decision_criteria_weighted:
+    - criterion: ISV certification and validated performance against the team's specific stack
+      weight: 1
+    - criterion: Reliability / failure rate from prior generation experience
+      weight: 2
+    - criterion: Total cost of ownership (purchase + support + downtime cost)
+      weight: 3
+    - criterion: IT manageability (so IT doesn't push back on the choice)
+      weight: 4
+    - criterion: Brand familiarity and team preference
+      weight: 5
+  evaluation_behaviors:
+    - Reads ISV-published certified-hardware lists
+    - Asks peers in industry forums
+    - Asks Acme or HP rep for benchmark comparison
+    - Takes a small evaluation unit before fleet refresh
+
+what_they_want:
+  - "Here is the SKU and configuration that ISV-certifies for your specific stack at the performance tier your team needs."
+  - "Here is the TCO over 4 years vs the alternative, with AcmeCare Plus included."
+  - "Here is the case study from a comparable team that refreshed last year."
+  - "Here is what's coming in the next 18 months so you can plan around it."
+
+what_they_dont_want:
+  - Generic configurators that force them to make 14 decisions
+  - Reps who don't know the difference between SolidWorks and Solid Edge
+  - Aggressive upsell without a clear productivity case
+  - Hardware that thermal-throttles under sustained simulation runs
+
+common_objections:
+  - "Lenovo P-series gave us a good deal last cycle."
+  - "Apple Silicon is faster on some things — should we mix?"
+  - "We don't need workstations; Acme Standard desktops are fine for most engineers."
+  - "AcmeCare Plus is expensive; we have internal IT."
+
+maps_to_archetypes:
+  primary: [pragmatist]
+  secondary: [performance-maximizer, cost-conscious]
+
+placeholders:
+  - "Validate with 5–10 engineering manager interviews across at least 3 verticals."
+
+last_reviewed: 2026-05-05

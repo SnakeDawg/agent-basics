@@ -1,0 +1,95 @@
+mandate: |
+  Own the Pro Workstation PC product line — mobile and desktop workstations
+  sold individually. Deliver competitive SKUs, ISV certifications, and
+  fleet-grade software on the cadence set by the silicon and ISV partner
+  ecosystem.
+
+scope:
+  in_scope:
+    - All mobile Pro Workstation SKUs (3000, 5000, 7000 series)
+    - All desktop Pro Workstation SKUs (Compact 3000, Tower 3000/5000/7000)
+    - Software stack shipped or recommended on Pro Workstation PCs (Acme Optimizer for Pro Workstation, Acme Display Manager, Acme Device Manager tooling specific to Pro Workstation deployments, ISV-certified driver packages)
+    - Customer-facing collateral (configurators, comparison tools, vertical solution guides)
+    - ISV co-engineering and validation work for Pro Workstation PC SKUs
+    - AcmeCare Plus tier offers tied to Pro Workstation PC SLA needs
+  out_of_scope:
+    - Pro Workstation Rack 7960 — separate rack-workstation product motion (different buyer, different deployment pattern)
+    - Acme Standard, Acme Plus, Acme Home, Acme Gaming — different products entirely
+    - Application software running on Pro Workstation PCs — partner ISVs own that; we validate and certify but do not develop
+    - Server-class hardware — that's IDG
+    - Component R&D — Intel, AMD, NVIDIA own the silicon; we integrate
+
+decision_rights:
+  - decision: Pro Workstation PC product roadmap (SKUs, refresh cadence, form factors)
+    owner: Pro Workstation PC Product Director / GM
+  - decision: Hardware engineering (thermal, chassis, motherboard)
+    owner: Engineering lead
+  - decision: Software stack (Acme Optimizer, drivers, validation)
+    owner: Software PM lead
+  - decision: ISV certification scope and prioritization
+    owner: Product Management + ISV partnership team
+  - decision: Pricing tier and configurator design
+    owner: Product + Commercial finance
+  - decision: AcmeCare Plus offer design (Pro Workstation-specific)
+    owner: Services team + Product Management
+  - decision: Vertical campaign prioritization
+    owner: Marketing + Product Management
+  - decision: Major customer escalations (top accounts)
+    owner: Account team + Product Director
+
+key_stakeholders:
+  external:
+    end_users:
+      - Engineers
+      - Designers
+      - Scientists
+      - Content creators
+    buyers:
+      - IT directors
+      - Procurement leads
+      - Design-team leaders
+    partners:
+      - Intel
+      - AMD
+      - NVIDIA
+      - ISVs (Autodesk, Dassault, Siemens, Adobe, ANSYS, Bentley, Avid, Foundry)
+    channel:
+      - Workstation-focused resellers and vertical integrators
+    analysts:
+      - IDC
+      - Gartner
+      - Forrester (workstation tracker, AI PC commentary)
+  internal:
+    - Pro Workstation portfolio leadership — sets bounds for Pro Workstation PC
+    - CDG Commercial leadership — sets bounds for Pro Workstation portfolio
+    - Services — AcmeCare Plus design and SLAs
+    - Sales — direct + channel; product PM owns enablement materials
+    - Marketing — vertical campaigns, analyst engagement, customer references
+    - Supply chain — pro GPU and high-end component allocation
+    - Acme Financial Services — leasing and Acme Pay PCaaS for Pro Workstation
+
+operating_cadence:
+  - Weekly product team standup
+  - Monthly product business review (volume, revenue, share, mix, NPS)
+  - Quarterly QBR with Pro Workstation portfolio leadership
+  - Quarterly ISV roadmap sync with key partners
+  - Annual product roadmap planning aligned with silicon and ISV cycles
+
+success_metrics:
+  - Pro Workstation PC unit volume and revenue, broken out by mobile vs desktop and by series (3000/5000/7000)
+  - Workstation segment share — overall, mobile-specific, tower-specific
+  - ISV certification count (active + first-to-certify wins)
+  - Premium-tier mix (Pro Workstation 7000 as % of Pro Workstation PC revenue)
+  - AcmeCare Plus attach rate
+  - NPS by segment (Engineering, AEC, M&E, AI/ML, Sci/Research, FinServ, Healthcare)
+  - Time-to-quote in channel (configurator complexity proxy)
+
+ownership:
+  owner: pm-hardware
+  contributors: [pm-software, strategist]
+  review_cadence: quarterly
+
+placeholders:
+  - "Confirm decision-rights matrix, operating cadence, and metric thresholds against current Pro Workstation PC product governance."
+
+last_reviewed: 2026-05-05

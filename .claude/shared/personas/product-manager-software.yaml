@@ -1,0 +1,72 @@
+id: product-manager-software
+display_name: Product Manager — Software
+type: internal
+
+title_examples:
+  - Senior Product Manager — Pro Workstation Software
+  - Software PM — Acme Optimizer
+  - Principal PM — AI Workstation Software
+
+reports_to: Pro Workstation PC product leadership or a software org that supports the portfolio.
+tenure: 5–15 years; backgrounds in software PM, developer tools, or driver/firmware engineering with PM transition.
+
+tools_used:
+  - Jira
+  - Confluence
+  - GitHub
+  - Telemetry dashboards (Splunk / Datadog / internal)
+  - Customer feedback systems
+  - Figma for UX reviews
+  - ISV partner dev portals
+
+goals:
+  - Ship software that makes Pro Workstation PCs measurably better than configuration-equivalent competitors (boot, sustained perf, reliability, AI workload acceleration)
+  - Maintain ISV certifications and ship validated driver bundles on schedule
+  - Reduce IT friction at scale — fleet management, security posture, telemetry
+  - Land AI workstation software experiences that turn an NPU + RTX combination into something a PM can demo, not just spec
+  - Close the gap on what consumer-grade software ecosystems do well that pro tooling has historically missed (responsiveness, fit-and-finish)
+
+frustrations:
+  - ISV release cadence drives Acme software work; little control over timing, frequent fire drills
+  - Telemetry coverage on commercial devices is uneven; some signals are great, others nonexistent
+  - Driver and firmware coordination across Intel, AMD, NVIDIA spans 4+ partners with different cadences
+  - "AI on the PC" is a category the industry is still inventing — no settled UX patterns, lots of competing narratives
+  - Fleet IT pushes for "less change" while ISVs push for "ship the new driver yesterday"
+
+day_in_life:
+  - "Morning: triage support escalations from large enterprise customers; review overnight telemetry anomalies."
+  - "Mid-day: roadmap working session for the next Pro Workstation software release (Acme Optimizer features, validated driver bundle scope)."
+  - "Afternoon: ISV partner sync (e.g., Autodesk or Adobe) on certification scope for upcoming releases."
+  - "Late afternoon: sprint review with engineering on AI workflow features."
+  - "Evening: read competitive software updates (HP ZCentral, Lenovo Vantage, Apple's software ecosystem)."
+
+decision_style:
+  - Bias toward measurable — feature decisions tied to telemetry deltas, NPS movement, or attach metrics
+  - Customer-driven for prioritization, but tech-led for sequencing (some things have to happen in a specific order to be feasible)
+  - Comfortable saying "no" to features that don't move a metric
+  - Skeptical of demos without underlying engineering reality
+
+needs_from_catalogue:
+  - skill: market-intelligence
+    purpose: What the software ecosystem around pro PCs is shipping; what HP, Lenovo, Apple are doing in software differentiation; what ISVs are signaling in their own product directions.
+  - skill: competitive-analysis
+    purpose: Software-layer comparisons specifically (driver tooling, telemetry, AI workload features) — not just hardware specs.
+  - skill: pain-point-analysis
+    purpose: Synthesized customer software complaints from forums, reviews, support escalations.
+  - skill: portfolio-analysis
+    purpose: Software experience parity across Pro Workstation PC SKUs; gaps in lower tiers vs flagship.
+  - default_output_shape: Distinguish what's a hardware story from what's a software story — hardware PMs and software PMs have different levers.
+
+assumptions_to_avoid:
+  - They are not the spec sheet; they own the experience
+  - They are not interested in a feature list; they are interested in why a feature would change a metric
+  - They will challenge any "AI" claim that doesn't have a concrete workflow attached
+
+maps_to_archetypes:
+  primary: [pragmatist]
+  secondary: [innovator]
+
+placeholders:
+  - "Validate persona detail with 2–3 actual software PMs in the Pro Workstation PC product org."
+
+last_reviewed: 2026-05-05
