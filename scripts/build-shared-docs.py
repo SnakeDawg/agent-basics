@@ -532,6 +532,32 @@ See [the architecture doc](../architecture.md) for the full pattern.
 
 # ---------- main ----------
 
+def is_published(data: dict) -> bool:
+    """Return True only if the source explicitly opts in with `publish: true`.
+
+    Default is False — shared/ content is internal unless deliberately exposed.
+    Protects strategic content (competitor profiles, strategy docs, SKU pricing)
+    from accidentally landing on a public site.
+    """
+    return data.get("publish") is True
+
+
+def empty_index(category: str, schema_link: str = "../../architecture.md") -> str:
+    """Render an empty-section landing page when no items in a category opt-in to publish."""
+    return f"""# {category.title()}
+
+No {category} items are currently published.
+
+This catalogue uses an opt-in publish gate: items under `.claude/shared/` are
+not exposed on the site unless their source declares `publish: true`. That
+keeps strategic content (competitor posture, strategy docs, SKU pricing)
+out of the public site by default.
+
+To learn the schema for {category}, see [the architecture doc]({schema_link}).
+To opt an item in, set `publish: true` in its YAML or frontmatter and rebuild.
+"""
+
+
 def main():
     if not SHARED.exists():
         print(f"No {SHARED} — skipping shared docs build")
@@ -542,21 +568,35 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
 
+    counts = {}
+
     # ---- Personas ----
     personas: dict[str, dict] = {}
     for p in sorted((SHARED / "personas").glob("*.yaml")):
         data = load(p)
+        if not is_published(data):
+            continue
         personas[data.get("id", p.stem)] = data
         write(OUT / "personas" / f"{p.stem}.md", render_persona(data, p))
-    write(OUT / "personas" / "index.md", build_personas_index(personas))
+    if personas:
+        write(OUT / "personas" / "index.md", build_personas_index(personas))
+    else:
+        write(OUT / "personas" / "index.md", empty_index("personas"))
+    counts["personas"] = len(personas)
 
     # ---- Archetypes ----
     archetypes: dict[str, dict] = {}
     for p in sorted((SHARED / "archetypes").glob("*.yaml")):
         data = load(p)
+        if not is_published(data):
+            continue
         archetypes[data.get("id", p.stem)] = data
         write(OUT / "archetypes" / f"{p.stem}.md", render_archetype(data, p))
-    write(OUT / "archetypes" / "index.md", build_archetypes_index(archetypes))
+    if archetypes:
+        write(OUT / "archetypes" / "index.md", build_archetypes_index(archetypes))
+    else:
+        write(OUT / "archetypes" / "index.md", empty_index("archetypes"))
+    counts["archetypes"] = len(archetypes)
 
     # ---- Competitors (markdown with frontmatter) ----
     competitors: dict[str, dict] = {}
@@ -566,10 +606,16 @@ def main():
             end = text.find("\n---", 3)
             if end != -1:
                 fm = yaml.safe_load(text[3:end])
+                if not is_published(fm):
+                    continue
                 body = text[end + 4:].lstrip("\n")
                 competitors[fm.get("id", p.stem)] = fm
                 write(OUT / "competitors" / f"{p.stem}.md", render_competitor(fm, body, p))
-    write(OUT / "competitors" / "index.md", build_competitors_index(competitors))
+    if competitors:
+        write(OUT / "competitors" / "index.md", build_competitors_index(competitors))
+    else:
+        write(OUT / "competitors" / "index.md", empty_index("competitors"))
+    counts["competitors"] = len(competitors)
 
     # ---- SKUs (markdown with frontmatter) ----
     skus: dict[str, dict] = {}
@@ -579,13 +625,20 @@ def main():
             end = text.find("\n---", 3)
             if end != -1:
                 fm = yaml.safe_load(text[3:end])
+                if not is_published(fm):
+                    continue
                 body = text[end + 4:].lstrip("\n")
                 skus[fm.get("id", p.stem)] = fm
                 write(OUT / "skus" / f"{p.stem}.md", render_sku(fm, body, p))
-    write(OUT / "skus" / "index.md", build_skus_index(skus))
-    write(OUT / "skus" / "competitor-crosswalk.md", build_competitor_crosswalk(skus))
+    if skus:
+        write(OUT / "skus" / "index.md", build_skus_index(skus))
+        write(OUT / "skus" / "competitor-crosswalk.md", build_competitor_crosswalk(skus))
+    else:
+        write(OUT / "skus" / "index.md", empty_index("SKUs"))
+    counts["skus"] = len(skus)
 
     # ---- Hierarchy units ----
+    # Hierarchy units publish only if identity.yaml has publish: true.
     units: list[tuple[str, str, dict, dict, dict, dict]] = []
     for kind in ("company", "organizations", "portfolios", "products"):
         kind_dir = SHARED / kind
@@ -595,21 +648,33 @@ def main():
             if not unit_dir.is_dir():
                 continue
             identity = load(unit_dir / "identity.yaml") if (unit_dir / "identity.yaml").exists() else {}
+            if not is_published(identity):
+                continue
             charter = load(unit_dir / "charter.yaml") if (unit_dir / "charter.yaml").exists() else {}
             strategy = load(unit_dir / "strategy.yaml") if (unit_dir / "strategy.yaml").exists() else {}
             scope = load(unit_dir / "scope.yaml") if (unit_dir / "scope.yaml").exists() else {}
-            if identity or charter or strategy or scope:
-                units.append((kind, unit_dir.name, identity, charter, strategy, scope))
-                content = render_hierarchy_unit(kind, unit_dir.name, identity, charter, strategy, scope)
-                write(OUT / kind / f"{unit_dir.name}.md", content)
+            units.append((kind, unit_dir.name, identity, charter, strategy, scope))
+            content = render_hierarchy_unit(kind, unit_dir.name, identity, charter, strategy, scope)
+            write(OUT / kind / f"{unit_dir.name}.md", content)
 
-    write(OUT / "hierarchy.md", build_hierarchy_index(units))
+    if units:
+        write(OUT / "hierarchy.md", build_hierarchy_index(units))
+    else:
+        write(OUT / "hierarchy.md", empty_index("hierarchy units", schema_link="../architecture.md"))
+    counts["units"] = len(units)
 
     # ---- Top-level index ----
     write(OUT / "index.md", build_index())
 
-    print(f"Generated {len(personas)} personas, {len(archetypes)} archetypes, "
-          f"{len(competitors)} competitors, {len(skus)} SKUs, {len(units)} hierarchy units → {OUT}")
+    total = sum(counts.values())
+    if total == 0:
+        print(f"No published shared/ items (all defaults). Site shared/ section "
+              f"renders schema explainers only. Set `publish: true` in source "
+              f"YAML/frontmatter to opt items in.")
+    else:
+        print(f"Generated published items → personas: {counts['personas']}, "
+              f"archetypes: {counts['archetypes']}, competitors: {counts['competitors']}, "
+              f"SKUs: {counts['skus']}, hierarchy units: {counts['units']} → {OUT}")
 
 
 if __name__ == "__main__":

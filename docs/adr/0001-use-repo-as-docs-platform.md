@@ -20,7 +20,7 @@ Use this repo as the single source of truth for all documentation — agent/skil
 ## Consequences
 
 - **Positive:** one source of truth (git). All edits are reviewable as PRs. History is permanent. Forking the repo gives a downstream team a clean copy of the structure plus their own content.
-- **Positive:** non-technical contributors can still participate via the [strategy intake form](../intake/strategy-intake.md) — they fill out fields, someone else converts to markdown.
+- **Positive:** non-technical contributors can still participate via the strategy intake form (kept in the repo at `docs/intake/strategy-intake.md`, intentionally not published) — they fill out fields, someone else converts to markdown.
 - **Negative:** no WYSIWYG editor. Direct contributors need to be comfortable with markdown (or use the intake form path).
 - **Negative:** publishing requires a working build pipeline; if that breaks, the site goes stale until fixed.
 

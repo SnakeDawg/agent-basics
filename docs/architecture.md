@@ -674,6 +674,45 @@ Each PM sets their own scope. The state file is per-clone, gitignored. Three PMs
 | Rugged PM | `products/pro-workstation-pc/lines/rugged` | Rugged line vs Panasonic Toughbook + Dell Latitude Rugged + Getac |
 | Portfolio PM | `portfolios/pro-workstations` | Pro Workstations vs HP Z (full) + Lenovo ThinkStation (full) + BOXX |
 
+## Publish gate
+
+`shared/` content is **internal by default**. Strategic posture, competitor intel, persona profiles, SKU pricing, organizational strategy — none of it ends up on the published documentation site unless deliberately exposed.
+
+### Per-item opt-in
+
+Add `publish: true` to a source file's YAML or frontmatter to publish the rendered view of that one item. Default is false.
+
+```yaml
+# .claude/shared/personas/<id>.yaml
+id: <id>
+display_name: <name>
+publish: true                   # opt this persona in to the public site
+type: external
+...
+```
+
+### What's gated
+
+| Source | Default | Override |
+| --- | --- | --- |
+| `shared/personas/<id>.yaml` | not published | `publish: true` |
+| `shared/archetypes/<id>.yaml` | not published | `publish: true` |
+| `shared/competitors/<id>.md` (frontmatter) | not published | `publish: true` |
+| `shared/products/**/skus/<id>.md` (frontmatter) | not published | `publish: true` |
+| `<level>/<name>/identity.yaml` (and the unit's pages) | not published | `publish: true` on identity.yaml |
+
+### What's always published
+
+Catalogue content (skills, agents, slash commands), the architecture doc, README, CONTRIBUTING. The pattern itself is the demo; the example data is internal.
+
+### What's always excluded
+
+`docs/intake/` (static intake forms — not interactive; meant to be filled out, not browsed) and `docs/anthropic-spec.md` (canonical reference, repo-internal). Configured in `mkdocs.yml` under `exclude_docs:`.
+
+### Empty-section behavior
+
+If a category (personas / archetypes / competitors / SKUs / hierarchy) has zero `publish: true` items, its index page renders a short explainer pointing readers at the schema in this architecture doc. The site shows the *pattern* even when no example data is exposed — which is the correct shape for a public design-pattern repo.
+
 ## Status — what exists vs. what's new
 
 | Element | Status |

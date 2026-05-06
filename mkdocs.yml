@@ -13,6 +13,7 @@ exclude_docs: |
   anthropic-spec.md
   agents/_template.md
   skills/_template
+  intake
 
 theme:
   name: material
