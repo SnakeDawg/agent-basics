@@ -30,7 +30,7 @@ frustrations:
   - ISV release cadence drives Acme software work; little control over timing, frequent fire drills
   - Telemetry coverage on commercial devices is uneven; some signals are great, others nonexistent
   - Driver and firmware coordination across Intel, AMD, NVIDIA spans 4+ partners with different cadences
-  - "AI on the PC" is a category the industry is still inventing — no settled UX patterns, lots of competing narratives
+  - '"AI on the PC" is a category the industry is still inventing — no settled UX patterns, lots of competing narratives'
   - Fleet IT pushes for "less change" while ISVs push for "ship the new driver yesterday"
 
 day_in_life:

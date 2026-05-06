@@ -29,7 +29,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install MkDocs Material + plugins
-        run: pip install mkdocs-material mkdocs-awesome-pages-plugin
+        run: pip install mkdocs-material mkdocs-awesome-pages-plugin pyyaml
 
       - name: Assemble docs/ tree from sources
         run: bash scripts/build-docs.sh

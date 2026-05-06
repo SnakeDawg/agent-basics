@@ -24,11 +24,15 @@ REPO_BLOB="https://github.com/SnakeDawg/agent-basics/blob/main"
 cp README.md docs/index.md
 cp CONTRIBUTING.md docs/contributing.md
 
-# Catalogue + shared content from .claude/ becomes a top-level section each
+# Catalogue from .claude/ becomes a top-level section each
 rm -rf docs/agents docs/skills docs/shared
 cp -r .claude/agents docs/agents
 cp -r .claude/skills docs/skills
-cp -r .claude/shared docs/shared
+
+# Shared content is RENDERED from YAML by the Python generator — not copied.
+# Generates persona / archetype / competitor / SKU / hierarchy views with
+# Mermaid diagrams. Output lands in docs/shared/.
+python3 scripts/build-shared-docs.py
 
 # Rewrite repo-relative paths in the copied root docs so links resolve in the site.
 # Source files keep their original repo-relative links; only the copies are rewritten.
