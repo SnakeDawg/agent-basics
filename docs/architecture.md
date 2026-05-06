@@ -53,6 +53,40 @@ This document is the **source of truth** for the pattern. The two example skills
 
 This keeps the always-loaded surface small and lets a skill carry deep knowledge without paying the token cost on every invocation.
 
+```mermaid
+flowchart TD
+    Trigger([Skill triggered])
+    Skill[SKILL.md<br/>~600–900 words<br/>always loaded]
+    Direct{Request narrow<br/>and concrete?}
+
+    Interview[references/<br/>interview-guide.md<br/>load on demand]
+    Taxonomy[references/<br/>taxonomy.md<br/>load on demand]
+    Quality[references/<br/>quality.md<br/>load on demand]
+    Knowledge[references/<br/>knowledge-base.md<br/>load on demand]
+
+    Procedure[Run procedure]
+    Output([Output])
+
+    Trigger --> Skill
+    Skill --> Direct
+    Direct -->|yes| Procedure
+    Direct -->|no — broad| Interview
+    Interview --> Procedure
+    Procedure -.->|when scoping| Taxonomy
+    Procedure -.->|when citing| Quality
+    Procedure -.->|when looking up| Knowledge
+    Procedure --> Output
+
+    classDef always fill:#e8f0fe,stroke:#1a73e8,color:#000
+    classDef ondemand fill:#fef7e0,stroke:#f9ab00,color:#000
+    classDef flow fill:#fff,stroke:#5f6368,color:#000
+    classDef io fill:#f3e8fd,stroke:#9334e6,color:#000
+    class Skill always
+    class Interview,Taxonomy,Quality,Knowledge ondemand
+    class Direct,Procedure flow
+    class Trigger,Output io
+```
+
 ## Skill shapes
 
 Every skill picks one of two shapes. The shape determines whether a briefing protocol exists and what reference modules are typical.
@@ -112,8 +146,26 @@ Agents are thin orchestrators. They don't reimplement skill procedures.
 
 ## Shared context flow
 
-```
-shared/  →  agent (loads on demand based on prompt)  →  skill (stays procedural)
+```mermaid
+flowchart LR
+    Shared[("shared/<br/>personas, archetypes,<br/>competitors, scope.yaml")]
+    Agent[Agent / slash command<br/>resolves scope, loads context]
+    Skill[Skill<br/>stays procedural<br/>never reads shared/]
+    User([User])
+
+    User -->|prompt| Agent
+    Shared -->|loaded on demand| Agent
+    Agent -->|filtered context| Skill
+    Skill -->|output| User
+
+    classDef store fill:#fef7e0,stroke:#f9ab00,color:#000
+    classDef orch fill:#e8f0fe,stroke:#1a73e8,color:#000
+    classDef proc fill:#e6f4ea,stroke:#188038,color:#000
+    classDef user fill:#f3e8fd,stroke:#9334e6,color:#000
+    class Shared store
+    class Agent orch
+    class Skill proc
+    class User user
 ```
 
 One-directional. Skills do **not** read `shared/` directly. Agents own context injection.
@@ -186,6 +238,20 @@ These are research-domain instances. The same blueprint applies to domains the c
 `shared/` is a structured catalog of organizational context that agents inject into skills. It is **not** an unstructured pile of documents — it follows a six-level hierarchy with an explicit scoping mechanism.
 
 ### Hierarchy
+
+```mermaid
+graph TD
+    Company[company<br/>e.g., acme-computing] --> Org[organization<br/>e.g., commercial-devices]
+    Org --> Portfolio[portfolio<br/>e.g., pro-workstations]
+    Portfolio --> Product[product<br/>e.g., pro-workstation-pc]
+    Product --> Line[line<br/>e.g., mobile / fixed / rugged]
+    Line --> SKU[SKU<br/>e.g., pwm-5000]
+
+    classDef level fill:#e8f0fe,stroke:#1a73e8,color:#000
+    classDef leaf fill:#e6f4ea,stroke:#188038,color:#000
+    class Company,Org,Portfolio,Product,Line level
+    class SKU leaf
+```
 
 ```
 company → organization → portfolio → product → line → SKU
@@ -489,18 +555,27 @@ lineup:
 
 When an activity command runs, it walks the hierarchy from the active scope up to the company root, merging each level's `scope.yaml` (or the SKU's frontmatter, for SKU-level scopes).
 
-```
-SKU (pwm-5000)
-  ↓ inherits from
-line (mobile)
-  ↓
-product (pro-workstation-pc)
-  ↓
-portfolio (pro-workstations)
-  ↓
-organization (commercial-devices)
-  ↓
-company (acme-computing)
+```mermaid
+flowchart TB
+    SKU["pwm-5000.md<br/>(SKU frontmatter)"]
+    Line["lines/mobile/scope.yaml"]
+    Product["pro-workstation-pc/scope.yaml"]
+    Portfolio["pro-workstations/scope.yaml"]
+    Org["commercial-devices/scope.yaml"]
+    Company["acme-computing/scope.yaml<br/>(no parent — root)"]
+
+    SKU -->|parent| Line
+    Line -->|parent| Product
+    Product -->|parent| Portfolio
+    Portfolio -->|parent| Org
+    Org -->|parent| Company
+
+    classDef root fill:#fce8e6,stroke:#c5221f,color:#000
+    classDef leaf fill:#e6f4ea,stroke:#188038,color:#000
+    classDef chain fill:#e8f0fe,stroke:#1a73e8,color:#000
+    class Company root
+    class SKU leaf
+    class Line,Product,Portfolio,Org chain
 ```
 
 Merge rules:
@@ -510,6 +585,34 @@ Merge rules:
 - Activity filters (`activity_scope.<name>`) work the same way per key.
 
 ## `/scope` and activity slash commands
+
+### End-to-end flow
+
+```mermaid
+sequenceDiagram
+    actor PM
+    participant Scope as /scope command
+    participant State as .claude/state/active-scope
+    participant Activity as /competitive-analysis
+    participant Resolver as Scope chain walker
+    participant Shared as .claude/shared/
+    participant Skill as competitive-analysis skill
+
+    PM->>Scope: /scope products/.../skus/pwm-5000
+    Scope->>State: write active-scope path
+    Scope-->>PM: confirm + show chain
+
+    Note over PM: ...later in session...
+
+    PM->>Activity: /competitive-analysis
+    Activity->>State: read active-scope
+    Activity->>Resolver: resolve(path)
+    Resolver->>Shared: read SKU + line + product + portfolio + org + company
+    Resolver-->>Activity: merged manifest + activity filters
+    Activity->>Shared: load competitor & persona profiles by ID
+    Activity->>Skill: invoke with topic + filtered context
+    Skill-->>PM: structured competitive analysis
+```
 
 ### State file
 
