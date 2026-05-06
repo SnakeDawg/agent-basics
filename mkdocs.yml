@@ -9,6 +9,9 @@ site_dir: site
 
 # Repo-internal references that live under docs/ but are not part of the published catalogue.
 # Links to these from in-site pages are rewritten to GitHub blob URLs by scripts/build-docs.sh.
+# Note: shared/ content (personas, archetypes, competitors, strategy, SKUs) is internal by
+# policy — it is not generated into docs/ at all (see scripts/build-docs.sh and the Publish
+# policy section in docs/architecture.md), so it does not need to be excluded here.
 exclude_docs: |
   anthropic-spec.md
   agents/_template.md

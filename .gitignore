@@ -169,6 +169,12 @@ venv.bak/
 # Per-clone, per-PM. Never committed.
 /.claude/state/
 
+# Internal preview output of shared/ rendered views.
+# scripts/build-shared-docs.py writes here. Strategic / proprietary content
+# (personas, archetypes, competitor profiles, strategy docs, SKUs) — never
+# part of the public site, never committed.
+/.preview/
+
 # mypy
 .mypy_cache/
 .dmypy.json

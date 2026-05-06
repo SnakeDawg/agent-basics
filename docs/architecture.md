@@ -674,44 +674,42 @@ Each PM sets their own scope. The state file is per-clone, gitignored. Three PMs
 | Rugged PM | `products/pro-workstation-pc/lines/rugged` | Rugged line vs Panasonic Toughbook + Dell Latitude Rugged + Getac |
 | Portfolio PM | `portfolios/pro-workstations` | Pro Workstations vs HP Z (full) + Lenovo ThinkStation (full) + BOXX |
 
-## Publish gate
+## Publish policy
 
-`shared/` content is **internal by default**. Strategic posture, competitor intel, persona profiles, SKU pricing, organizational strategy — none of it ends up on the published documentation site unless deliberately exposed.
+**`shared/` is internal. Period.** No part of `.claude/shared/` — not personas, not archetypes, not competitor profiles, not strategy docs, not SKUs, not hierarchy identity / charter / strategy / scope — appears on the published documentation site. The auto-generation pipeline writes rendered views to `.preview/shared/` (gitignored) for **local internal preview only**.
 
-### Per-item opt-in
+This is a hard rule, not an opt-in/opt-out toggle. The earlier per-item `publish: true` flag was the wrong shape — it implied this content *could* be exposed under some circumstances. It can't.
 
-Add `publish: true` to a source file's YAML or frontmatter to publish the rendered view of that one item. Default is false.
+### What the public site contains
 
-```yaml
-# .claude/shared/personas/<id>.yaml
-id: <id>
-display_name: <name>
-publish: true                   # opt this persona in to the public site
-type: external
-...
+| Source | Public site? |
+| --- | --- |
+| `README.md` (rendered as `index.md`) | yes |
+| `CONTRIBUTING.md` | yes |
+| `.claude/agents/` (skill catalogue) | yes |
+| `.claude/skills/` (skill catalogue) | yes |
+| `.claude/commands/` | yes — referenced from skill catalogue |
+| `docs/architecture.md` (this file) | yes |
+| `docs/adr/` | yes |
+| `.claude/shared/` *(any subtree)* | **no — internal only** |
+| `docs/intake/` (static intake forms) | no — excluded |
+| `docs/anthropic-spec.md` (canonical reference) | no — excluded |
+| `CLAUDE.md` (repo memory) | no — excluded |
+
+### Internal preview
+
+To render a navigable view of the shared/ content for local review:
+
+```sh
+python3 scripts/build-shared-docs.py
+# output: .preview/shared/
 ```
 
-### What's gated
+The output is gitignored. Open the markdown files locally, or run a separate mkdocs config against `.preview/` if you want a local site. The public mkdocs build does not include this output.
 
-| Source | Default | Override |
-| --- | --- | --- |
-| `shared/personas/<id>.yaml` | not published | `publish: true` |
-| `shared/archetypes/<id>.yaml` | not published | `publish: true` |
-| `shared/competitors/<id>.md` (frontmatter) | not published | `publish: true` |
-| `shared/products/**/skus/<id>.md` (frontmatter) | not published | `publish: true` |
-| `<level>/<name>/identity.yaml` (and the unit's pages) | not published | `publish: true` on identity.yaml |
+### Why so strict
 
-### What's always published
-
-Catalogue content (skills, agents, slash commands), the architecture doc, README, CONTRIBUTING. The pattern itself is the demo; the example data is internal.
-
-### What's always excluded
-
-`docs/intake/` (static intake forms — not interactive; meant to be filled out, not browsed) and `docs/anthropic-spec.md` (canonical reference, repo-internal). Configured in `mkdocs.yml` under `exclude_docs:`.
-
-### Empty-section behavior
-
-If a category (personas / archetypes / competitors / SKUs / hierarchy) has zero `publish: true` items, its index page renders a short explainer pointing readers at the schema in this architecture doc. The site shows the *pattern* even when no example data is exposed — which is the correct shape for a public design-pattern repo.
+The repo's public purpose is to teach the *design pattern*. The Acme example content is illustrative reference material that lives in the repo for use by agents at runtime — not for public consumption. In a real downstream fork, a customer's personas, archetypes, competitor intel, strategy, and SKU pricing are all proprietary; the pattern must default to "internal" so a fork is safe to make public without leaking that data.
 
 ## Status — what exists vs. what's new
 

@@ -29,10 +29,9 @@ rm -rf docs/agents docs/skills docs/shared
 cp -r .claude/agents docs/agents
 cp -r .claude/skills docs/skills
 
-# Shared content is RENDERED from YAML by the Python generator — not copied.
-# Generates persona / archetype / competitor / SKU / hierarchy views with
-# Mermaid diagrams. Output lands in docs/shared/.
-python3 scripts/build-shared-docs.py
+# Shared content is INTERNAL — strategic / proprietary by policy. It is NOT
+# rendered into docs/ (which feeds the public site). Use the preview script
+# separately to render an internal view at .preview/shared/ when needed.
 
 # Rewrite repo-relative paths in the copied root docs so links resolve in the site.
 # Source files keep their original repo-relative links; only the copies are rewritten.
