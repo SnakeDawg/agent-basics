@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+@media (max-width: 800px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+.kpi:hover { border-color: var(--border-medium); }
+.kpi-num {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.kpi-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.filter-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-chip:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+.filter-chip.on {
+  border-color: var(--accent-violet);
+  color: var(--text-primary);
+  background: rgba(157, 124, 255, 0.1);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+.feature {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  transition: all 0.2s ease;
+}
+.feature:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+.feature-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 10px;
+}
+.feature h4 {
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+}
+.feature-desc {
+  font-size: 12.5px; color: var(--text-secondary);
+  line-height: 1.55; margin-bottom: 12px;
+}
+.feature-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 12px;
+}
+.feature-owner {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text-secondary);
+}
+.feature-progress {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"></span>
+      <span>agent-basics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="flow.html">Flow</a></li>
+      <li><a href="status.html" class="active">Status</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head">
+    <span class="eyebrow">Status</span>
+    <h1 class="h-page">For the boss who asked</h1>
+    <p class="lede">KPIs at a glance, then the full feature inventory below. Filter to drill in.</p>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-num">11</div><div class="kpi-label">Features shipped</div></div>
+    <div class="kpi"><div class="kpi-num">4</div><div class="kpi-label">In-flight this sprint</div></div>
+    <div class="kpi"><div class="kpi-num">7</div><div class="kpi-label">Planned next quarter</div></div>
+    <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">Active contributors</div></div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-chip on" data-filter="all">All</span>
+    <span class="filter-chip" data-filter="shipped">Shipped</span>
+    <span class="filter-chip" data-filter="active">In-flight</span>
+    <span class="filter-chip" data-filter="planned">Planned</span>
+  </div>
+
+  <div class="feature-grid" id="featureGrid">
+    <!-- shipped -->
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Catalogue framework</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Validators, README index auto-gen, pre-commit hook, CI workflow.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>GitHub Pages site</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">MkDocs Material with awesome-pages plugin. Auto-deploys on push.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-cyan">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Architecture pattern doc</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">600+ line blueprint with five Mermaid diagrams.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-magenta">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Six-level scope hierarchy</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">company → org → portfolio → product → line → SKU.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-blue">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>/scope slash command</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Per-session scope state. Activity commands wrap any skill with chain resolution.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Research-analyst agent</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Orchestrator demonstrating optional shared/ injection and skill delegation.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-cyan">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Market intelligence skill</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Interview-driven research procedure with type classification.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-magenta">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Competitive analysis skill</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Procedure for landscape mapping and head-to-head comparison.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-blue">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Internal preview generator</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">Auto-renders YAML personas / archetypes / competitors into navigable views.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Strict publish policy</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">shared/ content never lands on the public site. Hard rule.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-cyan">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+    <div class="feature" data-status="shipped">
+      <div class="feature-head"><h4>Multi-page mockup</h4><span class="status-pill status-shipped">Shipped</span></div>
+      <div class="feature-desc">This site. Six focused pages with shared theme.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-magenta">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
+    </div>
+
+    <!-- in-flight -->
+    <div class="feature" data-status="active">
+      <div class="feature-head"><h4>Reverse mockup → mkdocs theme</h4><span class="status-pill status-active">In-flight</span></div>
+      <div class="feature-desc">Convert this static mockup into a Material theme override.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">SD</span>SnakeDawg</div><div class="feature-progress">15%</div></div>
+    </div>
+    <div class="feature" data-status="active">
+      <div class="feature-head"><h4>Status data source wiring</h4><span class="status-pill status-active">In-flight</span></div>
+      <div class="feature-desc">Wire feature/team/roadmap data to a YAML source so it stays current.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-blue">TBD</span>Owner TBD</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="active">
+      <div class="feature-head"><h4>Aurora self-improving merge</h4><span class="status-pill status-active">In-flight</span></div>
+      <div class="feature-desc">Bring Aurora's self-improving capabilities into this catalogue.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-amber">SD</span>SnakeDawg</div><div class="feature-progress">10%</div></div>
+    </div>
+    <div class="feature" data-status="active">
+      <div class="feature-head"><h4>Activity command expansion</h4><span class="status-pill status-active">In-flight</span></div>
+      <div class="feature-desc">/market-research, /prd, /battlecard wrappers using the same pattern.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-cyan">TBD</span>Owner TBD</div><div class="feature-progress">5%</div></div>
+    </div>
+
+    <!-- planned -->
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Upgraded /new-skill</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Interview asks about skill shape and reference modules.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-blue">TBD</span>Q3</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Schema validator</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Cross-ref check between scope.yaml IDs and existing profile files.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">TBD</span>Q3</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>27 domain skills rollout</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Apply the pattern across product management activities.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-magenta">Team</span>Q4</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Per-PM scope dashboards</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Personal status pages per PM scope.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-cyan">TBD</span>Q4</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Skill regression tests</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Per-skill examples/ directory with sample inputs and expected outputs.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-blue">TBD</span>Q4</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Plugin distribution</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Polish export-plugin.sh; ship as /plugin install.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-amber">TBD</span>Q4</div><div class="feature-progress">0%</div></div>
+    </div>
+    <div class="feature" data-status="planned">
+      <div class="feature-head"><h4>Multi-company scope</h4><span class="status-pill status-planned">Planned</span></div>
+      <div class="feature-desc">Support more than one company subtree under shared/.</div>
+      <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">TBD</span>Future</div><div class="feature-progress">0%</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+<script>
+const chips = document.querySelectorAll('.filter-chip');
+const features = document.querySelectorAll('#featureGrid .feature');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('on'));
+    chip.classList.add('on');
+    const f = chip.dataset.filter;
+    features.forEach(el => {
+      el.style.display = (f === 'all' || el.dataset.status === f) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 800px) { .roadmap { grid-template-columns: 1fr; } }
+
+.lane {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  position: relative;
+}
+.lane-now { border-color: rgba(109, 225, 212, 0.3); }
+.lane-next { border-color: rgba(157, 124, 255, 0.3); }
+.lane-future { border-color: rgba(90, 143, 255, 0.3); }
+
+.lane-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+.lane-title {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.lane-now .lane-title { color: var(--accent-cyan); }
+.lane-next .lane-title { color: var(--accent-violet); }
+.lane-future .lane-title { color: var(--accent-blue); }
+
+.lane-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.lane-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+.lane-item:last-child { border-bottom: none; }
+.lane-item-title {
+  font-size: 13px; font-weight: 500;
+  margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
+}
+.lane-item-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"></span>
+      <span>agent-basics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="flow.html">Flow</a></li>
+      <li><a href="status.html">Status</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="roadmap.html" class="active">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head">
+    <span class="eyebrow">Roadmap</span>
+    <h1 class="h-page">Now · Next · Future</h1>
+    <p class="lede">Three time horizons. Items move left as they ship.</p>
+  </div>
+
+  <div class="roadmap">
+
+    <div class="lane lane-now">
+      <div class="lane-head">
+        <div class="lane-title">Now</div>
+        <div class="lane-count">4 items</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-active">In-flight</span>Reverse mockup → mkdocs theme</div>
+        <div class="lane-item-meta">SD · this sprint</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-active">In-flight</span>Status data wiring</div>
+        <div class="lane-item-meta">TBD · this sprint</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-active">In-flight</span>Aurora merge + sample</div>
+        <div class="lane-item-meta">SD · this sprint</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-active">In-flight</span>Activity command expansion</div>
+        <div class="lane-item-meta">TBD · this sprint</div>
+      </div>
+    </div>
+
+    <div class="lane lane-next">
+      <div class="lane-head">
+        <div class="lane-title">Next</div>
+        <div class="lane-count">4 items</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Upgraded /new-skill</div>
+        <div class="lane-item-meta">Q3</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Schema cross-ref validator</div>
+        <div class="lane-item-meta">Q3</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>27 domain skills (batch 1)</div>
+        <div class="lane-item-meta">Q4 · team</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Per-PM scope dashboards</div>
+        <div class="lane-item-meta">Q4</div>
+      </div>
+    </div>
+
+    <div class="lane lane-future">
+      <div class="lane-head">
+        <div class="lane-title">Future</div>
+        <div class="lane-count">3 items</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Skill regression tests</div>
+        <div class="lane-item-meta">CI integration</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Plugin distribution</div>
+        <div class="lane-item-meta">/plugin install</div>
+      </div>
+      <div class="lane-item">
+        <div class="lane-item-title"><span class="status-pill status-planned">Planned</span>Multi-company scope</div>
+        <div class="lane-item-meta">consultancy use</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+</body>
+</html>
