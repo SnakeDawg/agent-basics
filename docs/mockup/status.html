@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <style>
 .kpi-grid {
   display: grid;
@@ -142,10 +143,10 @@
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi-num">11</div><div class="kpi-label">Features shipped</div></div>
-    <div class="kpi"><div class="kpi-num">4</div><div class="kpi-label">In-flight this sprint</div></div>
-    <div class="kpi"><div class="kpi-num">7</div><div class="kpi-label">Planned next quarter</div></div>
-    <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">Active contributors</div></div>
+    <div class="kpi" data-aos="fade-up"><div class="kpi-num">11</div><div class="kpi-label">Features shipped</div></div>
+    <div class="kpi" data-aos="fade-up"><div class="kpi-num">4</div><div class="kpi-label">In-flight this sprint</div></div>
+    <div class="kpi" data-aos="fade-up"><div class="kpi-num">7</div><div class="kpi-label">Planned next quarter</div></div>
+    <div class="kpi" data-aos="fade-up"><div class="kpi-num">3</div><div class="kpi-label">Active contributors</div></div>
   </div>
 
   <div class="filter-bar">
@@ -157,7 +158,7 @@
 
   <div class="feature-grid" id="featureGrid">
     <!-- shipped -->
-    <div class="feature" data-status="shipped">
+    <div data-aos="fade-up" class="feature" data-status="shipped">
       <div class="feature-head"><h4>Catalogue framework</h4><span class="status-pill status-shipped">Shipped</span></div>
       <div class="feature-desc">Validators, README index auto-gen, pre-commit hook, CI workflow.</div>
       <div class="feature-foot"><div class="feature-owner"><span class="avatar avatar-sm av-violet">SD</span>SnakeDawg</div><div class="feature-progress">100%</div></div>
@@ -293,5 +294,7 @@ chips.forEach(chip => {
 });
 </script>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:600, once:true, offset:60});</script>
 </body>
 </html>

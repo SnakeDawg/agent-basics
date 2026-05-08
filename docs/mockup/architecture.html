@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <style>
 .arch-stage {
   display: grid;
@@ -253,6 +254,47 @@
   </div>
 </section>
 
+<section class="page page-tight">
+  <div class="page-head" data-aos="fade-up">
+    <span class="eyebrow">Capability layers</span>
+    <h2 class="section-title">The four-layer model</h2>
+    <p class="lede">A semantic layering for any agentic system. Hover any layer to ignite its accent. Labels are placeholders — the layers stay; the names will adapt to your stack.</p>
+  </div>
+
+  <div class="layer-grid" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+
+    <div class="layer-box layer-intake" data-aos="fade-up">
+      <div class="layer-eyebrow">Layer 01 · Intake</div>
+      <h3 style="font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:8px;">UI / User intake</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Where the human enters intent. Slash commands, prompts, interview-driven flows.</p>
+    </div>
+
+    <div class="layer-box layer-logic" data-aos="fade-up" data-aos-delay="100">
+      <div class="layer-eyebrow">Layer 02 · Logic</div>
+      <h3 style="font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:8px;">Skills / active logic</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Procedures that run. Tool-agnostic markdown. Stay generic; receive context from above.</p>
+    </div>
+
+    <div class="layer-box layer-orchestration" data-aos="fade-up" data-aos-delay="200">
+      <div class="layer-eyebrow">Layer 03 · Orchestration</div>
+      <h3 style="font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:8px;">Agent backbone</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Agents resolve scope, load context, delegate to skills, synthesize output.</p>
+    </div>
+
+    <div class="layer-box layer-safety" data-aos="fade-up" data-aos-delay="300">
+      <div class="layer-eyebrow">Layer 04 · Safety</div>
+      <h3 style="font-size:17px;font-weight:600;letter-spacing:-0.01em;margin-bottom:8px;">Memory / safety</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;">Read-only context, publish gates, validators, audit trails. The guardrails.</p>
+    </div>
+
+  </div>
+
+  <style>
+    @media (max-width: 900px) { .layer-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+    @media (max-width: 520px) { .layer-grid { grid-template-columns: 1fr !important; } }
+  </style>
+</section>
+
 </main>
 
 <footer>agent-basics — design pattern catalogue · MIT</footer>
@@ -351,5 +393,7 @@ window.addEventListener('hashchange', () => {
 });
 </script>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:600, once:true, offset:60});</script>
 </body>
 </html>

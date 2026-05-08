@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <style>
 .team-grid {
   display: grid;
@@ -84,7 +85,7 @@
 
   <div class="team-grid">
 
-    <div class="team-card">
+    <div class="team-card" data-aos="fade-up">
       <div class="team-head">
         <div class="avatar avatar-lg av-violet">SD</div>
         <div>
@@ -101,7 +102,7 @@
       </div>
     </div>
 
-    <div class="team-card">
+    <div class="team-card" data-aos="fade-up">
       <div class="team-head">
         <div class="avatar avatar-lg av-cyan">JE</div>
         <div>
@@ -116,7 +117,7 @@
       </div>
     </div>
 
-    <div class="team-card">
+    <div class="team-card" data-aos="fade-up">
       <div class="team-head">
         <div class="avatar avatar-lg av-magenta">PM</div>
         <div>
@@ -131,7 +132,7 @@
       </div>
     </div>
 
-    <div class="team-card">
+    <div class="team-card" data-aos="fade-up">
       <div class="team-head">
         <div class="avatar avatar-lg av-blue">CL</div>
         <div>
@@ -154,5 +155,7 @@
 
 <footer>agent-basics — design pattern catalogue · MIT</footer>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:600, once:true, offset:60});</script>
 </body>
 </html>
