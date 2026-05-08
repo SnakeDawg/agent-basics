@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 <style>
 .roadmap {
   display: grid;
@@ -97,7 +98,7 @@
 
   <div class="roadmap">
 
-    <div class="lane lane-now">
+    <div class="lane lane-now" data-aos="fade-up">
       <div class="lane-head">
         <div class="lane-title">Now</div>
         <div class="lane-count">4 items</div>
@@ -120,7 +121,7 @@
       </div>
     </div>
 
-    <div class="lane lane-next">
+    <div class="lane lane-next" data-aos="fade-up" data-aos-delay="120">
       <div class="lane-head">
         <div class="lane-title">Next</div>
         <div class="lane-count">4 items</div>
@@ -143,7 +144,7 @@
       </div>
     </div>
 
-    <div class="lane lane-future">
+    <div class="lane lane-future" data-aos="fade-up" data-aos-delay="240">
       <div class="lane-head">
         <div class="lane-title">Future</div>
         <div class="lane-count">3 items</div>
@@ -169,5 +170,7 @@
 
 <footer>agent-basics — design pattern catalogue · MIT</footer>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:600, once:true, offset:60});</script>
 </body>
 </html>
