@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.team-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  transition: all 0.2s ease;
+}
+.team-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+.team-head {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+}
+.team-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.team-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.team-focus {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 12px; line-height: 1.6;
+}
+.team-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.team-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"></span>
+      <span>agent-basics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="flow.html">Flow</a></li>
+      <li><a href="status.html">Status</a></li>
+      <li><a href="team.html" class="active">Team</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head">
+    <span class="eyebrow">Team</span>
+    <h1 class="h-page">Who owns what</h1>
+    <p class="lede">Current contributors and their primary focus areas. Names and roles are placeholders — this section will be backed by a YAML data source.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-head">
+        <div class="avatar avatar-lg av-violet">SD</div>
+        <div>
+          <div class="team-name">SnakeDawg</div>
+          <div class="team-role">Repo owner · Design lead</div>
+        </div>
+      </div>
+      <div class="team-focus">Architecture, scope system, publish policy, mockup design. Primary contributor through the foundation phase.</div>
+      <div class="team-tags">
+        <span class="team-tag">architecture</span>
+        <span class="team-tag">scope</span>
+        <span class="team-tag">design</span>
+        <span class="team-tag">migrations</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-head">
+        <div class="avatar avatar-lg av-cyan">JE</div>
+        <div>
+          <div class="team-name">Junior Engineer (TBD)</div>
+          <div class="team-role">Skills implementation</div>
+        </div>
+      </div>
+      <div class="team-focus">Onboarding to the design pattern. Will own the rollout of 27 PM activity skills using the blueprint.</div>
+      <div class="team-tags">
+        <span class="team-tag">skills</span>
+        <span class="team-tag">scaffolders</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-head">
+        <div class="avatar avatar-lg av-magenta">PM</div>
+        <div>
+          <div class="team-name">Pilot PM (TBD)</div>
+          <div class="team-role">First user of /scope</div>
+        </div>
+      </div>
+      <div class="team-focus">First product manager to drive a real scope through the catalogue. Provides feedback on scope ergonomics, content gaps, and missing activity commands.</div>
+      <div class="team-tags">
+        <span class="team-tag">user-research</span>
+        <span class="team-tag">feedback</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-head">
+        <div class="avatar avatar-lg av-blue">CL</div>
+        <div>
+          <div class="team-name">Claude</div>
+          <div class="team-role">AI pair · Design + impl</div>
+        </div>
+      </div>
+      <div class="team-focus">Long-running AI collaborator across architecture, scope migration, YAML structuring, doc-gen pipeline, this mockup.</div>
+      <div class="team-tags">
+        <span class="team-tag">pair</span>
+        <span class="team-tag">design</span>
+        <span class="team-tag">implementation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+</body>
+</html>

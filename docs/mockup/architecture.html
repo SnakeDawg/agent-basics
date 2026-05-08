@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.arch-stage {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 900px) { .arch-stage { grid-template-columns: 1fr; } }
+
+.arch-canvas {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  min-height: 460px;
+}
+.arch-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.arch-node {
+  cursor: pointer;
+}
+.node-bg {
+  transition: filter 0.2s ease, stroke-width 0.2s ease;
+}
+.arch-node:hover .node-bg {
+  filter: drop-shadow(0 0 12px var(--accent-violet));
+  stroke-width: 2.5;
+}
+.arch-node.active .node-bg {
+  filter: drop-shadow(0 0 18px var(--accent-violet));
+  stroke-width: 2.5;
+}
+.node-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  fill: var(--text-primary);
+  text-anchor: middle;
+  pointer-events: none;
+}
+.node-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  fill: var(--text-secondary);
+  text-anchor: middle;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.click-pulse {
+  pointer-events: none;
+}
+.click-pulse circle {
+  fill: none;
+  stroke: var(--accent-violet);
+  stroke-width: 2;
+  animation: pulse-ring 2.5s ease-out infinite;
+  opacity: 0;
+}
+@keyframes pulse-ring {
+  0%   { r: 16; opacity: 0.6; }
+  100% { r: 36; opacity: 0; }
+}
+
+.arch-detail {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  position: sticky;
+  top: 80px;
+}
+.arch-detail-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.arch-detail h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.arch-detail p {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.arch-detail ul {
+  list-style: none;
+}
+.arch-detail li {
+  padding: 8px 0;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 10px;
+}
+.arch-detail li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.arch-detail-foot {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-subtle);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"></span>
+      <span>agent-basics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html" class="active">Architecture</a></li>
+      <li><a href="flow.html">Flow</a></li>
+      <li><a href="status.html">Status</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head">
+    <span class="eyebrow">Architecture</span>
+    <h1 class="h-page">How the pieces fit</h1>
+    <p class="lede">Five primitives, two metas. Click any node — the panel on the right updates with details.</p>
+  </div>
+
+  <div class="hint">
+    <span class="hint-dot"></span>
+    <span>Click any node</span>
+  </div>
+
+  <div class="arch-stage">
+    <div class="arch-canvas">
+      <svg class="arch-svg" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gradViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9d7cff" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#5a8fff" stop-opacity="0.10"/>
+          </linearGradient>
+          <linearGradient id="gradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6de1d4" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#5a8fff" stop-opacity="0.10"/>
+          </linearGradient>
+          <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5a8fff" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#9d7cff" stop-opacity="0.10"/>
+          </linearGradient>
+          <linearGradient id="gradMagenta" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff79c6" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#9d7cff" stop-opacity="0.10"/>
+          </linearGradient>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#9d7cff"/>
+          </marker>
+        </defs>
+
+        <g stroke="#9d7cff" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4 4" fill="none">
+          <line x1="300" y1="100" x2="180" y2="220" marker-end="url(#arrow)"/>
+          <line x1="300" y1="100" x2="420" y2="220" marker-end="url(#arrow)"/>
+          <line x1="180" y1="280" x2="180" y2="380" marker-end="url(#arrow)"/>
+          <line x1="420" y1="280" x2="420" y2="380" marker-end="url(#arrow)"/>
+          <line x1="180" y1="250" x2="380" y2="250"/>
+        </g>
+
+        <g class="arch-node" data-key="scaffolder" id="node-scaffolder">
+          <rect class="node-bg" x="220" y="40" width="160" height="60" rx="14"
+                fill="url(#gradMagenta)" stroke="#ff79c6" stroke-width="1.5" stroke-opacity="0.7"/>
+          <text class="node-label" x="300" y="68">Scaffolder</text>
+          <text class="node-sub" x="300" y="86">/new-skill /new-agent</text>
+          <g class="click-pulse"><circle cx="300" cy="70"/></g>
+        </g>
+
+        <g class="arch-node" data-key="agent" id="node-agent">
+          <rect class="node-bg" x="100" y="220" width="160" height="60" rx="14"
+                fill="url(#gradViolet)" stroke="#9d7cff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <text class="node-label" x="180" y="248">Agent</text>
+          <text class="node-sub" x="180" y="266">orchestrator</text>
+          <g class="click-pulse"><circle cx="180" cy="250"/></g>
+        </g>
+
+        <g class="arch-node" data-key="skill" id="node-skill">
+          <rect class="node-bg" x="100" y="380" width="160" height="60" rx="14"
+                fill="url(#gradCyan)" stroke="#6de1d4" stroke-width="1.5" stroke-opacity="0.7"/>
+          <text class="node-label" x="180" y="408">Skill</text>
+          <text class="node-sub" x="180" y="426">procedure</text>
+          <g class="click-pulse"><circle cx="180" cy="410"/></g>
+        </g>
+
+        <g class="arch-node" data-key="shared" id="node-shared">
+          <rect class="node-bg" x="340" y="220" width="160" height="60" rx="14"
+                fill="url(#gradBlue)" stroke="#5a8fff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <text class="node-label" x="420" y="248">Shared</text>
+          <text class="node-sub" x="420" y="266">org context</text>
+          <g class="click-pulse"><circle cx="420" cy="250"/></g>
+        </g>
+
+        <g class="arch-node" data-key="scope" id="node-scope">
+          <rect class="node-bg" x="340" y="380" width="160" height="60" rx="14"
+                fill="url(#gradMagenta)" stroke="#ff79c6" stroke-width="1.5" stroke-opacity="0.7"/>
+          <text class="node-label" x="420" y="408">Scope</text>
+          <text class="node-sub" x="420" y="426">/scope</text>
+          <g class="click-pulse"><circle cx="420" cy="410"/></g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="arch-detail" id="archDetail">
+      <div class="arch-detail-eyebrow" id="detailEyebrow">Primitive</div>
+      <h3 id="detailTitle">Agent</h3>
+      <p id="detailDesc">Orchestrator. Loads context, delegates to skills, synthesizes output.</p>
+      <ul id="detailList"></ul>
+      <div class="arch-detail-foot" id="detailPath"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+<script>
+const nodeData = {
+  skill: {
+    eyebrow: 'Primitive',
+    title: 'Skill',
+    desc: 'A procedure that runs when triggered. Tool-agnostic markdown, self-contained.',
+    items: [
+      'Compact body (≤ 1k words) + optional references/',
+      'Two shapes: procedural or interview-driven',
+      'Stays generic — never reads shared/ directly'
+    ],
+    path: '.claude/skills/<name>/SKILL.md'
+  },
+  agent: {
+    eyebrow: 'Primitive',
+    title: 'Agent',
+    desc: 'Orchestrator. Loads context, delegates to skills, synthesizes output.',
+    items: [
+      'Frontmatter declares tool restrictions and model',
+      'Body covers role, when-to-use, delegation map',
+      'Owns shared/ context injection — skills do not'
+    ],
+    path: '.claude/agents/<name>.md'
+  },
+  shared: {
+    eyebrow: 'Primitive',
+    title: 'Shared',
+    desc: 'Read-only organizational context. Personas, archetypes, strategy, competitors.',
+    items: [
+      'Six-level hierarchy: company → org → portfolio → product → line → SKU',
+      'Reusable atomic profiles: personas / archetypes / competitors',
+      'Internal by policy — never publishes to the site'
+    ],
+    path: '.claude/shared/...'
+  },
+  scope: {
+    eyebrow: 'Meta',
+    title: 'Scope',
+    desc: 'Per-session manifest of what context applies. Activity commands resolve the chain.',
+    items: [
+      'Set with /scope <path> at session start',
+      'Walks parents from leaf to company root',
+      'Per-activity filters: market-research, competitive-analysis, etc.',
+      'State persists per-clone, gitignored'
+    ],
+    path: '/scope <path>'
+  },
+  scaffolder: {
+    eyebrow: 'Meta',
+    title: 'Scaffolder',
+    desc: 'Interview-driven slash commands that produce blueprint-conformant entries.',
+    items: [
+      '/new-skill — scaffold a new skill from the interview',
+      '/new-agent — scaffold a new agent from the interview',
+      '/migrate-prompt — convert an existing prompt blob'
+    ],
+    path: '.claude/commands/'
+  }
+};
+
+const detail = {
+  eyebrow: document.getElementById('detailEyebrow'),
+  title: document.getElementById('detailTitle'),
+  desc: document.getElementById('detailDesc'),
+  list: document.getElementById('detailList'),
+  path: document.getElementById('detailPath')
+};
+
+function showDetail(key) {
+  const d = nodeData[key];
+  if (!d) return;
+  detail.eyebrow.textContent = d.eyebrow;
+  detail.title.textContent = d.title;
+  detail.desc.textContent = d.desc;
+  detail.list.innerHTML = d.items.map(i => `<li>${i}</li>`).join('');
+  detail.path.textContent = d.path;
+  document.querySelectorAll('.arch-node').forEach(n => n.classList.remove('active'));
+  const node = document.querySelector(`.arch-node[data-key="${key}"]`);
+  if (node) node.classList.add('active');
+}
+
+document.querySelectorAll('.arch-node').forEach(n => {
+  n.addEventListener('click', () => showDetail(n.dataset.key));
+});
+
+// Deep-link via URL hash (e.g., architecture.html#agent)
+const initial = (location.hash || '#agent').slice(1);
+showDetail(initial);
+
+window.addEventListener('hashchange', () => {
+  showDetail(location.hash.slice(1));
+});
+</script>
+
+</body>
+</html>

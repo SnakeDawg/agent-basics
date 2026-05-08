@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.flow-picker {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.flow-pick {
+  padding: 8px 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.flow-pick:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+.flow-pick.on {
+  border-color: var(--accent-violet);
+  color: var(--text-primary);
+  background: rgba(157, 124, 255, 0.1);
+}
+
+/* Stage rail */
+.stage-rail {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding: 8px 0 16px;
+  scroll-behavior: smooth;
+}
+.stage-rail::-webkit-scrollbar { height: 6px; }
+.stage-rail::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
+
+.stage {
+  min-width: 180px;
+  flex: 1 1 180px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.stage:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+.stage.active {
+  border-color: var(--accent-violet);
+  box-shadow: 0 8px 32px var(--glow-violet);
+  background: var(--bg-elevated);
+}
+.stage-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.08em;
+}
+.stage.active .stage-num { color: var(--accent-violet); }
+.stage-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.stage-tagline {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.stage-arrow {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px;
+  flex-shrink: 0;
+  color: var(--accent-violet);
+  opacity: 0.5;
+}
+.stage-arrow svg { display: block; }
+
+/* Detail panel below */
+.stage-detail {
+  margin-top: 28px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  min-height: 180px;
+}
+.stage-detail-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.stage-detail h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.stage-detail p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.stage-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 16px;
+}
+@media (max-width: 720px) { .stage-detail-grid { grid-template-columns: 1fr; } }
+.stage-detail-block {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.stage-detail-block h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.stage-detail-block ul { list-style: none; }
+.stage-detail-block li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  display: flex;
+  gap: 8px;
+}
+.stage-detail-block li::before {
+  content: '→';
+  color: var(--accent-violet);
+  flex-shrink: 0;
+}
+.stage-detail-block code {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--accent-cyan);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-mark"></span>
+      <span>agent-basics</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="flow.html" class="active">Flow</a></li>
+      <li><a href="status.html">Status</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head">
+    <span class="eyebrow">Flow</span>
+    <h1 class="h-page">A scoped activity, stage by stage</h1>
+    <p class="lede">Pick a flow. Click any stage to see what happens, what's loaded, and what gets passed downstream. The skill never sees <code>shared/</code> directly — the slash command does the work.</p>
+  </div>
+
+  <div class="flow-picker">
+    <button class="flow-pick on" data-flow="competitive">/competitive-analysis</button>
+    <button class="flow-pick" data-flow="market">/market-research</button>
+    <button class="flow-pick" data-flow="newskill">/new-skill</button>
+  </div>
+
+  <div class="stage-rail" id="stageRail"></div>
+
+  <div class="stage-detail" id="stageDetail">
+    <div class="stage-detail-eyebrow" id="stageEyebrow">Stage 01</div>
+    <h3 id="stageTitle">Pick a stage</h3>
+    <p id="stageDesc">Click any stage card above to see what happens at that step.</p>
+    <div class="stage-detail-grid" id="stageGrid" style="display:none;"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+<script>
+const flows = {
+  competitive: [
+    {
+      title: '/scope (one-time)',
+      tagline: 'PM declares active scope',
+      desc: "Once per session. The PM tells the system which scope they're working in — a SKU, a line, a portfolio. Subsequent activity commands inherit this without being re-told.",
+      reads: ['User input: scope path'],
+      writes: ['<code>.claude/state/active-scope</code> (gitignored)'],
+      example: '<code>/scope products/pro-workstation-pc/lines/mobile/skus/pwm-5000.md</code>'
+    },
+    {
+      title: '/competitive-analysis',
+      tagline: 'Activity command starts',
+      desc: 'The slash command body runs. Reads the active-scope state file or accepts a <code>--scope</code> override flag. If neither, it pauses and prompts.',
+      reads: ['<code>.claude/state/active-scope</code>'],
+      writes: ['nothing (just sets up resolution)'],
+      example: '<code>/competitive-analysis "vs HP ZBook Studio"</code>'
+    },
+    {
+      title: 'Walk + merge',
+      tagline: 'Six-level chain',
+      desc: 'Walks parents from leaf to company root, merging each <code>scope.yaml</code> manifest. Lists concatenate; child <code>excluded:</code> removes inherited items.',
+      reads: ['SKU + line + product + portfolio + org + company scope.yaml'],
+      writes: ['merged manifest in memory'],
+      example: 'Resolution: pwm-5000 → mobile → pro-workstation-pc → pro-workstations → ...'
+    },
+    {
+      title: 'Filter for activity',
+      tagline: 'Pick competitive-analysis filters',
+      desc: 'From the merged manifest, extract <code>activity_scope.competitive-analysis</code>: the focused competitor set, the comparison dimensions, the excluded dimensions.',
+      reads: ['merged manifest'],
+      writes: ['filtered activity context'],
+      example: 'primary_set: hp-zbook-studio-g11, macbook-pro-16, thinkpad-p1'
+    },
+    {
+      title: 'Load profiles',
+      tagline: 'Personas, competitors by ID',
+      desc: 'For each ID in the filtered context, read the atomic profile file. Hydrate the in-memory context so the skill can reference real content.',
+      reads: ['<code>shared/competitors/&lt;id&gt;.md</code>', '<code>shared/personas/&lt;id&gt;.yaml</code>'],
+      writes: ['hydrated context object'],
+      example: 'Loaded: 3 competitor SKU profiles + their parent competitor lines'
+    },
+    {
+      title: 'Invoke skill',
+      tagline: 'Generic skill runs',
+      desc: 'Call the <code>competitive-analysis</code> skill with the resolved brief: topic, competitor set, target personas, dimensions. The skill stays generic — it never reads <code>shared/</code> or <code>scope.yaml</code> itself.',
+      reads: ['skill SKILL.md procedure'],
+      writes: ['structured competitive analysis output'],
+      example: 'Output: head-to-head comparison + gap analysis + sources'
+    }
+  ],
+  market: [
+    {
+      title: '/scope (one-time)',
+      tagline: 'PM declares active scope',
+      desc: 'Same scope-state mechanism as competitive-analysis. The scope is shared across all activity commands in the session.',
+      reads: ['User input: scope path'],
+      writes: ['<code>.claude/state/active-scope</code>'],
+      example: '<code>/scope portfolios/pro-workstations</code>'
+    },
+    {
+      title: '/market-research',
+      tagline: 'Activity command starts',
+      desc: 'Reads the active scope. Different activity → different filter set will be extracted from the same merged manifest.',
+      reads: ['<code>.claude/state/active-scope</code>'],
+      writes: ['nothing yet'],
+      example: '<code>/market-research "AI PC adoption in pro segments"</code>'
+    },
+    {
+      title: 'Walk + merge',
+      tagline: 'Same chain, different filters',
+      desc: 'Identical to competitive-analysis chain walk. Then extracts <code>activity_scope.market-research</code> instead.',
+      reads: ['scope.yaml chain'],
+      writes: ['merged manifest'],
+      example: 'Same chain, target_segments and exclude_segments come from market-research block'
+    },
+    {
+      title: 'Filter for activity',
+      tagline: 'Market-research-specific filters',
+      desc: 'Pull include_segments, exclude_segments, horizon. Different from competitive-analysis: this is about market shape, not competitor moves.',
+      reads: ['merged manifest'],
+      writes: ['filtered activity context'],
+      example: 'segments: pro-cad, pro-creative, pro-engineering'
+    },
+    {
+      title: 'Load profiles',
+      tagline: 'Personas + product context',
+      desc: 'For market research, persona profiles matter more than competitor profiles. Loaded by ID from the merged manifest.',
+      reads: ['<code>shared/personas/&lt;id&gt;.yaml</code>'],
+      writes: ['hydrated persona context'],
+      example: 'Loaded: 3 personas relevant to AI PC adoption'
+    },
+    {
+      title: 'Invoke skill',
+      tagline: 'market-intelligence skill',
+      desc: 'Calls the market-intelligence skill. Same skill, different activity context → different output focus.',
+      reads: ['market-intelligence SKILL.md'],
+      writes: ['market sizing + demand signals + buyer behavior'],
+      example: 'Output: TAM/SAM/SOM with citations + adjacent trends'
+    }
+  ],
+  newskill: [
+    {
+      title: '/new-skill',
+      tagline: 'Scaffolder triggers',
+      desc: 'PM types the slash command. The interview-driven scaffolder begins. No scope state needed — this is repo-level, not session-state.',
+      reads: ['user prompt'],
+      writes: ['none yet'],
+      example: '<code>/new-skill</code>'
+    },
+    {
+      title: 'Interview',
+      tagline: 'Ask shape + modules',
+      desc: 'Five interview questions: name, description, shape (procedural/interview-driven), reference modules, output format, constraints.',
+      reads: ['user answers'],
+      writes: ['none yet'],
+      example: 'Q: Procedural or interview-driven? A: Interview-driven.'
+    },
+    {
+      title: 'Validate name',
+      tagline: 'Naming rules',
+      desc: 'Kebab-case, lowercase, no collisions with existing skills. Fail fast if the name is taken.',
+      reads: ['existing .claude/skills/*'],
+      writes: ['none yet'],
+      example: 'kebab-case ✓ available ✓'
+    },
+    {
+      title: 'Scaffold files',
+      tagline: 'Generate skeleton',
+      desc: 'Write <code>SKILL.md</code> with frontmatter + body skeleton. If interview-driven, also stub <code>references/interview-guide.md</code> + <code>references/taxonomy.md</code>.',
+      reads: ['template strings'],
+      writes: ['<code>.claude/skills/&lt;name&gt;/SKILL.md</code>', '<code>references/*.md</code>'],
+      example: 'Scaffolded 3 files'
+    },
+    {
+      title: 'Validate',
+      tagline: 'Run linters',
+      desc: 'Run <code>scripts/validate.py</code> on the new skill. Check frontmatter, naming, schema. Run <code>scripts/index-readme.py</code> to update the catalogue table.',
+      reads: ['the new skill files', 'README.md'],
+      writes: ['updated README.md'],
+      example: 'validate.py ✓ index-readme.py ✓'
+    },
+    {
+      title: 'Hand off',
+      tagline: 'Author fills the body',
+      desc: 'Scaffolder is done. The author opens the new files and fills in the domain content. The structure is in place; the substance is the human\'s.',
+      reads: ['nothing more'],
+      writes: ['nothing more — author takes over'],
+      example: 'Open SKILL.md and write the procedure'
+    }
+  ]
+};
+
+const rail = document.getElementById('stageRail');
+const detail = {
+  eyebrow: document.getElementById('stageEyebrow'),
+  title: document.getElementById('stageTitle'),
+  desc: document.getElementById('stageDesc'),
+  grid: document.getElementById('stageGrid')
+};
+
+function renderRail(flowKey) {
+  const stages = flows[flowKey];
+  rail.innerHTML = '';
+  stages.forEach((s, i) => {
+    const stage = document.createElement('div');
+    stage.className = 'stage';
+    stage.dataset.idx = i;
+    stage.innerHTML = `
+      <div class="stage-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="stage-title">${s.title}</div>
+      <div class="stage-tagline">${s.tagline}</div>
+    `;
+    stage.addEventListener('click', () => showStage(flowKey, i));
+    rail.appendChild(stage);
+
+    if (i < stages.length - 1) {
+      const arrow = document.createElement('div');
+      arrow.className = 'stage-arrow';
+      arrow.innerHTML = `<svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M0 7h17M13 1l5 6-5 6"/></svg>`;
+      rail.appendChild(arrow);
+    }
+  });
+  showStage(flowKey, 0);
+}
+
+function showStage(flowKey, idx) {
+  const s = flows[flowKey][idx];
+  detail.eyebrow.textContent = `Stage ${String(idx+1).padStart(2,'0')}`;
+  detail.title.textContent = s.title;
+  detail.desc.innerHTML = s.desc;
+  detail.grid.style.display = 'grid';
+  detail.grid.innerHTML = `
+    <div class="stage-detail-block">
+      <h4>Reads</h4>
+      <ul>${s.reads.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>
+    <div class="stage-detail-block">
+      <h4>Writes</h4>
+      <ul>${s.writes.map(w => `<li>${w}</li>`).join('')}</ul>
+    </div>
+    <div class="stage-detail-block" style="grid-column: 1/-1;">
+      <h4>Example</h4>
+      <ul><li>${s.example}</li></ul>
+    </div>
+  `;
+  document.querySelectorAll('.stage').forEach(el =>
+    el.classList.toggle('active', Number(el.dataset.idx) === idx));
+}
+
+document.querySelectorAll('.flow-pick').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.flow-pick').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+    renderRail(p.dataset.flow);
+  });
+});
+
+renderRail('competitive');
+</script>
+
+</body>
+</html>
