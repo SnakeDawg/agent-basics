@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skill anatomy — Agent + Skill Catalogue</title>
+<title>Skill anatomy — market-intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,7 +35,11 @@
 
 .comp-label  { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: var(--text-primary); text-anchor: middle; pointer-events: none; }
 .comp-sub    { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; fill: var(--text-secondary); text-anchor: middle; pointer-events: none; text-transform: uppercase; letter-spacing: 0.08em; }
-.comp-bullet { font-family: 'Inter', sans-serif; font-size: 11.5px; fill: var(--text-secondary); pointer-events: none; }
+.comp-bullet { font-family: 'Inter', sans-serif; font-size: 11px; fill: var(--text-secondary); pointer-events: none; }
+
+.phase-num   { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; fill: var(--cyber-cyan); text-anchor: end; pointer-events: none; }
+.phase-name  { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; fill: var(--text-primary); pointer-events: none; }
+.phase-sub   { font-family: 'Inter', sans-serif; font-size: 10.5px; fill: var(--text-secondary); pointer-events: none; }
 
 .flow-line       { stroke: rgba(148, 163, 184, 0.5); stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
 .flow-line-solid { stroke: rgba(148, 163, 184, 0.8); stroke-width: 1.5; fill: none; }
@@ -55,9 +59,43 @@
   border-radius: var(--radius-md);
   font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 .callout strong { color: var(--text-primary); }
+
+.kpi-strip {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+@media (max-width: 800px) { .kpi-strip { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .kpi-strip { grid-template-columns: repeat(2, 1fr); } }
+.kpi-tile {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  text-align: left;
+}
+.kpi-tile-num {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.kpi-tile-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 </style>
 </head>
 <body>
@@ -82,18 +120,27 @@
 <section class="page">
   <div class="page-head" data-aos="fade-up">
     <span class="eyebrow">Skill anatomy</span>
-    <h1 class="h-page">What's actually inside one skill</h1>
-    <p class="lede">Example: <code>market-intelligence</code>. The compact <code>SKILL.md</code> at the center is what triggers and runs. References load on demand. Inputs from the orchestrating agent come in on the left; outputs go out the bottom.</p>
+    <h1 class="h-page">Inside <code>market-intelligence</code></h1>
+    <p class="lede">Real numbers from the actual <code>SKILL.md</code> — not a placeholder. The next time someone says "isn't that just market intelligence?", show them this.</p>
   </div>
 
-  <div class="diagram-frame" data-aos="fade-up" data-aos-delay="80">
-    <svg viewBox="0 0 1240 700" xmlns="http://www.w3.org/2000/svg" aria-labelledby="anatomyTitle">
-      <title id="anatomyTitle">Anatomy of a single skill: market-intelligence</title>
+  <div class="kpi-strip" data-aos="fade-up" data-aos-delay="40">
+    <div class="kpi-tile"><div class="kpi-tile-num">~700</div><div class="kpi-tile-label">SKILL.md lines</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-num">9</div><div class="kpi-tile-label">workflow phases</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">references</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-num">6</div><div class="kpi-tile-label">templates (golden)</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-num">5</div><div class="kpi-tile-label">design principles</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">downstream skills</div></div>
+  </div>
+
+  <div class="diagram-frame" style="margin-top:22px;" data-aos="fade-up" data-aos-delay="80">
+    <svg viewBox="0 0 1240 980" xmlns="http://www.w3.org/2000/svg" aria-labelledby="anatomyTitle">
+      <title id="anatomyTitle">Anatomy of market-intelligence skill</title>
 
       <defs>
         <linearGradient id="aLogic" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#10b981" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="#047857" stop-opacity="0.20"/>
+          <stop offset="100%" stop-color="#047857" stop-opacity="0.18"/>
         </linearGradient>
         <linearGradient id="aIntake" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
@@ -107,159 +154,251 @@
           <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.30"/>
           <stop offset="100%" stop-color="#5b21b6" stop-opacity="0.15"/>
         </linearGradient>
-        <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="rgba(148, 163, 184, 0.8)"/>
         </marker>
       </defs>
 
       <!-- Layer regions -->
-      <rect class="zone zone-intake"        x="20"   y="40"  width="320" height="160"/>
-      <rect class="zone zone-orchestration" x="20"   y="220" width="240" height="380"/>
-      <rect class="zone zone-logic"         x="380"  y="40"  width="640" height="560"/>
-      <rect class="zone zone-safety"        x="20"   y="620" width="1200" height="60"/>
+      <rect class="zone zone-intake"        x="20"   y="40"   width="320" height="160"/>
+      <rect class="zone zone-orchestration" x="20"   y="220"  width="320" height="180"/>
+      <rect class="zone zone-safety"        x="20"   y="420"  width="320" height="490"/>
+      <rect class="zone zone-logic"         x="360"  y="40"   width="540" height="870"/>
+      <rect class="zone zone-safety"        x="920"  y="40"   width="300" height="870"/>
 
-      <text class="zone-label" x="38"  y="64"  fill="#f97316">01 · Intake — when this triggers</text>
-      <text class="zone-label" x="38"  y="244" fill="#3b82f6">03 · Inputs from caller</text>
-      <text class="zone-label" x="398" y="64"  fill="#10b981">02 · Logic — the skill itself</text>
-      <text class="zone-label" x="38"  y="644" fill="#8b5cf6">04 · Constraints / safety</text>
+      <text class="zone-label" x="38"  y="64"  fill="#f97316">01 · Intake — triggers</text>
+      <text class="zone-label" x="38"  y="244" fill="#3b82f6">03 · Caller inputs</text>
+      <text class="zone-label" x="38"  y="444" fill="#8b5cf6">04 · Critical design principles</text>
+      <text class="zone-label" x="378" y="64"  fill="#10b981">02 · Logic — the SKILL.md workflow</text>
+      <text class="zone-label" x="938" y="64"  fill="#8b5cf6">04 · Static structure (read-only)</text>
 
-      <!-- Triggers (intake) -->
+      <!-- TRIGGERS -->
       <g>
-        <rect x="40" y="90" width="280" height="92" rx="10" fill="url(#aIntake)" stroke="#f97316" stroke-opacity="0.6" stroke-width="1.5"/>
-        <text class="comp-label" x="180" y="112" font-size="13">Triggers</text>
-        <text class="comp-sub"   x="180" y="128">description: rich phrases</text>
-        <text class="comp-bullet" x="56" y="148">· "research the X market"</text>
-        <text class="comp-bullet" x="56" y="164">· "TAM/SAM/SOM"</text>
-        <text class="comp-bullet" x="56" y="180">· "buyer behavior"</text>
+        <rect x="40" y="90" width="280" height="100" rx="10" fill="url(#aIntake)" stroke="#f97316" stroke-opacity="0.6" stroke-width="1.5"/>
+        <text class="comp-label" x="180" y="112" font-size="13">Trigger phrases (description)</text>
+        <text class="comp-sub"   x="180" y="128">15+ keyword phrases</text>
+        <text class="comp-bullet" x="56" y="148">research · market research · TAM SAM SOM</text>
+        <text class="comp-bullet" x="56" y="164">competitive intel · industry analysis</text>
+        <text class="comp-bullet" x="56" y="180">tech assessment · build vs buy · vendor eval</text>
       </g>
 
-      <!-- Caller inputs (orchestration) -->
+      <!-- CALLER INPUTS -->
       <g>
-        <rect x="40" y="270" width="220" height="320" rx="10" fill="url(#aOrch)" stroke="#3b82f6" stroke-opacity="0.6" stroke-width="1.5"/>
-        <text class="comp-label" x="150" y="294" font-size="13">From the agent</text>
-        <text class="comp-sub"   x="150" y="310">resolved scope context</text>
-        <line x1="56" y1="320" x2="244" y2="320" stroke="rgba(59,130,246,0.3)" stroke-dasharray="3 3"/>
-        <text class="comp-bullet" x="56" y="346">topic / question</text>
-        <text class="comp-bullet" x="56" y="368">target_personas: [...]</text>
-        <text class="comp-bullet" x="56" y="390">target_archetypes: [...]</text>
-        <text class="comp-bullet" x="56" y="412">competitor_set: [...]</text>
-        <text class="comp-bullet" x="56" y="434">include_segments: [...]</text>
-        <text class="comp-bullet" x="56" y="456">exclude_segments: [...]</text>
-        <text class="comp-bullet" x="56" y="478">horizon: 3-year</text>
-        <text class="comp-bullet" x="56" y="500">research_type</text>
-        <text class="comp-bullet" x="56" y="528" fill="#3b82f6">[skill never reads</text>
-        <text class="comp-bullet" x="56" y="544" fill="#3b82f6"> shared/ directly]</text>
+        <rect x="40" y="270" width="280" height="120" rx="10" fill="url(#aOrch)" stroke="#3b82f6" stroke-opacity="0.6" stroke-width="1.5"/>
+        <text class="comp-label" x="180" y="294" font-size="13">From the user / agent</text>
+        <text class="comp-sub"   x="180" y="310">resolved scope context</text>
+        <text class="comp-bullet" x="56" y="330">research topic / brief</text>
+        <text class="comp-bullet" x="56" y="348">user-provided files (PDF, XLSX, PPTX)</text>
+        <text class="comp-bullet" x="56" y="366">project root (projects/{name}/)</text>
+        <text class="comp-bullet" x="56" y="384">strategy context (if available)</text>
       </g>
 
-      <!-- Center: SKILL.md -->
+      <!-- DESIGN PRINCIPLES -->
       <g>
-        <rect x="430" y="120" width="540" height="180" rx="14" fill="url(#aLogic)" stroke="#10b981" stroke-opacity="0.85" stroke-width="2"/>
-        <text class="comp-label" x="700" y="148" font-size="16">SKILL.md (always loaded)</text>
-        <text class="comp-sub"   x="700" y="166">~600–900 words · compact body</text>
+        <rect x="40" y="470" width="280" height="430" rx="10" fill="url(#aSafety)" stroke="#8b5cf6" stroke-opacity="0.6" stroke-width="1.5"/>
+        <text class="comp-label" x="180" y="494" font-size="13">5 critical design principles</text>
+        <line x1="56" y1="504" x2="304" y2="504" stroke="rgba(139, 92, 246, 0.3)"/>
 
-        <rect x="450" y="184" width="240" height="98" rx="8" fill="rgba(2, 6, 23, 0.5)" stroke="#10b981" stroke-opacity="0.4"/>
-        <text class="comp-sub"   x="570" y="202">frontmatter</text>
-        <text class="comp-bullet" x="466" y="222">name: market-intelligence</text>
-        <text class="comp-bullet" x="466" y="240">description: rich triggers</text>
-        <text class="comp-bullet" x="466" y="258">tools: Read, Grep, WebFetch</text>
-        <text class="comp-bullet" x="466" y="276">model: sonnet</text>
+        <text class="comp-bullet" x="56" y="524" fill="#8b5cf6" font-weight="600">1 · Read-only templates</text>
+        <text class="comp-bullet" x="56" y="540">never modify templates/ — they are the</text>
+        <text class="comp-bullet" x="56" y="554">golden source for all research projects</text>
 
-        <rect x="710" y="184" width="240" height="98" rx="8" fill="rgba(2, 6, 23, 0.5)" stroke="#10b981" stroke-opacity="0.4"/>
-        <text class="comp-sub"   x="830" y="202">body — the procedure</text>
-        <text class="comp-bullet" x="726" y="222">when this triggers</text>
-        <text class="comp-bullet" x="726" y="240">briefing path (direct vs deep)</text>
-        <text class="comp-bullet" x="726" y="258">research-type classification</text>
-        <text class="comp-bullet" x="726" y="276">steps · gap-analysis pass</text>
-      </g>
+        <text class="comp-bullet" x="56" y="586" fill="#8b5cf6" font-weight="600">2 · Source integrity</text>
+        <text class="comp-bullet" x="56" y="602">every claim → logged + archived source</text>
+        <text class="comp-bullet" x="56" y="616">mandatory archival to disk before Phase 4</text>
 
-      <!-- References (load on demand) -->
-      <g>
-        <rect x="430" y="320" width="170" height="100" rx="10" fill="rgba(16, 185, 129, 0.10)" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
-        <text class="comp-label" x="515" y="344" font-size="13">interview-guide.md</text>
-        <text class="comp-sub"   x="515" y="358">load on briefing path</text>
-        <text class="comp-bullet" x="446" y="382">5-round Q&amp;A</text>
-        <text class="comp-bullet" x="446" y="398">classification + audience</text>
-        <text class="comp-bullet" x="446" y="414">edge cases</text>
-      </g>
-      <g>
-        <rect x="615" y="320" width="170" height="100" rx="10" fill="rgba(16, 185, 129, 0.10)" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
-        <text class="comp-label" x="700" y="344" font-size="13">taxonomy.md</text>
-        <text class="comp-sub"   x="700" y="358">question dimensions</text>
-        <text class="comp-bullet" x="631" y="382">market / tech / strategic</text>
-        <text class="comp-bullet" x="631" y="398">demand · macro · pricing</text>
-        <text class="comp-bullet" x="631" y="414">forward-looking · risks</text>
-      </g>
-      <g>
-        <rect x="800" y="320" width="170" height="100" rx="10" fill="rgba(16, 185, 129, 0.10)" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
-        <text class="comp-label" x="885" y="344" font-size="13">quality.md</text>
-        <text class="comp-sub"   x="885" y="358">source-quality</text>
-        <text class="comp-bullet" x="816" y="382">reliability framework</text>
-        <text class="comp-bullet" x="816" y="398">conflict handling</text>
-        <text class="comp-bullet" x="816" y="414">citation conventions</text>
+        <text class="comp-bullet" x="56" y="648" fill="#8b5cf6" font-weight="600">3 · Iterative deepening</text>
+        <text class="comp-bullet" x="56" y="664">broad scan → deep dive → gap fill</text>
+        <text class="comp-bullet" x="56" y="678">circle back to weak-coverage questions</text>
+
+        <text class="comp-bullet" x="56" y="710" fill="#8b5cf6" font-weight="600">4 · User alignment</text>
+        <text class="comp-bullet" x="56" y="726">check in at natural milestones</text>
+        <text class="comp-bullet" x="56" y="740">90-second heartbeat in long phases</text>
+
+        <text class="comp-bullet" x="56" y="772" fill="#8b5cf6" font-weight="600">5 · Mandatory progress tracking</text>
+        <text class="comp-bullet" x="56" y="788">checkpoint state.md + todo.md</text>
+        <text class="comp-bullet" x="56" y="802">after every sub-task — for resumability</text>
+
+        <line x1="56" y1="828" x2="304" y2="828" stroke="rgba(139, 92, 246, 0.3)" stroke-dasharray="3 3"/>
+        <text class="comp-bullet" x="56" y="848" font-style="italic">Voice: thorough, methodical researcher</text>
+        <text class="comp-bullet" x="56" y="864" font-style="italic">Don't say "Phase 1 complete." Say what</text>
+        <text class="comp-bullet" x="56" y="878" font-style="italic">you're doing in plain language.</text>
       </g>
 
-      <!-- Templates / examples row -->
+      <!-- SKILL.md CORE WITH 9 PHASES -->
       <g>
-        <rect x="430" y="440" width="260" height="80" rx="10" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="4 4"/>
-        <text class="comp-label" x="560" y="464" font-size="13">templates/ (golden source)</text>
-        <text class="comp-sub"   x="560" y="478">read-only structures</text>
-        <text class="comp-bullet" x="446" y="500">research-template · brief · source-log · todo</text>
-      </g>
-      <g>
-        <rect x="710" y="440" width="260" height="80" rx="10" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="4 4"/>
-        <text class="comp-label" x="840" y="464" font-size="13">examples/</text>
-        <text class="comp-sub"   x="840" y="478">sample I/O for regression</text>
-        <text class="comp-bullet" x="726" y="500">verifies output shape on PR</text>
+        <rect x="380" y="90"  width="500" height="800" rx="14" fill="url(#aLogic)" stroke="#10b981" stroke-opacity="0.7" stroke-width="2"/>
+        <text class="comp-label" x="630" y="118" font-size="16">SKILL.md — the workflow</text>
+        <text class="comp-sub"   x="630" y="136">~700 lines · sonnet · medium effort</text>
+        <line x1="400" y1="148" x2="860" y2="148" stroke="rgba(16, 185, 129, 0.3)"/>
+
+        <!-- Phase 0 -->
+        <rect x="400" y="160" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="184">0</text>
+        <text class="phase-name" x="450" y="184">Orientation</text>
+        <text class="phase-sub"  x="450" y="204">check research-index · detect overlap · resume vs new</text>
+
+        <!-- Phase 1 -->
+        <rect x="400" y="224" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="248">1</text>
+        <text class="phase-name" x="450" y="248">Interview</text>
+        <text class="phase-sub"  x="450" y="268">5 rounds: topic · classify · key questions · assets · params</text>
+
+        <!-- Phase 2 -->
+        <rect x="400" y="288" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="312">2</text>
+        <text class="phase-name" x="450" y="312">Planning</text>
+        <text class="phase-sub"  x="450" y="332">expert questions · brief coherence · cluster + arrange</text>
+
+        <!-- Phase 3 -->
+        <rect x="400" y="352" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="376">3</text>
+        <text class="phase-name" x="450" y="376">Collection</text>
+        <text class="phase-sub"  x="450" y="396">per-question scan · deep dive · archive · checkpoint</text>
+
+        <!-- Phase 4 -->
+        <rect x="400" y="416" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="440">4</text>
+        <text class="phase-name" x="450" y="440">Analysis</text>
+        <text class="phase-sub"  x="450" y="460">per-question synthesis · contradictions · cross-cutting patterns</text>
+
+        <!-- Phase 5 -->
+        <rect x="400" y="480" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="504">5</text>
+        <text class="phase-name" x="450" y="504">Drafting</text>
+        <text class="phase-sub"  x="450" y="524">section-by-section · inline [N] citations · save-after-each</text>
+
+        <!-- Phase 5.5 -->
+        <rect x="400" y="544" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#06b6d4" stroke-opacity="0.55" stroke-dasharray="3 3"/>
+        <text class="phase-num"  x="436" y="568" fill="#06b6d4">5.5</text>
+        <text class="phase-name" x="466" y="568">Strategic Gap Analysis</text>
+        <text class="phase-sub"  x="466" y="588">autonomous · 3-7 gap questions · fold findings back in</text>
+
+        <!-- Phase 6 -->
+        <rect x="400" y="608" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="632">6</text>
+        <text class="phase-name" x="450" y="632">Review</text>
+        <text class="phase-sub"  x="450" y="652">present draft · collect feedback · revise · loop until satisfied</text>
+
+        <!-- Phase 7 -->
+        <rect x="400" y="672" width="460" height="58" rx="8" fill="rgba(2, 6, 23, 0.55)" stroke="#10b981" stroke-opacity="0.45"/>
+        <text class="phase-num"  x="436" y="696">7</text>
+        <text class="phase-name" x="450" y="696">Finalization</text>
+        <text class="phase-sub"  x="450" y="716">verify citations · archive · index · HTML render · deliver</text>
+
+        <line x1="400" y1="746" x2="860" y2="746" stroke="rgba(16, 185, 129, 0.3)"/>
+
+        <!-- Edge cases -->
+        <text class="comp-sub" x="630" y="766">edge cases handled inline</text>
+        <text class="comp-bullet" x="416" y="786">· source access failures (paywall, 404, rate limit)</text>
+        <text class="comp-bullet" x="416" y="802">· user goes quiet mid-research</text>
+        <text class="comp-bullet" x="416" y="818">· scope creep mid-collection</text>
+        <text class="comp-bullet" x="416" y="834">· conflicting feedback across review cycles</text>
+        <text class="comp-bullet" x="416" y="850">· very large topics (50+ sources, phase splitting)</text>
+        <text class="comp-bullet" x="416" y="866">· unfamiliar terminology (don't web-search blindly)</text>
       </g>
 
-      <!-- Output -->
+      <!-- RIGHT COLUMN: References + Templates + Project artifacts -->
+
+      <!-- References -->
       <g>
-        <rect x="430" y="540" width="540" height="60" rx="12" fill="rgba(6, 182, 212, 0.18)" stroke="#06b6d4" stroke-opacity="0.7" stroke-width="1.5"/>
-        <text class="comp-label" x="700" y="568" font-size="14">Structured output</text>
-        <text class="comp-sub"   x="700" y="586">executive summary · sized findings · risks · sources (numbered)</text>
+        <rect x="940" y="90" width="260" height="160" rx="10" fill="rgba(16, 185, 129, 0.10)" stroke="#10b981" stroke-opacity="0.55" stroke-width="1.5"/>
+        <text class="comp-label" x="1070" y="114" font-size="13">references/ (load on demand)</text>
+        <text class="comp-sub"   x="1070" y="130">2 modules</text>
+        <line x1="956" y1="142" x2="1184" y2="142" stroke="rgba(16, 185, 129, 0.3)"/>
+
+        <text class="comp-bullet" x="956" y="166" fill="#10b981" font-weight="600">interview-guide.md</text>
+        <text class="comp-bullet" x="956" y="182">5-round protocol</text>
+        <text class="comp-bullet" x="956" y="196">topic · classify · questions · assets · params</text>
+
+        <text class="comp-bullet" x="956" y="222" fill="#10b981" font-weight="600">source-management.md</text>
+        <text class="comp-bullet" x="956" y="238">archival + citation protocol · primary vs</text>
+        <text class="comp-bullet" x="956" y="252">secondary · slug rules · reliability</text>
       </g>
 
-      <!-- Constraints / safety -->
+      <!-- Templates (golden source) -->
       <g>
-        <rect x="40" y="630" width="1180" height="42" rx="8" fill="rgba(139, 92, 246, 0.10)" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="1.2" stroke-dasharray="4 4"/>
-        <text class="comp-bullet" x="56" y="657">read-only · cite every claim · don't fabricate numbers · distinguish reported vs inferred · facts not strategy · publish gate (shared/ never publishes)</text>
+        <rect x="940" y="270" width="260" height="280" rx="10" fill="rgba(139, 92, 246, 0.08)" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text class="comp-label" x="1070" y="294" font-size="13">templates/ (read-only)</text>
+        <text class="comp-sub"   x="1070" y="310">6 files · golden source</text>
+        <line x1="956" y1="322" x2="1184" y2="322" stroke="rgba(139, 92, 246, 0.3)"/>
+
+        <text class="comp-bullet" x="956" y="346" fill="#8b5cf6" font-weight="600">research-template.md</text>
+        <text class="comp-bullet" x="956" y="360">structure for the final output</text>
+
+        <text class="comp-bullet" x="956" y="386" fill="#8b5cf6" font-weight="600">research-brief-template.md</text>
+        <text class="comp-bullet" x="956" y="400">interview output format</text>
+
+        <text class="comp-bullet" x="956" y="426" fill="#8b5cf6" font-weight="600">source-log-template.md</text>
+        <text class="comp-bullet" x="956" y="440">master source tracking</text>
+
+        <text class="comp-bullet" x="956" y="466" fill="#8b5cf6" font-weight="600">source-meta-template.md</text>
+        <text class="comp-bullet" x="956" y="480">per-source metadata schema</text>
+
+        <text class="comp-bullet" x="956" y="506" fill="#8b5cf6" font-weight="600">todo-template.md</text>
+        <text class="comp-bullet" x="956" y="520">human-readable task tracking</text>
+
+        <text class="comp-bullet" x="956" y="534" fill="#8b5cf6" font-weight="600">state-template.md</text>
       </g>
 
-      <!-- Skill panel — placeholder slots that will be enriched by user's real MD -->
+      <!-- Project artifacts -->
       <g>
-        <rect x="990" y="120" width="220" height="180" rx="10" fill="rgba(15, 23, 53, 0.7)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.2"/>
-        <text class="comp-sub"   x="1100" y="142">at-a-glance</text>
-        <line x1="1010" y1="156" x2="1190" y2="156" stroke="rgba(148, 163, 184, 0.2)"/>
-        <text class="comp-bullet" x="1010" y="178">Lines:        ~110</text>
-        <text class="comp-bullet" x="1010" y="196">Body words:    ~650</text>
-        <text class="comp-bullet" x="1010" y="214">References:    3 modules</text>
-        <text class="comp-bullet" x="1010" y="232">Templates:     6 files</text>
-        <text class="comp-bullet" x="1010" y="250">Avg load cost: low</text>
-        <text class="comp-bullet" x="1010" y="268">References:    on-demand</text>
-        <text class="comp-bullet" x="1010" y="290" fill="#06b6d4">Replace with real numbers</text>
+        <rect x="940" y="570" width="260" height="180" rx="10" fill="rgba(139, 92, 246, 0.10)" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.5"/>
+        <text class="comp-label" x="1070" y="594" font-size="13">Project artifacts (per run)</text>
+        <text class="comp-sub"   x="1070" y="610">written under projects/{name}/</text>
+        <line x1="956" y1="622" x2="1184" y2="622" stroke="rgba(139, 92, 246, 0.3)"/>
+
+        <text class="comp-bullet" x="956" y="642">market-intelligence/</text>
+        <text class="comp-bullet" x="956" y="658">  ├─ {topic-slug}.md (deliverable)</text>
+        <text class="comp-bullet" x="956" y="674">  ├─ research-index.md</text>
+        <text class="comp-bullet" x="956" y="690">  ├─ drafts/ (v1, v1-improved, …)</text>
+        <text class="comp-bullet" x="956" y="706">  ├─ notes/ (synthesis, contradictions)</text>
+        <text class="comp-bullet" x="956" y="722">  └─ .working/ (state · todo · brief · log)</text>
+
+        <text class="comp-bullet" x="956" y="744">sources/ → primary · secondary · user-provided</text>
+      </g>
+
+      <!-- Output + downstream -->
+      <g>
+        <rect x="940" y="770" width="260" height="120" rx="10" fill="rgba(6, 182, 212, 0.18)" stroke="#06b6d4" stroke-opacity="0.7" stroke-width="1.5"/>
+        <text class="comp-label" x="1070" y="794" font-size="13">Output + downstream</text>
+        <line x1="956" y1="806" x2="1184" y2="806" stroke="rgba(6, 182, 212, 0.3)"/>
+
+        <text class="comp-bullet" x="956" y="826" fill="#06b6d4" font-weight="600">deliverable</text>
+        <text class="comp-bullet" x="956" y="842">{topic-slug}.md (citation-rich)</text>
+        <text class="comp-bullet" x="956" y="858">{topic-slug}.html (via doc-renderer)</text>
+
+        <text class="comp-bullet" x="956" y="880" fill="#06b6d4" font-weight="600">consumed by · prd-definition · boardroom</text>
       </g>
 
       <!-- Flows -->
-      <!-- triggers → SKILL.md -->
-      <path class="flow-line-solid" d="M 320 136 L 430 200" marker-end="url(#arr2)"/>
-      <text class="flow-label" x="370" y="160">match</text>
-      <!-- caller inputs → SKILL.md -->
-      <path class="flow-line-solid" d="M 260 410 L 430 230" marker-end="url(#arr2)"/>
-      <text class="flow-label" x="340" y="320">filtered context</text>
+      <!-- Triggers → SKILL.md -->
+      <path class="flow-line-solid" d="M 320 138 L 380 200" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="350" y="160">match</text>
+      <!-- Caller inputs → SKILL.md -->
+      <path class="flow-line-solid" d="M 320 330 L 380 280" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="350" y="320">briefs the skill</text>
+      <!-- Principles → SKILL.md (constraint arrows) -->
+      <path class="flow-line" d="M 320 660 L 380 500" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="350" y="580">constrain</text>
       <!-- SKILL.md → references -->
-      <path class="flow-line" d="M 530 300 L 530 320" marker-end="url(#arr2)"/>
-      <path class="flow-line" d="M 700 300 L 700 320" marker-end="url(#arr2)"/>
-      <path class="flow-line" d="M 880 300 L 880 320" marker-end="url(#arr2)"/>
-      <text class="flow-label" x="700" y="316">load on demand</text>
+      <path class="flow-line" d="M 880 200 L 940 170" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="910" y="180">reads on demand</text>
+      <!-- SKILL.md → templates (read-only) -->
+      <path class="flow-line" d="M 880 360 L 940 410" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="910" y="380">reads (never writes)</text>
+      <!-- SKILL.md → project artifacts -->
+      <path class="flow-line-solid" d="M 880 540 L 940 660" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="910" y="600">writes per run</text>
       <!-- SKILL.md → output -->
-      <path class="flow-line-solid" d="M 700 530 L 700 540" marker-end="url(#arr2)"/>
-      <text class="flow-label" x="700" y="536">produces</text>
+      <path class="flow-line-solid" d="M 880 700 L 940 820" marker-end="url(#arr3)"/>
+      <text class="flow-label" x="910" y="760">delivers</text>
 
     </svg>
   </div>
 
   <div class="callout" data-aos="fade-up" data-aos-delay="120">
-    <strong>The boss conversation.</strong> "Market intelligence" is not a single prompt — it's a structured procedure (~650 words, always loaded), three on-demand reference modules totalling ~5,000 words, a briefing-path branch, a type-classification step, conditional output sections, a gap-analysis pass before delivery, and citation discipline. Plus the orchestrator pre-filters inputs based on the active scope. The "rigor" is not in any one piece — it's in the whole.
+    <strong>The conversation with leadership.</strong> "Market intelligence" is not a single prompt. It's a 9-phase workflow (~700 lines) with mandatory source archival, sub-task checkpointing for resumability, an autonomous strategic-gap-analysis pass before review, 5 hard design principles, 6 golden-source templates, 2 reference modules, edge-case handling for paywalls and quiet users and conflicting feedback, and a 90-second heartbeat rule for long-running phases. Plus citation discipline, draft versioning, and HTML rendering for delivery. Two downstream skills already consume the output. <strong>That's the rigor. The diagram is the artifact you show.</strong>
   </div>
 
 </section>
