@@ -134,6 +134,65 @@
   font-size: 11px;
   color: var(--text-muted);
 }
+
+/* Landscape pillars — informational framing band */
+.h-page-tight {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+.pillar-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) { .pillar-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+.pillar-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--cyber-cyan);
+  border-radius: var(--radius-md);
+  padding: 16px 16px 14px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.pillar-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+.pillar-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--cyber-cyan);
+}
+.pillar-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.pillar-body {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.pillar-bridge {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--cyber-cyan);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -158,6 +217,44 @@
 </nav>
 
 <main>
+
+<section class="page page-tight">
+  <div class="page-head" data-aos="fade-up">
+    <span class="eyebrow">Landscape</span>
+    <h1 class="h-page-tight">Modernizing with AI agents</h1>
+    <p class="lede">Four building blocks make agent systems work in production. They're worth naming up front so the patterns below sit in context.</p>
+  </div>
+
+  <div class="pillar-grid" data-aos="fade-up" data-aos-delay="60">
+
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Grounded data</div>
+      <div class="pillar-body">Agents are only as useful as what they can see. They need reliable, low-friction access to the systems and context the business already runs on, so decisions reflect today — not last quarter.</div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Production infrastructure</div>
+      <div class="pillar-body">Running agents at scale is an operations problem, not just a model problem. Predictable scaling, secure integration with existing tools, and the right placement — cloud where it makes sense, closer to the work where latency matters.</div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Multi-agent systems</div>
+      <div class="pillar-body">Real work rarely fits a single prompt. Specialized agents and skills, composed together, do what a generalist can't — and stay reviewable as the surface grows.</div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-num">04</div>
+      <div class="pillar-title">Large language models</div>
+      <div class="pillar-body">The reasoning engine. Choosing and tuning the right model behind each agent shapes both cost and capability run after run.</div>
+    </div>
+
+  </div>
+
+  <p class="pillar-bridge" data-aos="fade-up" data-aos-delay="120">The pages that follow zoom in on the third — how the pieces of a multi-agent system are structured so they stay composable, repeatable, and reviewable.</p>
+</section>
 
 <section class="page">
   <div class="page-head">
