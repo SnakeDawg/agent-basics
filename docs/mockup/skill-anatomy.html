@@ -78,24 +78,37 @@
   padding: 14px 16px;
   text-align: left;
 }
-.kpi-tile-num {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 4px;
-  line-height: 1;
+/* Smaller, less shouty page heading variant */
+.h-page-tight {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
 }
-.kpi-tile-label {
+
+/* Outcome-led KPI tile (replaces giant-gradient-number style) */
+.kpi-tile-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.kpi-tile-support {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
 }
+/* Cycle a thin colored top border so the strip feels like part of the system, not a vanity board */
+.kpi-strip > .kpi-tile:nth-child(6n+1) { border-top: 2px solid var(--layer-intake); }
+.kpi-strip > .kpi-tile:nth-child(6n+2) { border-top: 2px solid var(--layer-logic); }
+.kpi-strip > .kpi-tile:nth-child(6n+3) { border-top: 2px solid var(--cyber-blue); }
+.kpi-strip > .kpi-tile:nth-child(6n+4) { border-top: 2px solid var(--layer-safety); }
+.kpi-strip > .kpi-tile:nth-child(6n+5) { border-top: 2px solid var(--cyber-cyan); }
+.kpi-strip > .kpi-tile:nth-child(6n)   { border-top: 2px solid var(--layer-intake); }
 
 /* ===== Leadership-talk feature cards ===== */
 .feat-section { margin-top: 28px; }
@@ -221,18 +234,36 @@
 
 <section class="page">
   <div class="page-head" data-aos="fade-up">
-    <span class="eyebrow">Skill anatomy</span>
-    <h1 class="h-page">Inside <code>market-intelligence</code></h1>
-    <p class="lede">Real numbers from the actual <code>SKILL.md</code> — not a placeholder. The next time someone says "isn't that just market intelligence?", show them this.</p>
+    <span class="eyebrow">Anatomy · example: <code>market-intelligence</code></span>
+    <h1 class="h-page-tight">A skill is a system, not a prompt.</h1>
+    <p class="lede">When the request is "do market research," what actually runs is a structured workflow with safeguards, checkpoints, and quality control. Here's what that means in practice.</p>
   </div>
 
   <div class="kpi-strip" data-aos="fade-up" data-aos-delay="40">
-    <div class="kpi-tile"><div class="kpi-tile-num">~700</div><div class="kpi-tile-label">SKILL.md lines</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">9</div><div class="kpi-tile-label">workflow phases</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">references</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">6</div><div class="kpi-tile-label">templates (golden)</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">5</div><div class="kpi-tile-label">design principles</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">downstream skills</div></div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Every claim is sourced</div>
+      <div class="kpi-tile-support">archival to disk required before analysis</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Sessions resume after interruptions</div>
+      <div class="kpi-tile-support">state checkpointed after every sub-task</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Quality pass before any review</div>
+      <div class="kpi-tile-support">autonomous gap-fill on every draft</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Structured workflow, not free-form</div>
+      <div class="kpi-tile-support">9 named phases with transitions</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Reusable scaffolding per project</div>
+      <div class="kpi-tile-support">6 golden templates copied, never edited</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Outputs feed downstream work</div>
+      <div class="kpi-tile-support">consumed by 2 sister skills</div>
+    </div>
   </div>
 
   <div class="diagram-frame" style="margin-top:22px;" data-aos="fade-up" data-aos-delay="80">
