@@ -96,6 +96,108 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+
+/* ===== Leadership-talk feature cards ===== */
+.feat-section { margin-top: 28px; }
+.feat-section-head {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 18px;
+}
+.feat-section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyber-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.feat-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.feat-section-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .feat-grid { grid-template-columns: 1fr; } }
+
+.feat-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--cyber-cyan);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.feat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+/* color cycling — borrows the four semantic layer accents */
+.feat-card:nth-child(6n+1) { border-left-color: var(--layer-intake); }
+.feat-card:nth-child(6n+1):hover { box-shadow: 0 6px 24px var(--glow-orange); }
+.feat-card:nth-child(6n+2) { border-left-color: var(--layer-logic); }
+.feat-card:nth-child(6n+2):hover { box-shadow: 0 6px 24px var(--glow-emerald); }
+.feat-card:nth-child(6n+3) { border-left-color: var(--cyber-blue); }
+.feat-card:nth-child(6n+3):hover { box-shadow: 0 6px 24px var(--glow-blue); }
+.feat-card:nth-child(6n+4) { border-left-color: var(--layer-safety); }
+.feat-card:nth-child(6n+4):hover { box-shadow: 0 6px 24px var(--glow-purple); }
+.feat-card:nth-child(6n+5) { border-left-color: var(--cyber-cyan); }
+.feat-card:nth-child(6n+5):hover { box-shadow: 0 6px 24px var(--glow-cyan); }
+.feat-card:nth-child(6n) { border-left-color: var(--layer-intake); }
+.feat-card:nth-child(6n):hover { box-shadow: 0 6px 24px var(--glow-orange); }
+
+.feat-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.feat-num {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+.feat-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.feat-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* tagline strip below the cards */
+.feat-closer {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.feat-closer strong { color: var(--text-primary); }
+
 </style>
 </head>
 <body>
@@ -397,9 +499,93 @@
     </svg>
   </div>
 
-  <div class="callout" data-aos="fade-up" data-aos-delay="120">
-    <strong>The conversation with leadership.</strong> "Market intelligence" is not a single prompt. It's a 9-phase workflow (~700 lines) with mandatory source archival, sub-task checkpointing for resumability, an autonomous strategic-gap-analysis pass before review, 5 hard design principles, 6 golden-source templates, 2 reference modules, edge-case handling for paywalls and quiet users and conflicting feedback, and a 90-second heartbeat rule for long-running phases. Plus citation discipline, draft versioning, and HTML rendering for delivery. Two downstream skills already consume the output. <strong>That's the rigor. The diagram is the artifact you show.</strong>
-  </div>
+  <section class="feat-section" data-aos="fade-up" data-aos-delay="120">
+    <div class="feat-section-head">
+      <span class="feat-section-eyebrow">Show this to leadership</span>
+      <h2 class="feat-section-title">Why "market intelligence" isn't a single prompt</h2>
+      <p class="feat-section-sub">Each capability below is a real piece of the SKILL.md — swap the words; keep the structure.</p>
+    </div>
+
+    <div class="feat-grid">
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">01</span><span>Workflow</span></div>
+        <div class="feat-title">9-phase research workflow</div>
+        <div class="feat-desc">Orientation → Interview → Planning → Collection → Analysis → Drafting → Strategic Gap Analysis (autonomous) → Review → Finalization.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">02</span><span>Source rigor</span></div>
+        <div class="feat-title">Mandatory archival, not just URLs</div>
+        <div class="feat-desc">Every cited source physically saved to disk before analysis can begin. Archival gate enforced between phases.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">03</span><span>Resumability</span></div>
+        <div class="feat-title">Checkpointed state + todo</div>
+        <div class="feat-desc">Sub-task progress written to <code>.working/state.md</code> and <code>.working/todo.md</code> after every step. Interrupted sessions resume exactly.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">04</span><span>Quality control</span></div>
+        <div class="feat-title">Autonomous gap-analysis pass</div>
+        <div class="feat-desc">Phase 5.5 generates 3–7 missing-angle questions and folds the answers in — without user input — before the user ever sees the draft.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">05</span><span>Discipline</span></div>
+        <div class="feat-title">5 hard design principles</div>
+        <div class="feat-desc">Read-only templates · source integrity · iterative deepening · user alignment · mandatory progress tracking. Encoded in the skill, not just culture.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">06</span><span>Reusability</span></div>
+        <div class="feat-title">6 golden-source templates</div>
+        <div class="feat-desc">Research doc · brief · source log · source meta · todo · state. Copied per project, never modified — guarantees structural consistency.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">07</span><span>References</span></div>
+        <div class="feat-title">2 on-demand reference modules</div>
+        <div class="feat-desc">interview-guide.md (5-round protocol) and source-management.md (archival + citation). Loaded only when needed, not on every invocation.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">08</span><span>Edge cases</span></div>
+        <div class="feat-title">Real-world failure modes handled</div>
+        <div class="feat-desc">Paywalled sources · quiet users · scope creep · conflicting feedback · 50+ source topics · unfamiliar terminology. All addressed inline.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">09</span><span>Communication</span></div>
+        <div class="feat-title">90-second heartbeat rule</div>
+        <div class="feat-desc">Long-running phases must status-update at least every 90 seconds — short, concrete, what was just found. No silent multi-minute gaps.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">10</span><span>Citation</span></div>
+        <div class="feat-title">Numbered, traceable, verified</div>
+        <div class="feat-desc">Inline <code>[N]</code> citations, full bibliography, integrity checklist at finalization. Every claim traceable to a logged source.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">11</span><span>Versioning</span></div>
+        <div class="feat-title">Draft chain preserved</div>
+        <div class="feat-desc">draft-v1 → draft-v1-improved (post-gap) → review iterations → final. Every revision archived under <code>drafts/</code>.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-eyebrow"><span class="feat-num">12</span><span>Downstream</span></div>
+        <div class="feat-title">Outputs consumed by sister skills</div>
+        <div class="feat-desc">prd-definition pulls research as PRD context · boardroom uses it as background for pressure-testing · research-index makes runs discoverable.</div>
+      </div>
+
+    </div>
+
+    <div class="feat-closer">
+      <strong>That's the rigor.</strong> Twelve concrete capabilities, encoded in one skill. The diagram above is the artifact; the cards are the talking points.
+    </div>
+  </section>
 
 </section>
 
