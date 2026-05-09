@@ -26,6 +26,10 @@ A foundational catalogue of reusable Claude Code subagents and skills, distribut
 
 `scripts/export-plugin.sh` produces a `.claude-plugin/`-formatted copy under `dist/plugin/` for `/plugin install` distribution. Not part of day-to-day workflow.
 
+## Mockup pages (data-driven)
+
+The anatomy mockup at `docs/mockup/skill-anatomy.html` is generated from `.claude/skills/<skill>/mockup.yaml` (KPI tiles + capability cards) and `mockup-diagram.svg` (skill-specific diagram). Edit those, then run `python3 scripts/build-mockup.py` — do not edit the generated HTML directly.
+
 ## Where things live
 
 ```

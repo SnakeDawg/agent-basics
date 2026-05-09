@@ -1,0 +1,75 @@
+# Drives docs/mockup/skill-anatomy.html via scripts/build-mockup.py.
+# When this file changes, run: python3 scripts/build-mockup.py
+schema: 1
+page:
+  eyebrow_prefix: "Anatomy · example:"
+  eyebrow_code: market-intelligence
+  title: A skill is a system, not a prompt.
+  lede: >-
+    When the request is "do market research," what actually runs is a
+    structured workflow with safeguards, checkpoints, and quality control.
+    Here's what that means in practice.
+
+kpi_tiles:
+  - headline: Every claim is sourced
+    support: archival to disk required before analysis
+  - headline: Sessions resume after interruptions
+    support: state checkpointed after every sub-task
+  - headline: Quality pass before any review
+    support: autonomous gap-fill on every draft
+  - headline: Structured workflow, not free-form
+    support: 9 named phases with transitions
+  - headline: Reusable scaffolding per project
+    support: 6 golden templates copied, never edited
+  - headline: Outputs feed downstream work
+    support: consumed by 2 sister skills
+
+capability_groups:
+  - id: rigor
+    label: Rigor
+    sub: methodology that produces consistent quality
+    cards:
+      - title: Repeatable every time
+        desc: Same 9 steps in order, end to end
+        icon: dots
+      - title: Standard building blocks
+        desc: Six reusable templates, identical each project
+        icon: blocks
+      - title: Self-checks before you see it
+        desc: Finds missing angles on its own first
+        icon: search
+      - title: Handles the messy parts
+        desc: "Paywalls, scope drift, contradictions — covered"
+        icon: cluster
+  - id: guardrails
+    label: Guardrails
+    sub: what protects integrity, run after run
+    cards:
+      - title: Sources kept on file
+        desc: Every fact has its source saved locally
+        icon: file-check
+      - title: Rules built into the skill
+        desc: Five hard standards followed every run
+        icon: shield
+      - title: Every claim cites a source
+        desc: Numbered, listed, traceable
+        icon: link-out
+      - title: Every draft saved
+        desc: Nothing lost, full revision history
+        icon: branch
+  - id: tradecraft
+    label: Tradecraft
+    sub: how it operates, communicates, and connects
+    cards:
+      - title: Picks up where it left off
+        desc: Progress saved after every step
+        icon: refresh
+      - title: Lightweight by default
+        desc: Loads heavier guides only when needed
+        icon: book
+      - title: Tells you what it's doing
+        desc: Status update at least every 90 seconds
+        icon: chat
+      - title: Plugs into other skills
+        desc: Output flows into related work automatically
+        icon: arrow-right
