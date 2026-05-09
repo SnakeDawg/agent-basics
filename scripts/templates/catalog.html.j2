@@ -1,0 +1,264 @@
+{# Rendered by scripts/build-mockup.py — do not edit the generated HTML directly. #}
+<!DOCTYPE html>
+<!-- Generated from .claude/ frontmatter — edit SKILL.md / agent .md, not this file. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalog — Agent + Skill Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<style>
+.cat-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+@media (max-width: 800px) { .cat-summary { grid-template-columns: repeat(2, 1fr); } }
+
+.cat-summary-tile {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+.cat-summary-tile.t-skills { border-top: 2px solid var(--layer-logic); }
+.cat-summary-tile.t-agents { border-top: 2px solid var(--cyber-blue); }
+.cat-summary-tile.t-data   { border-top: 2px solid var(--layer-intake); }
+.cat-summary-tile.t-rag    { border-top: 2px solid var(--layer-safety); }
+
+.cat-summary-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.cat-summary-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+.cat-summary-sub {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.cat-section { margin-top: 32px; }
+.cat-section-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+.cat-section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+.cat-section.s-skills .cat-section-eyebrow { color: var(--layer-logic); }
+.cat-section.s-agents .cat-section-eyebrow { color: var(--cyber-blue); }
+.cat-section.s-planned .cat-section-eyebrow { color: var(--text-muted); }
+.cat-section-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.cat-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--cyber-cyan);
+  border-radius: var(--radius-md);
+  padding: 16px 16px 14px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.cat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+
+.cat-section.s-skills  .cat-card { border-left-color: var(--layer-logic); }
+.cat-section.s-skills  .cat-card:hover { box-shadow: 0 6px 24px var(--glow-emerald); }
+.cat-section.s-agents  .cat-card { border-left-color: var(--cyber-blue); }
+.cat-section.s-agents  .cat-card:hover { box-shadow: 0 6px 24px var(--glow-blue); }
+.cat-section.s-planned .cat-card { border-left-color: var(--text-muted); opacity: 0.7; }
+
+.cat-card-head {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cat-card-type {
+  padding: 2px 7px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  background: var(--bg-elevated);
+}
+.cat-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+.cat-card-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+.cat-card-foot {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-subtle);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.cat-card-detail-link {
+  color: var(--cyber-cyan);
+}
+.cat-card.no-detail .cat-card-detail-link {
+  color: var(--text-muted);
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><span class="logo-mark"></span><span>agent-basics</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="system.html">System</a></li>
+      <li><a href="catalog.html" class="active">Catalog</a></li>
+      <li><a href="flow.html">Flow</a></li>
+      <li><a href="status.html">Status</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<section class="page">
+  <div class="page-head" data-aos="fade-up">
+    <span class="eyebrow">Catalog</span>
+    <h1 class="h-page">Everything in this repo</h1>
+    <p class="lede">Skills, agents, and the components coming next. Sourced directly from <code>.claude/</code> — when you add an entry, it lands here.</p>
+  </div>
+
+  <div class="cat-summary" data-aos="fade-up" data-aos-delay="40">
+    <div class="cat-summary-tile t-skills">
+      <div class="cat-summary-num">{{ skills | length }}</div>
+      <div class="cat-summary-label">Skills</div>
+      <div class="cat-summary-sub">Procedures the model follows when triggered</div>
+    </div>
+    <div class="cat-summary-tile t-agents">
+      <div class="cat-summary-num">{{ agents | length }}</div>
+      <div class="cat-summary-label">Agents</div>
+      <div class="cat-summary-sub">Specialized workers the orchestrator can dispatch</div>
+    </div>
+    <div class="cat-summary-tile t-data">
+      <div class="cat-summary-num">—</div>
+      <div class="cat-summary-label">Data pipelines</div>
+      <div class="cat-summary-sub">Coming · feeders for the agentic RAG layer</div>
+    </div>
+    <div class="cat-summary-tile t-rag">
+      <div class="cat-summary-num">—</div>
+      <div class="cat-summary-label">Agentic RAG agents</div>
+      <div class="cat-summary-sub">Coming · retrieve where the agent decides what to fetch</div>
+    </div>
+  </div>
+
+  {%- if skills %}
+  <div class="cat-section s-skills" data-aos="fade-up" data-aos-delay="80">
+    <div class="cat-section-head">
+      <div class="cat-section-eyebrow">Skills</div>
+      <div class="cat-section-count">{{ skills | length }} live</div>
+    </div>
+    <div class="cat-grid">
+      {%- for entry in skills %}
+      {%- set has_detail = entry.detail_href is not none %}
+      <a class="cat-card{% if not has_detail %} no-detail{% endif %}"
+         {% if has_detail %}href="{{ entry.detail_href }}"{% else %}href="#" onclick="return false;"{% endif %}>
+        <div class="cat-card-head">
+          <span class="cat-card-type">skill</span>
+          <span>.claude/skills/{{ entry.name }}/</span>
+        </div>
+        <div class="cat-card-name">{{ entry.name }}</div>
+        <div class="cat-card-desc">{{ entry.description }}</div>
+        <div class="cat-card-foot">
+          <span>{{ entry.line_count }} lines</span>
+          <span class="cat-card-detail-link">{% if has_detail %}view anatomy →{% else %}details coming{% endif %}</span>
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif %}
+
+  {%- if agents %}
+  <div class="cat-section s-agents" data-aos="fade-up" data-aos-delay="120">
+    <div class="cat-section-head">
+      <div class="cat-section-eyebrow">Agents</div>
+      <div class="cat-section-count">{{ agents | length }} live</div>
+    </div>
+    <div class="cat-grid">
+      {%- for entry in agents %}
+      <a class="cat-card no-detail" href="#" onclick="return false;">
+        <div class="cat-card-head">
+          <span class="cat-card-type">agent</span>
+          <span>.claude/agents/{{ entry.name }}.md</span>
+        </div>
+        <div class="cat-card-name">{{ entry.name }}</div>
+        <div class="cat-card-desc">{{ entry.description }}</div>
+        <div class="cat-card-foot">
+          <span>{{ entry.line_count }} lines</span>
+          <span class="cat-card-detail-link">details coming</span>
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif %}
+
+</section>
+
+</main>
+
+<footer>agent-basics — design pattern catalogue · MIT</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:600, once:true, offset:60});</script>
+</body>
+</html>
