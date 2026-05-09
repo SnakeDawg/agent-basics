@@ -135,11 +135,9 @@
 
 .feat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
 }
-@media (max-width: 900px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .feat-grid { grid-template-columns: 1fr; } }
 
 .feat-card {
   background: var(--bg-glass);
@@ -147,9 +145,9 @@
   border: 1px solid var(--border-subtle);
   border-left: 3px solid var(--cyber-cyan);
   border-radius: var(--radius-md);
-  padding: 16px 18px;
+  padding: 14px 14px 12px;
   transition: all 0.2s ease;
-  display: flex; flex-direction: column; gap: 6px;
+  display: flex; flex-direction: column; gap: 4px;
 }
 .feat-card:hover {
   transform: translateY(-2px);
@@ -187,25 +185,27 @@
   border: 1px solid var(--border-subtle);
 }
 .feat-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-primary);
+  line-height: 1.3;
 }
 .feat-desc {
-  font-size: 12.5px;
+  font-size: 11.5px;
   color: var(--text-secondary);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 .feat-icon {
-  width: 36px; height: 36px;
-  border-radius: 8px;
+  width: 28px; height: 28px;
+  border-radius: 7px;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   color: var(--cyber-cyan);
   margin-bottom: 4px;
 }
+.feat-icon svg { width: 16px; height: 16px; }
 .feat-card:nth-child(6n+1) .feat-icon { color: var(--layer-intake); }
 .feat-card:nth-child(6n+2) .feat-icon { color: var(--layer-logic); }
 .feat-card:nth-child(6n+3) .feat-icon { color: var(--cyber-blue); }
