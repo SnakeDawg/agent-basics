@@ -78,24 +78,37 @@
   padding: 14px 16px;
   text-align: left;
 }
-.kpi-tile-num {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 4px;
-  line-height: 1;
+/* Smaller, less shouty page heading variant */
+.h-page-tight {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
 }
-.kpi-tile-label {
+
+/* Outcome-led KPI tile (replaces giant-gradient-number style) */
+.kpi-tile-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.kpi-tile-support {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
 }
+/* Cycle a thin colored top border so the strip feels like part of the system, not a vanity board */
+.kpi-strip > .kpi-tile:nth-child(6n+1) { border-top: 2px solid var(--layer-intake); }
+.kpi-strip > .kpi-tile:nth-child(6n+2) { border-top: 2px solid var(--layer-logic); }
+.kpi-strip > .kpi-tile:nth-child(6n+3) { border-top: 2px solid var(--cyber-blue); }
+.kpi-strip > .kpi-tile:nth-child(6n+4) { border-top: 2px solid var(--layer-safety); }
+.kpi-strip > .kpi-tile:nth-child(6n+5) { border-top: 2px solid var(--cyber-cyan); }
+.kpi-strip > .kpi-tile:nth-child(6n)   { border-top: 2px solid var(--layer-intake); }
 
 /* ===== Leadership-talk feature cards ===== */
 .feat-section { margin-top: 28px; }
@@ -182,8 +195,23 @@
 .feat-desc {
   font-size: 12.5px;
   color: var(--text-secondary);
-  line-height: 1.55;
+  line-height: 1.45;
 }
+.feat-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--cyber-cyan);
+  margin-bottom: 4px;
+}
+.feat-card:nth-child(6n+1) .feat-icon { color: var(--layer-intake); }
+.feat-card:nth-child(6n+2) .feat-icon { color: var(--layer-logic); }
+.feat-card:nth-child(6n+3) .feat-icon { color: var(--cyber-blue); }
+.feat-card:nth-child(6n+4) .feat-icon { color: var(--layer-safety); }
+.feat-card:nth-child(6n+5) .feat-icon { color: var(--cyber-cyan); }
+.feat-card:nth-child(6n)   .feat-icon { color: var(--layer-intake); }
 
 /* tagline strip below the cards */
 .feat-closer {
@@ -221,18 +249,36 @@
 
 <section class="page">
   <div class="page-head" data-aos="fade-up">
-    <span class="eyebrow">Skill anatomy</span>
-    <h1 class="h-page">Inside <code>market-intelligence</code></h1>
-    <p class="lede">Real numbers from the actual <code>SKILL.md</code> — not a placeholder. The next time someone says "isn't that just market intelligence?", show them this.</p>
+    <span class="eyebrow">Anatomy · example: <code>market-intelligence</code></span>
+    <h1 class="h-page-tight">A skill is a system, not a prompt.</h1>
+    <p class="lede">When the request is "do market research," what actually runs is a structured workflow with safeguards, checkpoints, and quality control. Here's what that means in practice.</p>
   </div>
 
   <div class="kpi-strip" data-aos="fade-up" data-aos-delay="40">
-    <div class="kpi-tile"><div class="kpi-tile-num">~700</div><div class="kpi-tile-label">SKILL.md lines</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">9</div><div class="kpi-tile-label">workflow phases</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">references</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">6</div><div class="kpi-tile-label">templates (golden)</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">5</div><div class="kpi-tile-label">design principles</div></div>
-    <div class="kpi-tile"><div class="kpi-tile-num">2</div><div class="kpi-tile-label">downstream skills</div></div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Every claim is sourced</div>
+      <div class="kpi-tile-support">archival to disk required before analysis</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Sessions resume after interruptions</div>
+      <div class="kpi-tile-support">state checkpointed after every sub-task</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Quality pass before any review</div>
+      <div class="kpi-tile-support">autonomous gap-fill on every draft</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Structured workflow, not free-form</div>
+      <div class="kpi-tile-support">9 named phases with transitions</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Reusable scaffolding per project</div>
+      <div class="kpi-tile-support">6 golden templates copied, never edited</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-tile-headline">Outputs feed downstream work</div>
+      <div class="kpi-tile-support">consumed by 2 sister skills</div>
+    </div>
   </div>
 
   <div class="diagram-frame" style="margin-top:22px;" data-aos="fade-up" data-aos-delay="80">
@@ -500,90 +546,104 @@
   </div>
 
   <section class="feat-section" data-aos="fade-up" data-aos-delay="120">
-    <div class="feat-section-head">
-      <span class="feat-section-eyebrow">Show this to leadership</span>
-      <h2 class="feat-section-title">Why "market intelligence" isn't a single prompt</h2>
-      <p class="feat-section-sub">Each capability below is a real piece of the SKILL.md — swap the words; keep the structure.</p>
-    </div>
-
     <div class="feat-grid">
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">01</span><span>Workflow</span></div>
-        <div class="feat-title">9-phase research workflow</div>
-        <div class="feat-desc">Orientation → Interview → Planning → Collection → Analysis → Drafting → Strategic Gap Analysis (autonomous) → Review → Finalization.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h3M14 12h3"/></svg>
+        </div>
+        <div class="feat-title">Repeatable every time</div>
+        <div class="feat-desc">Same 9 steps in order, end to end</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">02</span><span>Source rigor</span></div>
-        <div class="feat-title">Mandatory archival, not just URLs</div>
-        <div class="feat-desc">Every cited source physically saved to disk before analysis can begin. Archival gate enforced between phases.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 14l2 2 4-4"/></svg>
+        </div>
+        <div class="feat-title">Sources kept on file</div>
+        <div class="feat-desc">Every fact has its source saved locally</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">03</span><span>Resumability</span></div>
-        <div class="feat-title">Checkpointed state + todo</div>
-        <div class="feat-desc">Sub-task progress written to <code>.working/state.md</code> and <code>.working/todo.md</code> after every step. Interrupted sessions resume exactly.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        </div>
+        <div class="feat-title">Picks up where it left off</div>
+        <div class="feat-desc">Progress saved after every step</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">04</span><span>Quality control</span></div>
-        <div class="feat-title">Autonomous gap-analysis pass</div>
-        <div class="feat-desc">Phase 5.5 generates 3–7 missing-angle questions and folds the answers in — without user input — before the user ever sees the draft.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5.5-5.5"/></svg>
+        </div>
+        <div class="feat-title">Self-checks before you see it</div>
+        <div class="feat-desc">Finds missing angles on its own first</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">05</span><span>Discipline</span></div>
-        <div class="feat-title">5 hard design principles</div>
-        <div class="feat-desc">Read-only templates · source integrity · iterative deepening · user alignment · mandatory progress tracking. Encoded in the skill, not just culture.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        </div>
+        <div class="feat-title">Rules built into the skill</div>
+        <div class="feat-desc">Five hard standards followed every run</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">06</span><span>Reusability</span></div>
-        <div class="feat-title">6 golden-source templates</div>
-        <div class="feat-desc">Research doc · brief · source log · source meta · todo · state. Copied per project, never modified — guarantees structural consistency.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="13" height="13" rx="2"/><path d="M8 8h13v13H8z"/></svg>
+        </div>
+        <div class="feat-title">Standard building blocks</div>
+        <div class="feat-desc">Six reusable templates, identical each project</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">07</span><span>References</span></div>
-        <div class="feat-title">2 on-demand reference modules</div>
-        <div class="feat-desc">interview-guide.md (5-round protocol) and source-management.md (archival + citation). Loaded only when needed, not on every invocation.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h14"/></svg>
+        </div>
+        <div class="feat-title">Lightweight by default</div>
+        <div class="feat-desc">Loads heavier guides only when needed</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">08</span><span>Edge cases</span></div>
-        <div class="feat-title">Real-world failure modes handled</div>
-        <div class="feat-desc">Paywalled sources · quiet users · scope creep · conflicting feedback · 50+ source topics · unfamiliar terminology. All addressed inline.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="20" r="3"/><path d="M6 9v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9M12 14v3"/></svg>
+        </div>
+        <div class="feat-title">Handles the messy parts</div>
+        <div class="feat-desc">Paywalls, scope drift, contradictions — covered</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">09</span><span>Communication</span></div>
-        <div class="feat-title">90-second heartbeat rule</div>
-        <div class="feat-desc">Long-running phases must status-update at least every 90 seconds — short, concrete, what was just found. No silent multi-minute gaps.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+        </div>
+        <div class="feat-title">Tells you what it's doing</div>
+        <div class="feat-desc">Status update at least every 90 seconds</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">10</span><span>Citation</span></div>
-        <div class="feat-title">Numbered, traceable, verified</div>
-        <div class="feat-desc">Inline <code>[N]</code> citations, full bibliography, integrity checklist at finalization. Every claim traceable to a logged source.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.5-3.5L6 19l1.5-3.5"/><path d="M14 3h7v7"/><path d="M10 14L21 3"/></svg>
+        </div>
+        <div class="feat-title">Every claim cites a source</div>
+        <div class="feat-desc">Numbered, listed, traceable</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">11</span><span>Versioning</span></div>
-        <div class="feat-title">Draft chain preserved</div>
-        <div class="feat-desc">draft-v1 → draft-v1-improved (post-gap) → review iterations → final. Every revision archived under <code>drafts/</code>.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.5 6h2.5a2 2 0 0 1 2 2v8a2 2 0 0 0 2 2h.5"/></svg>
+        </div>
+        <div class="feat-title">Every draft saved</div>
+        <div class="feat-desc">Nothing lost, full revision history</div>
       </div>
 
       <div class="feat-card">
-        <div class="feat-eyebrow"><span class="feat-num">12</span><span>Downstream</span></div>
-        <div class="feat-title">Outputs consumed by sister skills</div>
-        <div class="feat-desc">prd-definition pulls research as PRD context · boardroom uses it as background for pressure-testing · research-index makes runs discoverable.</div>
+        <div class="feat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+        <div class="feat-title">Plugs into other skills</div>
+        <div class="feat-desc">Output flows into related work automatically</div>
       </div>
 
-    </div>
-
-    <div class="feat-closer">
-      <strong>That's the rigor.</strong> Twelve concrete capabilities, encoded in one skill. The diagram above is the artifact; the cards are the talking points.
     </div>
   </section>
 
